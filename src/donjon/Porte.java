@@ -81,7 +81,7 @@ public class Porte {
 		case 1:
 			String answer = "42";
 			Utilitaire.affiche("Je suis la réponse à cette énigme\nJe suis la réponse aux questionnements\nJe suis la réponse à la vie\nJe suis les salles de ce donjon");
-			prop = Main.sc2.nextLine();
+			prop = Main.caractere.nextLine();
 			System.out.println("\n\n\n\n\n\n\n");
 			if (!prop.equals(answer))
 				System.out.println("Mauvaise réponse, rien ne se passe");

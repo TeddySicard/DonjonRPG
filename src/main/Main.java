@@ -5,8 +5,8 @@ import java.util.Scanner;
 import donjon.Donjon;
 
 public class Main {
-	public static Scanner sc1 = new Scanner(System.in);
-	public static Scanner sc2 = new Scanner(System.in);
+	public static Scanner nombre = new Scanner(System.in);
+	public static Scanner caractere = new Scanner(System.in);
 
 	public static void main(String[] args) throws InterruptedException {
 		System.out.println(
@@ -19,8 +19,8 @@ public class Main {
 		Donjon donjon = new Donjon();
 		donjon.generer();
 		donjon.demarrer();
-		sc1.close();
-		sc2.close();
+		nombre.close();
+		caractere.close();
 
 	}
 

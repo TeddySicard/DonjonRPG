@@ -242,70 +242,69 @@ public class Donjon {
 			salle.getPiege().triggerTrap(joueur);
 			System.out.println("Vous retournez dans la salle précédente");
 			this.changerSalle(salle, salle.getPortes().get(0));
-		} else {
-			if (salle.getMonstre() != null) {
-				System.out.println(salle.getMonstre().crier());
-				System.out.println("Un " + salle.getMonstre().toString() + " se trouve dans la salle");
-				Combat.combattre(joueur, salle.getMonstre());
-				salle.setMonstre(null);
+		}
+		if (salle.getMonstre() != null) {
+			System.out.println(salle.getMonstre().crier());
+			System.out.println("Un " + salle.getMonstre().toString() + " se trouve dans la salle");
+			Combat.combattre(joueur, salle.getMonstre());
+			salle.setMonstre(null);
+		}
+		if (salle.getLaya() != null) {
+			actCode = Utilitaire.yesNoQuestions("Dans la salle se trouve une personne mystérieuse, à l'air inquiétant, qui se propose de vous aider à vous échapper\nAcceptez-vous ?\n1 pour Oui\n2 pour Non");
+			if (actCode == 1) {
+				System.out.println("Vous faites connaissance avec la personne mystérieuse");
+				System.out.println(
+						"Vous apprenez qu'elle s'appelle Laya et qu'elle possède des pouvoirs de guérison");
+				System.out.println("Laya vous à rejoint, elle pourra vous soigner lors de vos futurs combats\n\n");
+				joueur.setMateFollow(salle.getLaya());
+				salle.setLaya(null);
+			} else {
+			System.out.println("Vous refusez l'aide de la personne mystérieuse, contrariée, elle s'en va\n\n");
+			salle.setLaya(null);
 			}
-			if (salle.getLaya() != null) {
-				actCode = Utilitaire.yesNoQuestions("Dans la salle se trouve une personne mystérieuse, à l'air inquiétant, qui se propose de vous aider à vous échapper\nAcceptez-vous ?\n1 pour Oui\n2 pour Non");
-				if (actCode == 1) {
-					System.out.println("Vous faites connaissance avec la personne mystérieuse");
-					System.out.println(
-							"Vous apprenez qu'elle s'appelle Laya et qu'elle possède des pouvoirs de guérison");
-					System.out.println("Laya vous à rejoint, elle pourra vous soigner lors de vos futurs combats\n\n");
-					joueur.setMateFollow(salle.getLaya());
-					salle.setLaya(null);
-				} else {
-					System.out.println("Vous refusez l'aide de la personne mystérieuse, contrariée, elle s'en va\n\n");
-					salle.setLaya(null);
-				}
+		}
+		if (salle.getCoffre() != null) {
+			if (salle.getCoffre().isLocked()) 
+				actCode = Utilitaire.yesNoQuestions("Dans la salle se trouve un coffre verrouillé\nSouhaitez-vous le deverrouiller ?\n1 pour le déverrouiller\n2 pour le laisser");
+			else
+				actCode = Utilitaire.yesNoQuestions("Dans la salle se trouve un coffre\nSouhaitez-vous l'ouvrir ?\n1 pour l'ouvrir\n2 pour le laisser");
+			if (actCode == 1) {
+				joueur.open(salle.getCoffre());
+			} else {
+				if (salle.getCoffre().isLocked())
+					System.out.println("Vous laissez le coffre verrouillé");
+				else
+					System.out.println("Vous laissez le coffre fermé");
 			}
-			if (salle.getCoffre() != null) {
-				if (salle.getCoffre().isLocked()) 
-					actCode = Utilitaire.yesNoQuestions("Dans la salle se trouve un coffre verrouillé\nSouhaitez-vous le deverrouiller ?\n1 pour le déverrouiller\n2 pour le laisser");
-				 else
-					actCode = Utilitaire.yesNoQuestions("Dans la salle se trouve un coffre\nSouhaitez-vous l'ouvrir ?\n1 pour l'ouvrir\n2 pour le laisser");
-				if (actCode == 1) {
-					joueur.open(salle.getCoffre());
-				} else {
-					if (salle.getCoffre().isLocked())
-						System.out.println("Vous laissez le coffre verrouillé");
+		}
+		do {
+			StringBuilder str = new StringBuilder("\nDans la salle se trouve :");
+			for (Porte porte : salle.getPortes()) {
+				if (porte != null)
+					str.append("\nUne " + porte.toString());
+			}
+			str.append("\n\nQue souhaitez-vous faire ?\n");
+			for (Porte porte : salle.getPortes()) {
+				if (porte != null) {
+					if (porte.getCat()==0)
+						str.append("\n" + porte.getDirection() + " pour emprunter la " + porte.toString());
 					else
-						System.out.println("Vous laissez le coffre fermé");
+						str.append("\n" + porte.getDirection() + " pour déverrouiller la " + porte.toString());
 				}
 			}
-			do {
-				StringBuilder str = new StringBuilder("\nDans la salle se trouve :");
-				for (Porte porte : salle.getPortes()) {
-					if (porte != null)
-						str.append("\nUne " + porte.toString());
-				}
-				str.append("\n\nQue souhaitez-vous faire ?\n");
-				for (Porte porte : salle.getPortes()) {
-					if (porte != null) {
-						if (porte.getCat()==0)
-							str.append("\n" + porte.getDirection() + " pour emprunter la " + porte.toString());
-						else
-							str.append("\n" + porte.getDirection() + " pour déverrouiller la " + porte.toString());
-					}
-				}
-				str.append("\n5 pour examiner la pièce");
+			str.append("\n5 pour examiner la pièce");
+			actCode = Utilitaire.recupererInt(str.toString());
+			System.out.println("\n\n\n\n\n\n\n");
+			while (actCode != 1 && actCode != 2 && actCode != 3 && actCode != 4 && actCode != 5) {
+				System.out.println("Saisie invalide, veuillez réessayer.");
 				actCode = Utilitaire.recupererInt(str.toString());
 				System.out.println("\n\n\n\n\n\n\n");
-				while (actCode != 1 && actCode != 2 && actCode != 3 && actCode != 4 && actCode != 5) {
-					System.out.println("Saisie invalide, veuillez réessayer.");
-					actCode = Utilitaire.recupererInt(str.toString());
-					System.out.println("\n\n\n\n\n\n\n");
-				}
-				if (actCode == 1 || actCode==2 || actCode==3 || actCode == 4) 
-					this.testPorte(actCode, salle, isHere);
-				else
-					this.exam(salle);	
-			} while (isHere); 
-		}
+			}
+			if (actCode == 1 || actCode==2 || actCode==3 || actCode == 4) 
+				this.testPorte(actCode, salle, isHere);
+			else
+				this.exam(salle);	
+		} while (isHere); 
 	}		
 	
 	public void exam(Salle salle) throws InterruptedException {
