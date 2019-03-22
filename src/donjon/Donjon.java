@@ -142,7 +142,7 @@ public class Donjon {
 		Salle salle414 = new Salle(3, 13, porteSud, porteEst, coffre414);
 		Salle salle415 = new Salle(3, 14, porteEst, porteOuest, sorcier415);
 		Salle salle416 = new Salle(3, 15, porteNord, porteEst, porteOuest, zombie416, hpGainPot416);
-		Salle salle417 = new Salle(3, 16, porteSud, porteOuest, porteOuest);
+		Salle salle417 = new Salle(3, 16, porteSud, porteEst, porteOuest);
 		Salle salle418 = new Salle(3, 17, porteOuest, trap418);
 		Salle salle55 = new Salle(4, 4, porteNord, porteSud, porteEst);
 		Salle salle56 = new Salle(4, 5, porteEst, porteOuest, sorcier56);

@@ -47,7 +47,7 @@ public class Combat {
 			dmg = joueur.getHp();
 			System.out.println("Vous échouez votre esquive.");
 			joueur.setHp(joueur.getHp() - (ennemi.getStrength()) / 2);
-			dmg -= - joueur.getHp();
+			dmg -= joueur.getHp();
 			System.out.println("L'ennemi vous a infligé " + dmg + " points de dégats.");
 		} else {							//3/5 proba d'esquiver
 			System.out.println("Vous esquivez l'attaque ennemi.");
