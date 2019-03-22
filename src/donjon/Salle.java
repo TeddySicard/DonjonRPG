@@ -33,6 +33,7 @@ public class Salle {
 		this.piege = piege;
 		this.objSol = objSol;
 	}
+
 /////////////////////////////////////Constructeurs (Créés selon besoin des donjons créés)//////////////////////////////
 	public Salle(int x, int y, Porte porte1, Porte porte2, Chest coffre, Monstre monstre, Object objSol) {
 		this(x, y, porte1, porte2, null, null, coffre, monstre, null, null, objSol);
@@ -103,6 +104,7 @@ public class Salle {
 		this(x, y, porte1, objsol);
 		this.setDepart(depart);
 	}
+
 ///////////////////////////////////Getters && Setters////////////////////////////////////////
 	public List<Porte> getPortes() {
 		return portes;

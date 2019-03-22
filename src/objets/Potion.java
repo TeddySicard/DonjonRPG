@@ -15,7 +15,7 @@ public abstract class Potion {
 	}
 
 	@Override
-	public abstract String toString() ;
-	
+	public abstract String toString();
+
 	public abstract void utiliser(Personnage joueur);
 }

@@ -11,13 +11,13 @@ public class HealingPot extends Potion {
 	}
 
 	public HealingPot() {
-		super((int) Math.random() * 15 + 15);	//Génère une valeur aléatoire à l'instanciation (entre 15 et 29)
+		super((int) Math.random() * 15 + 15); // Génère une valeur aléatoire à l'instanciation (entre 15 et 29)
 	}
 
 	@Override
 	public void utiliser(Personnage joueur) {
 		joueur.setHp(joueur.getHp() + this.getpower());
-		PointDeVie.overhealCheck(joueur);;
+		PointDeVie.overhealCheck(joueur);
 		System.out.println("Vous buvez la potion de soin, vous avez maintenant " + joueur.getHp() + " points de vie.");
 
 	}

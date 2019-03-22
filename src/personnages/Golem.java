@@ -18,5 +18,4 @@ public class Golem extends Monstre {
 		return "GRGRGGRGRGR !!!!";
 	}
 
-
 }

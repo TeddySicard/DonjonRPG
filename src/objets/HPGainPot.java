@@ -10,7 +10,7 @@ public class HPGainPot extends Potion {
 	}
 
 	public HPGainPot() {
-		super((int) (Math.random() * 15 + 15));	//Génère une valeur aléatoire à l'instanciation (entre 15 et 29)
+		super((int) (Math.random() * 15 + 15)); // Génère une valeur aléatoire à l'instanciation (entre 15 et 29)
 	}
 
 	@Override

@@ -11,7 +11,6 @@ public class Sorcier extends Monstre {
 		return "sorcier";
 	}
 
-
 	public String crier() {
 		return "Skibiidi skibida !!!!";
 	}

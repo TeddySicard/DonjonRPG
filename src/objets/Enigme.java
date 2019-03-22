@@ -8,10 +8,8 @@ public class Enigme {
 		this.numero = numero;
 	}
 
-
 	public int getNumero() {
 		return numero;
 	}
-	
 
 }

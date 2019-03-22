@@ -79,7 +79,7 @@ public class Porte {
 			return false;
 	}
 
-	public void unlock(Enigme enigme) throws InterruptedException {	//Lance l'énigme
+	public void unlock(Enigme enigme) throws InterruptedException { // Lance l'énigme
 		String prop;
 		switch (enigme.getNumero()) { // Permet de selectionner l'énigme voulue
 		case 1:
@@ -92,7 +92,7 @@ public class Porte {
 				System.out.println("Mauvaise réponse, rien ne se passe");
 			else { // Si réponse correcte
 				System.out.println("Vous avez trouvé la bonne réponse, vous pouvez passer");
-				this.cat = 0;	//Déverrouille la porte
+				this.cat = 0; // Déverrouille la porte
 			}
 			break;
 		}
