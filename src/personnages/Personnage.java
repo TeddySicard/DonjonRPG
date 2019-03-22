@@ -15,6 +15,7 @@ public abstract class Personnage {
 		this.critique = critique;
 	}
 
+////////////////////////////////Getters && Setters//////////////////////////////////////////
 	public int getCritique() {
 		return critique;
 	}
@@ -40,16 +41,16 @@ public abstract class Personnage {
 	}
 
 	public void setHp(int hp) {
-		if (hp <= 0)
+		if (hp <= 0) // Permet de réguler les PV pour qu'ils ne descendent pas en dessous de 0
 			this.hp = 0;
 		else
 			this.hp = hp;
 	}
 
-	public void coupCritique(Personnage ennemi, double valeur) {
+	public void coupCritique(Personnage ennemi, double valeur) { // Permet de faire un coup critique
 		int x;
 		x = (int) (Math.random() * 10);
-		if (x <= valeur) {
+		if (x <= valeur) { // Proba valeur+1/10
 			ennemi.setHp(ennemi.getHp() - (this.getStrength()));
 			System.out.println("Coup critique !!!");
 		}
@@ -58,8 +59,8 @@ public abstract class Personnage {
 
 	public abstract void useSkill(Personnage personnage);
 
-	public boolean isKO() {
-		if (this.hp <= 0) {
+	public boolean isKO() { // Vérifie si le joueur est KO
+		if (this.hp <= 0) { // Si ses PV sont nuls
 			return true;
 		} else {
 			return false;

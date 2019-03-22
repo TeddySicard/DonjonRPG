@@ -7,24 +7,21 @@ public class Piege {
 
 	public Piege() {
 		super();
-		this.strength = (int) (Math.random()*10+15);
+		this.strength = (int) (Math.random()*10+15); //Valeur générée aléatoirement lors de l'instanciation du piège (entre 15 et 24)
 	}
 
 	public int getStrength() {
 		return strength;
 	}
-	public void triggerTrap(PersonnagePrincipal joueur) {
+	public void triggerTrap(PersonnagePrincipal joueur) {	//Active le piège
 		int dmg;
 		dmg = joueur.getHp();
 		joueur.setHp(joueur.getHp() - this.getStrength());
-		dmg = dmg - joueur.getHp();
+		dmg -= joueur.getHp();
 		System.out.println("Le piège vous a infligé "+ dmg +" points de dégats");
-		if (joueur.isKO()) {
+		if (joueur.isKO()) {	//Si le joueur meurt
 			joueur.gameOver();
 		}
-	}
-	public String toString() {
-		return "piege";
 	}
 
 }

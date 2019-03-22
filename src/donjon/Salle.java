@@ -5,6 +5,7 @@ import personnages.Monstre;
 import personnages.Support;
 import java.util.ArrayList;
 import java.util.List;
+
 public class Salle {
 	private int x;
 	private int y;
@@ -16,13 +17,6 @@ public class Salle {
 	private Object objSol;
 	private boolean victoire = false;
 	private boolean depart = false;
-	public boolean isVictoire() {
-		return victoire;
-	}
-
-	public void setVictoire(boolean victoire) {
-		this.victoire = victoire;
-	}
 
 	public Salle(int x, int y, Porte porte1, Porte porte2, Porte porte3, Porte porte4, Chest coffre, Monstre monstre,
 			Support laya, Piege piege, Object objSol) {
@@ -39,22 +33,21 @@ public class Salle {
 		this.piege = piege;
 		this.objSol = objSol;
 	}
-
+/////////////////////////////////////Constructeurs (Créés selon besoin des donjons créés)//////////////////////////////
 	public Salle(int x, int y, Porte porte1, Porte porte2, Chest coffre, Monstre monstre, Object objSol) {
 		this(x, y, porte1, porte2, null, null, coffre, monstre, null, null, objSol);
 	}
 
-	public Salle(int x, int y, Porte porte1, Porte porte2, Porte porte3, Monstre monstre,
-			Object objSol) {
-		this(x,y,porte1,porte2, porte3, null, null, monstre, null, null, objSol);
+	public Salle(int x, int y, Porte porte1, Porte porte2, Porte porte3, Monstre monstre, Object objSol) {
+		this(x, y, porte1, porte2, porte3, null, null, monstre, null, null, objSol);
 	}
 
 	public Salle(int x, int y, Porte porte1, Porte porte2, Monstre monstre, Object objSol) {
-		this(x,y, porte1, porte2,null, null, null, monstre,null, null, objSol);
+		this(x, y, porte1, porte2, null, null, null, monstre, null, null, objSol);
 	}
 
 	public Salle(int x, int y, Porte porte1, Porte porte2, Porte porte3, Monstre monstre) {
-		this(x,y,porte1, porte2, porte3, monstre, null);
+		this(x, y, porte1, porte2, porte3, monstre, null);
 	}
 
 	public Salle(int x, int y, Porte porte1, Porte porte2, Object objSol) {
@@ -74,7 +67,7 @@ public class Salle {
 	}
 
 	public Salle(int x, int y, Porte porte1, Chest coffre, Object objSol) {
-		this(x ,y ,porte1 ,null, coffre, null, objSol);
+		this(x, y, porte1, null, coffre, null, objSol);
 	}
 
 	public Salle(int x, int y, Porte porte1, Chest coffre) {
@@ -86,7 +79,7 @@ public class Salle {
 	}
 
 	public Salle(int x, int y, Porte porte1, Object objSol) {
-		this(x, y, porte1, null,null, objSol);
+		this(x, y, porte1, null, null, objSol);
 	}
 
 	public Salle(int x, int y, Porte porte1, Support laya) {
@@ -110,7 +103,7 @@ public class Salle {
 		this(x, y, porte1, objsol);
 		this.setDepart(depart);
 	}
-
+///////////////////////////////////Getters && Setters////////////////////////////////////////
 	public List<Porte> getPortes() {
 		return portes;
 	}
@@ -173,6 +166,14 @@ public class Salle {
 
 	public void setDepart(boolean depart) {
 		this.depart = depart;
+	}
+
+	public boolean isVictoire() {
+		return victoire;
+	}
+
+	public void setVictoire(boolean victoire) {
+		this.victoire = victoire;
 	}
 
 }

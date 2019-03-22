@@ -24,19 +24,21 @@ import util.Utilitaire;
 
 public class Donjon {
 	public PersonnagePrincipal joueur;
-	public Salle[][] salles;
-	private int coordX;
-	private int coordY;
+	public Salle[][] salles; // Terrain dans lequel le donjon sera stocké (2 dimensions)
+	private int coordX;// Coordonnées de la salle de départ qui sera initialisée lors de la génération
+						// du donjon
+	private int coordY;//
 
 	public Donjon(int x, int y) {
 		this.salles = new Salle[x][y];
-		this.joueur = new PersonnagePrincipal();
+		this.joueur = new PersonnagePrincipal();// Créé le joueur en même temps que le terrain du donjon
 	}
 
 	public Donjon() {
 		this(11, 18);
 	}
 
+///////////////////////////Getters && Setters//////////////////////////////////
 	public int getCoordX() {
 		return coordX;
 	}
@@ -215,78 +217,81 @@ public class Donjon {
 		this.ajouterSalle(salle1114);
 
 	}
-	
+
 	public void demarrer() throws InterruptedException {
-		this.entrerSalle(this.salles[this.getCoordX()][this.getCoordY()]);
+		this.entrerSalle(this.salles[this.getCoordX()][this.getCoordY()]);// Récupère les coordonnées de la salle de
+																			// départ
 	}
 
 	public void ajouterSalle(Salle salle) {
-		this.salles[salle.getX()][salle.getY()] = salle;
-		if (salle.isDepart()) {
+		this.salles[salle.getX()][salle.getY()] = salle;// Permet d'ajouter les salles sur le terrain selon ses
+														// coordonnées
+		if (salle.isDepart()) { // Permet d'initialiser les coordonnées de départ
 			this.setCoordX(salle.getX());
 			this.setCoordY(salle.getY());
 		}
 	}
 
-
-	public void entrerSalle(Salle salle) throws InterruptedException {
-		boolean isHere = true;
+	public void entrerSalle(Salle salle) throws InterruptedException {// Permet d'enchaîner les actions du jeu, du
+																		// départ jusqu'à la victoire/Game over
+		boolean isHere = true; // Permet de vérifier que le joueur est toujours présent dans la salle
 		int actCode;
-		if (salle.isVictoire()) {
+		if (salle.isVictoire()) { // Regarde si la salle est la salle de victoire
 			System.out.println("Vous êtes sorti du donjon...");
 			System.out.println("Vous avez gagné");
-			System.exit(1);	
+			System.exit(0);
 		}
-		if (salle.getPiege() != null) {
+		if (salle.getPiege() != null) {// Permet de vérifier la présence de piège dans la salle
 			System.out.println("La porte contenait un mécanisme vous tirant des flèches dessus");
 			salle.getPiege().triggerTrap(joueur);
 			System.out.println("Vous retournez dans la salle précédente");
-			this.changerSalle(salle, salle.getPortes().get(0));
+			this.changerSalle(salle, salle.getPortes().get(0));// Retourne à la salle précédente
 		}
-		if (salle.getMonstre() != null) {
+		if (salle.getMonstre() != null) {// Permet de vérifier la présence de monstre dans la salle
 			System.out.println(salle.getMonstre().crier());
 			System.out.println("Un " + salle.getMonstre().toString() + " se trouve dans la salle");
 			Combat.combattre(joueur, salle.getMonstre());
-			salle.setMonstre(null);
+			salle.setMonstre(null);// Supprime le monstre de la salle
 		}
-		if (salle.getLaya() != null) {
-			actCode = Utilitaire.yesNoQuestions("Dans la salle se trouve une personne mystérieuse, à l'air inquiétant, qui se propose de vous aider à vous échapper\nAcceptez-vous ?\n1 pour Oui\n2 pour Non");
+		if (salle.getLaya() != null) {// Permet de vérifier la présence du support dans la salle
+			actCode = Utilitaire.yesNoQuestions(
+					"Dans la salle se trouve une personne mystérieuse, à l'air inquiétant, qui se propose de vous aider à vous échapper\nAcceptez-vous ?\n1 pour Oui\n2 pour Non");
 			if (actCode == 1) {
 				System.out.println("Vous faites connaissance avec la personne mystérieuse");
-				System.out.println(
-						"Vous apprenez qu'elle s'appelle Laya et qu'elle possède des pouvoirs de guérison");
+				System.out.println("Vous apprenez qu'elle s'appelle Laya et qu'elle possède des pouvoirs de guérison");
 				System.out.println("Laya vous à rejoint, elle pourra vous soigner lors de vos futurs combats\n\n");
-				joueur.setMateFollow(salle.getLaya());
-				salle.setLaya(null);
+				joueur.setMateFollow(salle.getLaya());// Ajoute le support en tant que co-équipier du joueur
 			} else {
-			System.out.println("Vous refusez l'aide de la personne mystérieuse, contrariée, elle s'en va\n\n");
-			salle.setLaya(null);
+				System.out.println("Vous refusez l'aide de la personne mystérieuse, contrariée, elle s'en va\n\n");
 			}
+			salle.setLaya(null);// Supprime le support de la salle
 		}
-		if (salle.getCoffre() != null) {
-			if (salle.getCoffre().isLocked()) 
-				actCode = Utilitaire.yesNoQuestions("Dans la salle se trouve un coffre verrouillé\nSouhaitez-vous le deverrouiller ?\n1 pour le déverrouiller\n2 pour le laisser");
+		if (salle.getCoffre() != null) {// Permet de vérifier la présence de coffre dans la salle
+			if (salle.getCoffre().isLocked()) // Affiche la question en fonction de l'état du coffre (verrouillé ou non)
+				actCode = Utilitaire.yesNoQuestions(
+						"Dans la salle se trouve un coffre verrouillé\nSouhaitez-vous le deverrouiller ?\n1 pour le déverrouiller\n2 pour le laisser");
 			else
-				actCode = Utilitaire.yesNoQuestions("Dans la salle se trouve un coffre\nSouhaitez-vous l'ouvrir ?\n1 pour l'ouvrir\n2 pour le laisser");
+				actCode = Utilitaire.yesNoQuestions(
+						"Dans la salle se trouve un coffre\nSouhaitez-vous l'ouvrir ?\n1 pour l'ouvrir\n2 pour le laisser");
 			if (actCode == 1) {
-				joueur.open(salle.getCoffre());
+				joueur.open(salle.getCoffre());// Ouvre/Essaye d'ouvrir le coffre
 			} else {
-				if (salle.getCoffre().isLocked())
+				if (salle.getCoffre().isLocked())// Affiche le texte en fonction de l'état du coffre (verrouillé ou non)
 					System.out.println("Vous laissez le coffre verrouillé");
 				else
 					System.out.println("Vous laissez le coffre fermé");
 			}
 		}
-		do {
+		do { // Affiche ce texte tant que le joueur se trouve dans la salle
 			StringBuilder str = new StringBuilder("\nDans la salle se trouve :");
-			for (Porte porte : salle.getPortes()) {
-				if (porte != null)
-					str.append("\nUne " + porte.toString());
+			for (Porte porte : salle.getPortes()) { // Va tester toute les portes de la salle
+				if (porte != null) // Vérifie si la porte existe
+					str.append("\nUne " + porte.toString()); // Va afficher la présence de la porte
 			}
 			str.append("\n\nQue souhaitez-vous faire ?\n");
-			for (Porte porte : salle.getPortes()) {
-				if (porte != null) {
-					if (porte.getCat()==0)
+			for (Porte porte : salle.getPortes()) {// Va tester toute les portes de la salle
+				if (porte != null) { // Vérifie si la porte existe
+					if (porte.getCat() == 0)// Vérifie l'état de la porte (Verrouillée ou non)
 						str.append("\n" + porte.getDirection() + " pour emprunter la " + porte.toString());
 					else
 						str.append("\n" + porte.getDirection() + " pour déverrouiller la " + porte.toString());
@@ -295,52 +300,56 @@ public class Donjon {
 			str.append("\n5 pour examiner la pièce");
 			actCode = Utilitaire.recupererInt(str.toString());
 			System.out.println("\n\n\n\n\n\n\n");
-			while (actCode != 1 && actCode != 2 && actCode != 3 && actCode != 4 && actCode != 5) {
+			while (actCode != 1 && actCode != 2 && actCode != 3 && actCode != 4 && actCode != 5) { // Vérifier que la
+																									// commande rentrée
+																									// est possible
 				System.out.println("Saisie invalide, veuillez réessayer.");
 				actCode = Utilitaire.recupererInt(str.toString());
 				System.out.println("\n\n\n\n\n\n\n");
 			}
-			if (actCode == 1 || actCode==2 || actCode==3 || actCode == 4) 
+			if (actCode == 1 || actCode == 2 || actCode == 3 || actCode == 4)
 				this.testPorte(actCode, salle, isHere);
 			else
-				this.exam(salle);	
-		} while (isHere); 
-	}		
-	
-	public void exam(Salle salle) throws InterruptedException {
-		if (salle.getObjSol() == null)
+				this.exam(salle);
+		} while (isHere);
+	}
+
+	public void exam(Salle salle) throws InterruptedException {// Va permettre de vérifier le type d'objet présent dans
+																// la salle
+		if (salle.getObjSol() == null) // Aucun objet présent
 			System.out.println("Vous ne trouvez rien d'intéressant dans la salle");
 		else {
 			int actCode;
-			if (salle.getObjSol() instanceof Arme) {
-				System.out.println("Vous avez trouvé " + salle.getObjSol().toString()+" dans la salle");
+			if (salle.getObjSol() instanceof Arme) { // Une arme présente
+				System.out.println("Vous avez trouvé " + salle.getObjSol().toString() + " dans la salle");
 				joueur.equipWeapon((Arme) salle.getObjSol());
-				salle.setObjSol(null);
-			} else if (salle.getObjSol() instanceof Potion) {
+				salle.setObjSol(null); // Supprime l'arme du sol
+			} else if (salle.getObjSol() instanceof Potion) { // Une potion présente
 				actCode = Utilitaire.yesNoQuestions("Vous avez trouvé une " + salle.getObjSol()
 						+ " dans la salle\nSouhaitez-vous la boire ?\n1 pour boire la potion\n2 pour la laisser");
 				if (actCode == 1) {
 					joueur.drink((Potion) salle.getObjSol());
-					salle.setObjSol(null);
+					salle.setObjSol(null); // Supprime la potion de la salle
 				} else {
 					System.out.println("Vous laissez la potion sur place");
 				}
-			} else if (salle.getObjSol() instanceof Key) {
-				if (((Key) salle.getObjSol()).getCat() == 1)
-					System.out
-							.println("Vous trouvez une clé de coffre dans la salle. Vous l'ajoutez à votre trousseau de clé.");
+			} else if (salle.getObjSol() instanceof Key) { // Une clé présente
+				if (((Key) salle.getObjSol()).getCat() == 1) // Vérifie le type de clé (Clé de porte ou clé de coffre)
+					System.out.println(
+							"Vous trouvez une clé de coffre dans la salle. Vous l'ajoutez à votre trousseau de clé.");
 				else
-					System.out
-							.println("Vous trouvez une clé de porte dans la salle. Vous l'ajoutez à votre trousseau de clé.");
+					System.out.println(
+							"Vous trouvez une clé de porte dans la salle. Vous l'ajoutez à votre trousseau de clé.");
 				joueur.earnKey((Key) salle.getObjSol());
-				salle.setObjSol(null);
+				salle.setObjSol(null); // Supprime la clé de la place
 			}
 		}
 	}
 
-	public void changerSalle(Salle salle, Porte porte) throws InterruptedException {
-		switch (porte.getCat()) {
-		case 0:
+	public void changerSalle(Salle salle, Porte porte) throws InterruptedException { // Permet de se déplacer d'une
+																						// salle à l'autre
+		switch (porte.getCat()) { // Vérifie si la porte est verrouillée ou déverrouillée
+		case 0: // Porte déverrouillée
 			switch (porte.getDirection()) {
 			case 1:
 				this.entrerSalle(this.salles[salle.getX() - 1][salle.getY()]);
@@ -356,42 +365,45 @@ public class Donjon {
 				break;
 			}
 			break;
-		case 2 :
+		case 2: // Porte verrouillée par clé
 			joueur.unlock(porte);
 			break;
-		case 3 :
+		case 3: // Porte verrouillée par énigme
 			porte.unlock(porte.getEnigme());
 		}
-		
+
 	}
-	
-	public void testPorte(int actCode, Salle salle, boolean isHere) throws InterruptedException {
+
+	/////////////////////////////// A OPTIMISER/////////////////////////////////
+	public void testPorte(int actCode, Salle salle, boolean isHere) throws InterruptedException { // Permet de vérifier
+																									// si la porte
+																									// existe ou pas
+																									// dans la salle
 		Porte porte = null;
 		boolean dir = false;
-		for (Porte portes : salle.getPortes()) {
-			if (portes != null) {
-				if (portes.getDirection() == actCode) {
+		for (Porte portes : salle.getPortes()) { // Vérifie la présence de la porte demandée dans la salle
+			if (portes != null) { // Evite le crash
+				if (portes.getDirection() == actCode) { // Si la porte demandée existe bien
 					porte = portes;
 					dir = true;
 					break;
 				}
 			}
 		}
-		if (!dir) 
+		if (!dir) // Si la porte n'existe pas
 			System.out.println("Saisie invalide, veuillez réessayer.");
-		else {
-			if (porte.getCat()!=0) {
+		else { // Si la porte existe
+			if (porte.getCat() != 0) { // Si la porte est verrouillée
 				this.changerSalle(salle, porte);
-				if (porte.getCat()==0)
+				if (porte.getCat() == 0) // Si la porte s'est correctement deverrouillée
 					System.out.print("Vous pouvez maintenant l'emprunter");
 
-			}
-			else {
+			} else { // Si la porte est déverrouillée
 				System.out.println("Vous changez de salle");
 				isHere = false;
 				this.changerSalle(salle, porte);
 			}
 		}
 	}
-	
+
 }

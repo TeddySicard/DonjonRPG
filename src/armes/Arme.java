@@ -12,8 +12,6 @@ public abstract class Arme {
 		return strength;
 	}
 
-	@Override
 	public abstract String toString();
 	
-
 }

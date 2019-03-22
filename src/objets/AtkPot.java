@@ -10,7 +10,7 @@ public class AtkPot extends Potion {
 	}
 
 	public AtkPot() {
-		super((int) Math.random() * 5 + 5);
+		super((int) Math.random() * 5 + 5);	//Génère une valeur aléatoire à l'instanciation (entre 5 et 9)
 	}
 
 	@Override

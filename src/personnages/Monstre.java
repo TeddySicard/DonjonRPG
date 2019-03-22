@@ -1,5 +1,7 @@
 package personnages;
 
+import util.PointDeVie;
+
 public abstract class Monstre extends Personnage {
 
 	public Monstre(int hp, int strength, int critique) {
@@ -10,22 +12,13 @@ public abstract class Monstre extends Personnage {
 
 	public abstract String crier();
 
-	public void useSkill(Personnage joueur) {
-		PersonnagePrincipal ennemi = (PersonnagePrincipal) joueur;
-		int dmg;
-		dmg = ennemi.getHp();
-		ennemi.setHp(ennemi.getHp() - this.getStrength());
-		super.coupCritique(ennemi, this.getCritique());
-		dmg = dmg - ennemi.getHp();
-		if (!ennemi.isAlone()) {
-			int dmg2;
-			dmg2 = ennemi.getMateFollow().getHp();
-			ennemi.getMateFollow().setHp(ennemi.getMateFollow().getHp() - this.getStrength());
-			super.coupCritique(ennemi.getMateFollow(), 0);
-			dmg2 = dmg2 - ennemi.getMateFollow().getHp();
-			System.out.println("Le " + this.toString() + " vous a infligé " + dmg + " points de dégats et " + dmg2
+	public void useSkill(Personnage joueur) { // Attaque du monstre sur le joueur
+		int dmg = PointDeVie.attaque(this, joueur);
+		if (!((PersonnagePrincipal) joueur).isAlone()) { // Si le joueur est accompagné du support
+			System.out.println("Le " + this.toString() + " vous a infligé " + dmg + " points de dégats et "
+					+ PointDeVie.attaque(this, ((PersonnagePrincipal) joueur).getMateFollow())
 					+ " points de dégats à Laya.");
-			if (ennemi.getMateFollow().isKO())
+			if (((PersonnagePrincipal) joueur).getMateFollow().isKO()) // Vérifie la mort du support après son attaque
 				System.out.println("Laya est morte");
 		} else
 			System.out.println("Le " + this.toString() + " vous a infligé " + dmg + " points de dégats.");

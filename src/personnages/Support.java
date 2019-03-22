@@ -1,25 +1,20 @@
 package personnages;
 
+import util.PointDeVie;
+
 public class Support extends Personnage {
 	public Support() {
-		super(100, 7, 4);
+		super(100, 7, 0);
 	}
 
 	@Override
-	public void useSkill(Personnage joueur) {
+	public void useSkill(Personnage joueur) { // Soigne le joueur
 		int x;
-		x = (int) (Math.random() * 10);
-		if (x <= this.getCritique()) {
+		x = (int) (Math.random() * 10);	//Génère une valeur aléatoire à chaque appel de la méthode
+		if (x <= 4) {	//Proba 1/2 de se réaliser
 			this.setHp(this.getHp() + this.getStrength());
-			joueur.setHp(joueur.getHp() + this.getStrength());
-			if (joueur.getHp() >= joueur.getMaxHp())
-				joueur.setHp(joueur.getMaxHp());
-			if (this.getHp() >= this.getMaxHp())
-				this.setHp(this.getMaxHp());
-			if (joueur.getHp() >= joueur.getMaxHp())
-				joueur.setHp(joueur.getMaxHp());
-			if (this.getHp() >= this.getMaxHp())
-				this.setHp(this.getMaxHp());
+			PointDeVie.overhealCheck(joueur);
+			PointDeVie.overhealCheck(this);
 			System.out.println("Laya vous a soigné et s'est également soignée");
 		}
 

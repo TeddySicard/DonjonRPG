@@ -5,12 +5,12 @@ public class Chest {
 	private int cat;
 	private Object contenu;
 
-	public Chest(Object contenu, int cat) {
+	public Chest(Object contenu, int cat) { // Constructeur d'un coffre verrouillé
 		this.cat = cat;
 		this.contenu = contenu;
 	}
 
-	public Chest(Object contenu) {
+	public Chest(Object contenu) { // Constructeur d'un coffre déverrouillé
 		this(contenu, 0);
 	}
 
@@ -26,6 +26,10 @@ public class Chest {
 		return contenu;
 	}
 
+	public void setContenu(Object contenu) {
+		this.contenu = contenu;
+	}
+
 	public boolean isLocked() {
 		if (this.cat == 0) {
 			return false;
@@ -34,19 +38,12 @@ public class Chest {
 		}
 	}
 
-	public boolean unlock(Key key) {
-		if (this.getCat() == 1) {
-			if (key.getCat() == this.cat) {
-				this.cat = 0;
-				return true;
-			} else
-				return false;
+	public boolean unlock(Key key) { // Déverrouiller un coffre
+		if (key.getCat() == this.cat) { // Si la clé est compatible
+			this.cat = 0;
+			return true;
 		} else
 			return false;
-	}
-
-	public void setContenu(Object contenu) {
-		this.contenu = contenu;
 	}
 
 }
