@@ -67,7 +67,7 @@ public class PersonnagePrincipal extends Personnage {
 
 	public boolean isAlone() {// Vérifie la présence du support
 		if (getMateFollow() != null)
-			if (!getMateFollow().isKO())	//Vérifie si le support est mort
+			if (!getMateFollow().isKO()) // Vérifie si le support est mort
 				return false;
 			else
 				return true;
@@ -85,55 +85,38 @@ public class PersonnagePrincipal extends Personnage {
 		bunchOfKeys.add(key);
 	}
 
-///////////////////////////////////A optimiser/////////////////////////////////////////
 	public void unlock(Porte porte) { // Déverrouille une porte
-		boolean success;
-		success = false;
 		for (Key aKey : bunchOfKeys) { // Pour toute les clés du trousseau
 			if (porte.unlock(aKey)) { // Si une clé est compatible
 				bunchOfKeys.remove(aKey); // La retire du trousseau
 				porte.setCat(0); // Déverrouille la porte
-				success = true;
-				break;
+				System.out.println("Porte déverrouillée.");
+				return;
 			}
 
 		}
-		if (success) { // Si la porte est déverrouillée après opération
-			System.out.println("Porte déverrouillée.");
-
-		}
-
-		else // Si la porte n'est pas déverrouillée
-			System.out.println("Vous n'avez pas de clé compatible.");
+		System.out.println("Vous n'avez pas de clé compatible.");
 	}
 
-///////////////////////////////////////////A OPTIMISER/////////////////////////////////////////////
 	public void unlock(Chest coffre) throws InterruptedException { // Permet de déverrouiller un coffre
 		int actCode;
-		boolean success;
-		success = false;
 		for (Key aKey : bunchOfKeys) { // Pour toute les clés du trousseau
 			if (coffre.unlock(aKey)) { // Si une clé est compatible
 				bunchOfKeys.remove(aKey); // La retire du trousseau
 				coffre.setCat(0); // Déverrouille le coffre
-				success = true;
-				break;
-			}
-
-		}
-		if (success) { // Si le coffre est déverrouillé après opération
-			actCode = Utilitaire
-					.yesNoQuestions("Coffre déverrouillé. Voulez-vous l'ouvrir ?\n1 pour l'ouvrir\n2 pour le laisser");
-			if (actCode == 1) { // Si joueur veut l'ouvrir
-				this.open(coffre);
-			} else {
-				System.out.println("Vous laissez le coffre fermé");
+				actCode = Utilitaire.yesNoQuestions(
+						"Coffre déverrouillé. Voulez-vous l'ouvrir ?\n1 pour l'ouvrir\n2 pour le laisser");
+				if (actCode == 1) { // Si joueur veut l'ouvrir
+					this.open(coffre);
+				} else {
+					System.out.println("Vous laissez le coffre fermé");
+				}
+				return;
 			}
 
 		}
 
-		else // Si le coffre n'est pas déverrouillé
-			System.out.println("Vous n'avez pas de clé compatible.");
+		System.out.println("Vous n'avez pas de clé compatible.");
 	}
 
 	public void open(Chest coffre) throws InterruptedException { // Permet d'ouvrir un coffre
@@ -175,8 +158,7 @@ public class PersonnagePrincipal extends Personnage {
 		}
 	}
 
-
-	public void drink(Potion potion) {	//Boire la potion
+	public void drink(Potion potion) { // Boire la potion
 		potion.utiliser(this);
 	}
 

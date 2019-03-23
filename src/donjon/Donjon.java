@@ -374,36 +374,28 @@ public class Donjon {
 
 	}
 
-	/////////////////////////////// A OPTIMISER/////////////////////////////////
 	public void testPorte(int actCode, Salle salle, boolean isHere) throws InterruptedException { // Permet de vérifier
 																									// si la porte
 																									// existe ou pas
 																									// dans la salle
-		Porte porte = null;
-		boolean dir = false;
 		for (Porte portes : salle.getPortes()) { // Vérifie la présence de la porte demandée dans la salle
 			if (portes != null) { // Evite le crash
 				if (portes.getDirection() == actCode) { // Si la porte demandée existe bien
-					porte = portes;
-					dir = true;
-					break;
+					if (portes.getCat() != 0) { // Si la porte est verrouillée
+						this.changerSalle(salle, portes);
+						if (portes.getCat() == 0) // Si la porte s'est correctement deverrouillée
+							System.out.print("Vous pouvez maintenant l'emprunter");
+					} else { // Si la porte est déverrouillée
+						System.out.println("Vous changez de salle");
+						isHere = false;
+						this.changerSalle(salle, portes);
+					}
+					return;
 				}
 			}
 		}
-		if (!dir) // Si la porte n'existe pas
-			System.out.println("Saisie invalide, veuillez réessayer.");
-		else { // Si la porte existe
-			if (porte.getCat() != 0) { // Si la porte est verrouillée
-				this.changerSalle(salle, porte);
-				if (porte.getCat() == 0) // Si la porte s'est correctement deverrouillée
-					System.out.print("Vous pouvez maintenant l'emprunter");
+		System.out.println("Saisie invalide, veuillez réessayer.");
 
-			} else { // Si la porte est déverrouillée
-				System.out.println("Vous changez de salle");
-				isHere = false;
-				this.changerSalle(salle, porte);
-			}
-		}
 	}
 
 }
