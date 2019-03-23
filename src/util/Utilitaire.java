@@ -41,4 +41,12 @@ public class Utilitaire {
 		} while (erreur);
 		return actCode;
 	}
+////////////////////////////////////////A continuer/////////////////////////////////////////////
+	public static void lettreParLettre(String txt) {
+		int longueur = txt.length();
+		StringBuilder retour = new StringBuilder();
+		for (int i = 0; i < longueur; i++) {
+			System.out.print(txt.charAt(i));
+		}
+	}
 }
