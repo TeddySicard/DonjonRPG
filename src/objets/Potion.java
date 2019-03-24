@@ -17,5 +17,5 @@ public abstract class Potion {
 	@Override
 	public abstract String toString();
 
-	public abstract void utiliser(Personnage joueur);
+	public abstract void utiliser(Personnage joueur) throws InterruptedException;
 }

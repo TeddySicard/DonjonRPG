@@ -5,9 +5,10 @@ import java.util.InputMismatchException;
 import main.Main;
 
 public class Utilitaire {
+	private static int vitessetxt = 2;
 
 	public static void affiche(String txt) throws InterruptedException { // Affiche le texte après un délai
-		System.out.println(txt);
+		Utilitaire.lettreParLettre(txt);
 		Thread.sleep(1000);
 	}
 
@@ -17,7 +18,7 @@ public class Utilitaire {
 		actCode = Utilitaire.recupererInt(question);
 		System.out.println("\n\n\n\n\n\n\n");
 		while (actCode != 1 && actCode != 2) { // Tant que la réponse ne correspond pas aux possibilités
-			System.out.println("Saisie invalide, veuillez réessayer.");
+			Utilitaire.lettreParLettre("Saisie invalide, veuillez réessayer.");
 			actCode = Utilitaire.recupererInt(question);
 			System.out.println("\n\n\n\n\n\n\n");
 		}
@@ -34,19 +35,32 @@ public class Utilitaire {
 				erreur = false;
 			} catch (InputMismatchException e) { // Si un entier n'a pas été rentré
 				System.out.println("\n\n\n\n\n\n\n");
-				System.out.println("Saisie invalide, veuillez réessayer.");
+				Utilitaire.lettreParLettre("Saisie invalide, veuillez réessayer.");
 				erreur = true;
 				Main.nombre.next();
 			}
 		} while (erreur);
 		return actCode;
 	}
-////////////////////////////////////////A continuer/////////////////////////////////////////////
-	public static void lettreParLettre(String txt) {
+
+	public static void lettreParLettre(String txt) throws InterruptedException {
 		int longueur = txt.length();
-		StringBuilder retour = new StringBuilder();
 		for (int i = 0; i < longueur; i++) {
 			System.out.print(txt.charAt(i));
+			if (txt.charAt(i) == '\n')
+				Thread.sleep(250 * vitessetxt);
+			else
+				Thread.sleep(20 * vitessetxt);
 		}
+		Thread.sleep(250 * vitessetxt);
+		System.out.println();
+	}
+
+	public static int getVitessetxt() {
+		return vitessetxt;
+	}
+
+	public static void setVitessetxt(int vitessetxt) {
+		Utilitaire.vitessetxt = vitessetxt;
 	}
 }

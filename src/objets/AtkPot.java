@@ -1,6 +1,7 @@
 package objets;
 
 import personnages.Personnage;
+import util.Utilitaire;
 
 public class AtkPot extends Potion {
 
@@ -14,9 +15,9 @@ public class AtkPot extends Potion {
 	}
 
 	@Override
-	public void utiliser(Personnage joueur) {
+	public void utiliser(Personnage joueur) throws InterruptedException {
 		joueur.setStrength(joueur.getStrength() + this.getpower());
-		System.out.println("Vous buvez la potion, vous avez maintenant " + joueur.getStrength() + " points d'attaque.");
+		Utilitaire.lettreParLettre("Vous buvez la potion, vous avez maintenant " + joueur.getStrength() + " points d'attaque.");
 	}
 
 }

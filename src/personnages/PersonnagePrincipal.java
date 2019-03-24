@@ -35,26 +35,26 @@ public class PersonnagePrincipal extends Personnage {
 
 	}
 
-	public void useSkill(Personnage ennemi) { // Attaque du joueur
-		System.out.println("Vous avez infligé " + PointDeVie.attaque(this, ennemi) + " points de dégats.");
+	public void useSkill(Personnage ennemi) throws InterruptedException { // Attaque du joueur
+		Utilitaire.lettreParLettre("Vous avez infligé " + PointDeVie.attaque(this, ennemi) + " points de dégats.");
 
 	}
 
-	public void equipWeapon(Arme arme) { // Equipe une arme
+	public void equipWeapon(Arme arme) throws InterruptedException { // Equipe une arme
 		if (this.hasWeapon()) { // Si le joueur a déjà une arme sur lui
 			if (this.getStrength() >= arme.getStrength()) // Si l'arme du joueur fait plus mal que l'arme trouvée
-				System.out.println("Votre arme actuelle inflige plus de dégats. Vous ne changez donc pas d'arme");
+				Utilitaire.lettreParLettre("Votre arme actuelle inflige plus de dégats. Vous ne changez donc pas d'arme");
 			else { // Si son arme actuelle est moins puissant
 				Arme weapon;
 				this.setStrength(arme.getStrength());
 				weapon = this.weaponHeld;
 				this.weaponHeld = arme;
-				System.out.println("Vous avez jeté " + weapon + " au profit d'" + arme + ".");
+				Utilitaire.lettreParLettre("Vous avez jeté " + weapon + " au profit d'" + arme + ".");
 			}
 		} else { // S'il n'a pas d'arme
 			this.setStrength(arme.getStrength());
 			this.weaponHeld = arme;
-			System.out.println("Vous n'aviez pas d'arme, vous récupérez donc " + arme);
+			Utilitaire.lettreParLettre("Vous n'aviez pas d'arme, vous récupérez donc " + arme);
 		}
 	}
 
@@ -75,8 +75,8 @@ public class PersonnagePrincipal extends Personnage {
 			return true;
 	}
 
-	public void gameOver() { // Game over
-		System.out.println("Vous êtes mort\nGame over");
+	public void gameOver() throws InterruptedException { // Game over
+		Utilitaire.lettreParLettre("Vous êtes mort\nGame over");
 		System.exit(0);
 
 	}
@@ -85,17 +85,17 @@ public class PersonnagePrincipal extends Personnage {
 		bunchOfKeys.add(key);
 	}
 
-	public void unlock(Porte porte) { // Déverrouille une porte
+	public void unlock(Porte porte) throws InterruptedException { // Déverrouille une porte
 		for (Key aKey : bunchOfKeys) { // Pour toute les clés du trousseau
 			if (porte.unlock(aKey)) { // Si une clé est compatible
 				bunchOfKeys.remove(aKey); // La retire du trousseau
 				porte.setCat(0); // Déverrouille la porte
-				System.out.println("Porte déverrouillée.");
+				Utilitaire.lettreParLettre("Porte déverrouillée.");
 				return;
 			}
 
 		}
-		System.out.println("Vous n'avez pas de clé compatible.");
+		Utilitaire.lettreParLettre("Vous n'avez pas de clé compatible.");
 	}
 
 	public void unlock(Chest coffre) throws InterruptedException { // Permet de déverrouiller un coffre
@@ -109,14 +109,14 @@ public class PersonnagePrincipal extends Personnage {
 				if (actCode == 1) { // Si joueur veut l'ouvrir
 					this.open(coffre);
 				} else {
-					System.out.println("Vous laissez le coffre fermé");
+					Utilitaire.lettreParLettre("Vous laissez le coffre fermé");
 				}
 				return;
 			}
 
 		}
 
-		System.out.println("Vous n'avez pas de clé compatible.");
+		Utilitaire.lettreParLettre("Vous n'avez pas de clé compatible.");
 	}
 
 	public void open(Chest coffre) throws InterruptedException { // Permet d'ouvrir un coffre
@@ -125,9 +125,9 @@ public class PersonnagePrincipal extends Personnage {
 		else {
 			int actCode;
 			if (coffre.getContenu() == null) { // Si le coffre est vide
-				System.out.println("Coffre vide");
+				Utilitaire.lettreParLettre("Coffre vide");
 			} else if (coffre.getContenu() instanceof Arme) { // Si le coffre contient une arme
-				System.out.println("Le coffre contenait " + coffre.getContenu().toString());
+				Utilitaire.lettreParLettre("Le coffre contenait " + coffre.getContenu().toString());
 				this.equipWeapon((Arme) coffre.getContenu());
 				coffre.setContenu(null); // Supprime l'arme du coffre
 			} else if (coffre.getContenu() instanceof Potion) { // Si le coffre contient une potion
@@ -137,11 +137,11 @@ public class PersonnagePrincipal extends Personnage {
 					this.drink((Potion) coffre.getContenu());
 					coffre.setContenu(null); // Supprime la potion du coffre
 				} else {
-					System.out.println("Vous laissez la potion dans le coffre");
+					Utilitaire.lettreParLettre("Vous laissez la potion dans le coffre");
 				}
 
 			} else if (coffre.getContenu() instanceof Piege) { // Si le coffre contient un piège
-				System.out.println("Le coffre contenait un mécanisme piégé.");
+				Utilitaire.lettreParLettre("Le coffre contenait un mécanisme piégé.");
 				((Piege) coffre.getContenu()).triggerTrap(this);
 				coffre.setContenu(null); // Supprime le piège du coffre
 			} else if (coffre.getContenu() instanceof Key) { // Si le coffre contient une clé
@@ -158,7 +158,7 @@ public class PersonnagePrincipal extends Personnage {
 		}
 	}
 
-	public void drink(Potion potion) { // Boire la potion
+	public void drink(Potion potion) throws InterruptedException { // Boire la potion
 		potion.utiliser(this);
 	}
 

@@ -1,5 +1,7 @@
 package personnages;
 
+import util.Utilitaire;
+
 public abstract class Personnage {
 
 	private int hp;
@@ -47,17 +49,17 @@ public abstract class Personnage {
 			this.hp = hp;
 	}
 
-	public void coupCritique(Personnage ennemi, double valeur) { // Permet de faire un coup critique
+	public void coupCritique(Personnage ennemi, double valeur) throws InterruptedException { // Permet de faire un coup critique
 		int x;
 		x = (int) (Math.random() * 10);
 		if (x <= valeur) { // Proba valeur+1/10
 			ennemi.setHp(ennemi.getHp() - (this.getStrength()));
-			System.out.println("Coup critique !!!");
+			Utilitaire.lettreParLettre("Coup critique !!!");
 		}
 
 	}
 
-	public abstract void useSkill(Personnage personnage);
+	public abstract void useSkill(Personnage personnage) throws InterruptedException;
 
 	public boolean isKO() { // Vérifie si le joueur est KO
 		if (this.hp <= 0) { // Si ses PV sont nuls

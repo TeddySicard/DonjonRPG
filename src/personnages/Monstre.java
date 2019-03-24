@@ -1,6 +1,7 @@
 package personnages;
 
 import util.PointDeVie;
+import util.Utilitaire;
 
 public abstract class Monstre extends Personnage {
 
@@ -12,16 +13,16 @@ public abstract class Monstre extends Personnage {
 
 	public abstract String crier();
 
-	public void useSkill(Personnage joueur) { // Attaque du monstre sur le joueur
+	public void useSkill(Personnage joueur) throws InterruptedException { // Attaque du monstre sur le joueur
 		int dmg = PointDeVie.attaque(this, joueur);
 		if (!((PersonnagePrincipal) joueur).isAlone()) { // Si le joueur est accompagné du support
-			System.out.println("Le " + this.toString() + " vous a infligé " + dmg + " points de dégats et "
+			Utilitaire.lettreParLettre("Le " + this.toString() + " vous a infligé " + dmg + " points de dégats et "
 					+ PointDeVie.attaque(this, ((PersonnagePrincipal) joueur).getMateFollow())
 					+ " points de dégats à Laya.");
 			if (((PersonnagePrincipal) joueur).getMateFollow().isKO()) // Vérifie la mort du support après son attaque
-				System.out.println("Laya est morte");
+				Utilitaire.lettreParLettre("Laya est morte");
 		} else
-			System.out.println("Le " + this.toString() + " vous a infligé " + dmg + " points de dégats.");
+			Utilitaire.lettreParLettre("Le " + this.toString() + " vous a infligé " + dmg + " points de dégats.");
 
 	}
 }

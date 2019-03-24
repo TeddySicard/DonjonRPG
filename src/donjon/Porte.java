@@ -89,9 +89,9 @@ public class Porte {
 			prop = Main.caractere.nextLine();
 			System.out.println("\n\n\n\n\n\n\n");
 			if (!prop.equals(answer)) // Si réponse incorrecte
-				System.out.println("Mauvaise réponse, rien ne se passe");
+				Utilitaire.lettreParLettre("Mauvaise réponse, rien ne se passe");
 			else { // Si réponse correcte
-				System.out.println("Vous avez trouvé la bonne réponse, vous pouvez passer");
+				Utilitaire.lettreParLettre("Vous avez trouvé la bonne réponse, vous pouvez passer");
 				this.cat = 0; // Déverrouille la porte
 			}
 			break;

@@ -4,7 +4,7 @@ import personnages.Personnage;
 
 public class PointDeVie {
 
-	public static int attaque(Personnage attaquant, Personnage receveur) { // Attaque d'un personnage sur un autre
+	public static int attaque(Personnage attaquant, Personnage receveur) throws InterruptedException { // Attaque d'un personnage sur un autre
 																			// retournant les dégats
 		int dmg;
 		dmg = receveur.getHp();

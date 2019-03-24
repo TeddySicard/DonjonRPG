@@ -2,6 +2,7 @@ package objets;
 
 import personnages.Personnage;
 import util.PointDeVie;
+import util.Utilitaire;
 
 public class HealingPot extends Potion {
 
@@ -15,10 +16,10 @@ public class HealingPot extends Potion {
 	}
 
 	@Override
-	public void utiliser(Personnage joueur) {
+	public void utiliser(Personnage joueur) throws InterruptedException {
 		joueur.setHp(joueur.getHp() + this.getpower());
 		PointDeVie.overhealCheck(joueur);
-		System.out.println("Vous buvez la potion de soin, vous avez maintenant " + joueur.getHp() + " points de vie.");
+		Utilitaire.lettreParLettre("Vous buvez la potion de soin, vous avez maintenant " + joueur.getHp() + " points de vie.");
 
 	}
 

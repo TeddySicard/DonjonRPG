@@ -15,7 +15,7 @@ public class Piege {
 		return strength;
 	}
 
-	public void triggerTrap(PersonnagePrincipal joueur) { // Active le piège
+	public void triggerTrap(PersonnagePrincipal joueur) throws InterruptedException { // Active le piège
 		int dmg;
 		dmg = joueur.getHp();
 		joueur.setHp(joueur.getHp() - this.getStrength());

@@ -237,19 +237,19 @@ public class Donjon {
 		boolean isHere = true; // Permet de vérifier que le joueur est toujours présent dans la salle
 		int actCode;
 		if (salle.isVictoire()) { // Regarde si la salle est la salle de victoire
-			System.out.println("Vous êtes sorti du donjon...");
-			System.out.println("Vous avez gagné");
+			Utilitaire.lettreParLettre("Vous êtes sorti du donjon...");
+			Utilitaire.lettreParLettre("Vous avez gagné");
 			System.exit(0);
 		}
 		if (salle.getPiege() != null) {// Permet de vérifier la présence de piège dans la salle
-			System.out.println("La porte contenait un mécanisme vous tirant des flèches dessus");
+			Utilitaire.lettreParLettre("La porte contenait un mécanisme vous tirant des flèches dessus");
 			salle.getPiege().triggerTrap(joueur);
-			System.out.println("Vous retournez dans la salle précédente");
+			Utilitaire.lettreParLettre("Vous retournez dans la salle précédente");
 			this.changerSalle(salle, salle.getPortes().get(0));// Retourne à la salle précédente
 		}
 		if (salle.getMonstre() != null) {// Permet de vérifier la présence de monstre dans la salle
-			System.out.println(salle.getMonstre().crier());
-			System.out.println("Un " + salle.getMonstre().toString() + " se trouve dans la salle");
+			Utilitaire.lettreParLettre(salle.getMonstre().crier());
+			Utilitaire.lettreParLettre("Un " + salle.getMonstre().toString() + " se trouve dans la salle");
 			Combat.combattre(joueur, salle.getMonstre());
 			salle.setMonstre(null);// Supprime le monstre de la salle
 		}
@@ -257,12 +257,12 @@ public class Donjon {
 			actCode = Utilitaire.yesNoQuestions(
 					"Dans la salle se trouve une personne mystérieuse, à l'air inquiétant, qui se propose de vous aider à vous échapper\nAcceptez-vous ?\n1 pour Oui\n2 pour Non");
 			if (actCode == 1) {
-				System.out.println("Vous faites connaissance avec la personne mystérieuse");
-				System.out.println("Vous apprenez qu'elle s'appelle Laya et qu'elle possède des pouvoirs de guérison");
-				System.out.println("Laya vous à rejoint, elle pourra vous soigner lors de vos futurs combats\n\n");
+				Utilitaire.lettreParLettre("Vous faites connaissance avec la personne mystérieuse");
+				Utilitaire.lettreParLettre("Vous apprenez qu'elle s'appelle Laya et qu'elle possède des pouvoirs de guérison");
+				Utilitaire.lettreParLettre("Laya vous à rejoint, elle pourra vous soigner lors de vos futurs combats\n\n");
 				joueur.setMateFollow(salle.getLaya());// Ajoute le support en tant que co-équipier du joueur
 			} else {
-				System.out.println("Vous refusez l'aide de la personne mystérieuse, contrariée, elle s'en va\n\n");
+				Utilitaire.lettreParLettre("Vous refusez l'aide de la personne mystérieuse, contrariée, elle s'en va\n\n");
 			}
 			salle.setLaya(null);// Supprime le support de la salle
 		}
@@ -277,9 +277,9 @@ public class Donjon {
 				joueur.open(salle.getCoffre());// Ouvre/Essaye d'ouvrir le coffre
 			} else {
 				if (salle.getCoffre().isLocked())// Affiche le texte en fonction de l'état du coffre (verrouillé ou non)
-					System.out.println("Vous laissez le coffre verrouillé");
+					Utilitaire.lettreParLettre("Vous laissez le coffre verrouillé");
 				else
-					System.out.println("Vous laissez le coffre fermé");
+					Utilitaire.lettreParLettre("Vous laissez le coffre fermé");
 			}
 		}
 		do { // Affiche ce texte tant que le joueur se trouve dans la salle
@@ -303,7 +303,7 @@ public class Donjon {
 			while (actCode != 1 && actCode != 2 && actCode != 3 && actCode != 4 && actCode != 5) { // Vérifier que la
 																									// commande rentrée
 																									// est possible
-				System.out.println("Saisie invalide, veuillez réessayer.");
+				Utilitaire.lettreParLettre("Saisie invalide, veuillez réessayer.");
 				actCode = Utilitaire.recupererInt(str.toString());
 				System.out.println("\n\n\n\n\n\n\n");
 			}
@@ -317,11 +317,11 @@ public class Donjon {
 	public void exam(Salle salle) throws InterruptedException {// Va permettre de vérifier le type d'objet présent dans
 																// la salle
 		if (salle.getObjSol() == null) // Aucun objet présent
-			System.out.println("Vous ne trouvez rien d'intéressant dans la salle");
+			Utilitaire.lettreParLettre("Vous ne trouvez rien d'intéressant dans la salle");
 		else {
 			int actCode;
 			if (salle.getObjSol() instanceof Arme) { // Une arme présente
-				System.out.println("Vous avez trouvé " + salle.getObjSol().toString() + " dans la salle");
+				Utilitaire.lettreParLettre("Vous avez trouvé " + salle.getObjSol().toString() + " dans la salle");
 				joueur.equipWeapon((Arme) salle.getObjSol());
 				salle.setObjSol(null); // Supprime l'arme du sol
 			} else if (salle.getObjSol() instanceof Potion) { // Une potion présente
@@ -331,14 +331,14 @@ public class Donjon {
 					joueur.drink((Potion) salle.getObjSol());
 					salle.setObjSol(null); // Supprime la potion de la salle
 				} else {
-					System.out.println("Vous laissez la potion sur place");
+					Utilitaire.lettreParLettre("Vous laissez la potion sur place");
 				}
 			} else if (salle.getObjSol() instanceof Key) { // Une clé présente
 				if (((Key) salle.getObjSol()).getCat() == 1) // Vérifie le type de clé (Clé de porte ou clé de coffre)
-					System.out.println(
+					Utilitaire.lettreParLettre(
 							"Vous trouvez une clé de coffre dans la salle. Vous l'ajoutez à votre trousseau de clé.");
 				else
-					System.out.println(
+					Utilitaire.lettreParLettre(
 							"Vous trouvez une clé de porte dans la salle. Vous l'ajoutez à votre trousseau de clé.");
 				joueur.earnKey((Key) salle.getObjSol());
 				salle.setObjSol(null); // Supprime la clé de la place
@@ -386,7 +386,7 @@ public class Donjon {
 						if (portes.getCat() == 0) // Si la porte s'est correctement deverrouillée
 							System.out.print("Vous pouvez maintenant l'emprunter");
 					} else { // Si la porte est déverrouillée
-						System.out.println("Vous changez de salle");
+						Utilitaire.lettreParLettre("Vous changez de salle");
 						isHere = false;
 						this.changerSalle(salle, portes);
 					}
@@ -394,7 +394,7 @@ public class Donjon {
 				}
 			}
 		}
-		System.out.println("Saisie invalide, veuillez réessayer.");
+		Utilitaire.lettreParLettre("Saisie invalide, veuillez réessayer.");
 
 	}
 

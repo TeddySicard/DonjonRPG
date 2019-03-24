@@ -1,6 +1,7 @@
 package objets;
 
 import personnages.Personnage;
+import util.Utilitaire;
 
 public class HPGainPot extends Potion {
 
@@ -14,10 +15,10 @@ public class HPGainPot extends Potion {
 	}
 
 	@Override
-	public void utiliser(Personnage joueur) {
+	public void utiliser(Personnage joueur) throws InterruptedException {
 		joueur.setMaxHp(joueur.getMaxHp() + this.getpower());
 		joueur.setHp(joueur.getHp() + this.getpower());
-		System.out.println("Vous buvez la potion, vos PV max ont augmenté. Vous avez maintenant " + joueur.getHp()
+		Utilitaire.lettreParLettre("Vous buvez la potion, vos PV max ont augmenté. Vous avez maintenant " + joueur.getHp()
 				+ " points de vie et " + joueur.getMaxHp() + " PV maximum.");
 
 	}
