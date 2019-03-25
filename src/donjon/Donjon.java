@@ -24,19 +24,18 @@ import util.Utilitaire;
 
 public class Donjon {
 	public PersonnagePrincipal joueur;
-	public Salle[][] salles; // Terrain dans lequel le donjon sera stocké (2 dimensions)
+	public Salle[][][] salles; // Terrain dans lequel le donjon sera stocké (2 dimensions)
 	private int coordX;// Coordonnées de la salle de départ qui sera initialisée lors de la génération
 						// du donjon
 	private int coordY;//
+	private int coordZ;//
 
-	public Donjon(int x, int y) {
-		this.salles = new Salle[x][y];
+	public Donjon(int num) {
+		if (num == 1)
+			this.salles = new Salle[11][18][1];
 		this.joueur = new PersonnagePrincipal();// Créé le joueur en même temps que le terrain du donjon
 	}
 
-	public Donjon() {
-		this(11, 18);
-	}
 
 ///////////////////////////Getters && Setters//////////////////////////////////
 	public int getCoordX() {
@@ -58,177 +57,188 @@ public class Donjon {
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// DONJON//
 
+	public int getCoordZ() {
+		return coordZ;
+	}
+
+	public void setCoordZ(int coordZ) {
+		this.coordZ = coordZ;
+	}
+
 	// GENERER DONJON//
 	public void generer() {
 		// GENERATION DES CLES//
-		Key cle25 = new Key(1);
-		Key cle34 = new Key(2);
-		Key cle517 = new Key(2);
-		Key cle614 = new Key(1);
-		Key cle811 = new Key(2);
-		Key cle117 = new Key(2);
+		Key cle250 = new Key(1);
+		Key cle340 = new Key(2);
+		Key cle5170 = new Key(2);
+		Key cle6140 = new Key(1);
+		Key cle8110 = new Key(2);
+		Key cle1170 = new Key(2);
 		// GENERATION DES POTIONS//
-		Potion healPot33 = new HealingPot();
-		Potion atkPot33 = new AtkPot();
-		Potion hpGainPot416 = new HPGainPot();
-		Potion hpGainPot57 = new HPGainPot();
-		Potion healPot65 = new HealingPot();
-		Potion atkPot78 = new AtkPot();
-		Potion healPot711 = new HealingPot();
-		Potion atkPot713 = new AtkPot();
-		Potion healPot107 = new HealingPot();
+		Potion healPot330 = new HealingPot();
+		Potion atkPot330 = new AtkPot();
+		Potion hpGainPot4160 = new HPGainPot();
+		Potion hpGainPot570 = new HPGainPot();
+		Potion healPot650 = new HealingPot();
+		Potion atkPot780 = new AtkPot();
+		Potion healPot7110 = new HealingPot();
+		Potion atkPot7130 = new AtkPot();
+		Potion healPot1070 = new HealingPot();
 		// GENERATION DES ARMES//
-		Arme dague414 = new Dague();
-		Arme sabreLaser59 = new SabreLaser();
-		Arme doubleLame914 = new DoubleLame();
-		Arme sabre117 = new Sabre();
+		Arme dague4140 = new Dague();
+		Arme sabreLaser590 = new SabreLaser();
+		Arme doubleLame9140 = new DoubleLame();
+		Arme sabre1170 = new Sabre();
 		// GENERATION DES PIEGES//
-		Piege trap15 = new Piege();
-		Piege trap316 = new Piege();
-		Piege trap45 = new Piege();
-		Piege trap418 = new Piege();
-		Piege trap514 = new Piege();
-		Piege trap79 = new Piege();
+		Piege trap150 = new Piege();
+		Piege trap3160 = new Piege();
+		Piege trap450 = new Piege();
+		Piege trap4180 = new Piege();
+		Piege trap5140 = new Piege();
+		Piege trap790 = new Piege();
 		// GENERATION DE L'ENIGME//
-		Enigme enigme87 = new Enigme(1);
+		Enigme enigme870 = new Enigme(1);
 		// GENERATION DES COFFRES//
-		Chest coffre33 = new Chest(healPot33);
-		Chest coffre45 = new Chest(trap45);
-		Chest coffre414 = new Chest(dague414);
-		Chest coffre59 = new Chest(sabreLaser59, 1);
-		Chest coffre514 = new Chest(trap514);
-		Chest coffre517 = new Chest(cle517, 1);
-		Chest coffre614 = new Chest(cle614);
-		Chest coffre79 = new Chest(trap79);
-		Chest coffre117 = new Chest(cle117);
+		Chest coffre330 = new Chest(healPot330);
+		Chest coffre450 = new Chest(trap450);
+		Chest coffre4140 = new Chest(dague4140);
+		Chest coffre590 = new Chest(sabreLaser590, 1);
+		Chest coffre5140 = new Chest(trap5140);
+		Chest coffre5170 = new Chest(cle5170, 1);
+		Chest coffre6140 = new Chest(cle6140);
+		Chest coffre790 = new Chest(trap790);
+		Chest coffre1170 = new Chest(cle1170);
 		// GENERATION DES PORTES//
 		Porte porteNord = new Porte(1);
 		Porte porteSud = new Porte(2);
 		Porte porteEst = new Porte(3);
 		Porte porteOuest = new Porte(4);
-		Porte lockOuest33 = new Porte(4, 2);
-		Porte lockOuest76 = new Porte(4, 2);
-		Porte lockNorth811 = new Porte(1, 2);
-		Porte lockOuest711 = new Porte(4, 2);
-		Porte lockSouthEn87 = new Porte(2, enigme87);
+		Porte lockOuest330 = new Porte(4, 2);
+		Porte lockOuest760 = new Porte(4, 2);
+		Porte lockNorth8110 = new Porte(1, 2);
+		Porte lockOuest7110 = new Porte(4, 2);
+		Porte lockSouthEn870 = new Porte(2, enigme870);
 		// GENERATION DES MONSTRES//
-		Monstre bossFinal32 = new BossFinal();
-		Monstre zombie33 = new Zombie();
-		Monstre golem35 = new Golem();
-		Monstre sorcier415 = new Sorcier();
-		Monstre zombie416 = new Zombie();
-		Monstre sorcier56 = new Sorcier();
-		Monstre zombie57 = new Zombie();
-		Monstre golem58 = new Golem();
-		Monstre zombie75 = new Zombie();
-		Monstre zombie78 = new Zombie();
-		Monstre golem710 = new Golem();
-		Monstre zombie711 = new Zombie();
-		Monstre sorcier814 = new Sorcier();
-		Monstre sorcier97 = new Sorcier();
-		Monstre zombie1014 = new Zombie();
+		Monstre bossFinal320 = new BossFinal();
+		Monstre zombie330 = new Zombie();
+		Monstre golem350 = new Golem();
+		Monstre sorcier4150 = new Sorcier();
+		Monstre zombie4160 = new Zombie();
+		Monstre sorcier560 = new Sorcier();
+		Monstre zombie570 = new Zombie();
+		Monstre golem580 = new Golem();
+		Monstre zombie750 = new Zombie();
+		Monstre zombie780 = new Zombie();
+		Monstre golem7100 = new Golem();
+		Monstre zombie7110 = new Zombie();
+		Monstre sorcier8140 = new Sorcier();
+		Monstre sorcier970 = new Sorcier();
+		Monstre zombie10140 = new Zombie();
 		// GENERATION DU SUPPORT//
-		Support laya1114 = new Support();
+		Support laya11140 = new Support();
 		// GENERATION DES SALLES//
-		Salle salle15 = new Salle(0, 4, porteSud, trap15);
-		Salle salle25 = new Salle(1, 4, porteNord, porteSud, cle25);
-		Salle salle31 = new Salle(2, 0, true);
-		Salle salle32 = new Salle(2, 1, porteEst, porteOuest, bossFinal32);
-		Salle salle33 = new Salle(2, 2, porteEst, lockOuest33, coffre33, zombie33, atkPot33);
-		Salle salle34 = new Salle(2, 3, porteEst, porteOuest, cle34);
-		Salle salle35 = new Salle(2, 4, porteNord, porteSud, porteOuest, golem35);
-		Salle salle316 = new Salle(2, 15, porteSud, trap316);
-		Salle salle45 = new Salle(3, 4, porteNord, porteSud, coffre45);
-		Salle salle414 = new Salle(3, 13, porteSud, porteEst, coffre414);
-		Salle salle415 = new Salle(3, 14, porteEst, porteOuest, sorcier415);
-		Salle salle416 = new Salle(3, 15, porteNord, porteEst, porteOuest, zombie416, hpGainPot416);
-		Salle salle417 = new Salle(3, 16, porteSud, porteEst, porteOuest);
-		Salle salle418 = new Salle(3, 17, porteOuest, trap418);
-		Salle salle55 = new Salle(4, 4, porteNord, porteSud, porteEst);
-		Salle salle56 = new Salle(4, 5, porteEst, porteOuest, sorcier56);
-		Salle salle57 = new Salle(4, 6, porteEst, porteOuest, zombie57, hpGainPot57);
-		Salle salle58 = new Salle(4, 7, porteEst, porteOuest, golem58);
-		Salle salle59 = new Salle(4, 8, porteOuest, coffre59);
-		Salle salle514 = new Salle(4, 13, porteNord, porteSud, coffre514);
-		Salle salle517 = new Salle(4, 16, porteNord, coffre517);
-		Salle salle65 = new Salle(5, 4, porteNord, porteSud, healPot65);
-		Salle salle614 = new Salle(5, 13, porteNord, porteSud, coffre614);
-		Salle salle75 = new Salle(6, 4, porteNord, porteEst, zombie75);
-		Salle salle76 = new Salle(6, 5, lockOuest76, porteEst);
-		Salle salle77 = new Salle(6, 6, porteSud, porteEst, porteOuest);
-		Salle salle78 = new Salle(6, 7, porteEst, porteOuest, zombie78, atkPot78);
-		Salle salle79 = new Salle(6, 8, porteEst, porteOuest, coffre79);
-		Salle salle710 = new Salle(6, 9, porteEst, porteOuest, golem710);
-		Salle salle711 = new Salle(6, 10, porteSud, porteEst, lockOuest711, zombie711, healPot711);
-		Salle salle712 = new Salle(6, 11, porteEst, porteOuest);
-		Salle salle713 = new Salle(6, 12, porteEst, porteOuest, atkPot713);
-		Salle salle714 = new Salle(6, 13, porteNord, porteSud, porteOuest);
-		Salle salle87 = new Salle(7, 6, porteNord, lockSouthEn87);
-		Salle salle811 = new Salle(true, 7, 10, lockNorth811, cle811);
-		Salle salle814 = new Salle(7, 13, porteNord, porteSud, sorcier814);
-		Salle salle97 = new Salle(8, 6, porteNord, porteSud, sorcier97);
-		Salle salle914 = new Salle(8, 13, porteNord, porteSud, doubleLame914);
-		Salle salle107 = new Salle(9, 6, porteNord, porteSud, healPot107);
-		Salle salle1014 = new Salle(9, 13, porteNord, porteSud, zombie1014);
-		Salle salle117 = new Salle(10, 6, porteNord, coffre117, sabre117);
-		Salle salle1114 = new Salle(10, 13, porteNord, laya1114);
+		Salle salle150 = new Salle(0, 4, 0, porteSud, trap150);
+		Salle salle250 = new Salle(1, 4, 0, porteNord, porteSud, cle250);
+		Salle salle310 = new Salle(2, 0, 0, true);
+		Salle salle320 = new Salle(2, 1, 0, porteEst, porteOuest, bossFinal320);
+		Salle salle330 = new Salle(2, 2, 0, porteEst, lockOuest330, coffre330, zombie330, atkPot330);
+		Salle salle340 = new Salle(2, 3, 0, porteEst, porteOuest, cle340);
+		Salle salle350 = new Salle(2, 4, 0, porteNord, porteSud, porteOuest, golem350);
+		Salle salle3160 = new Salle(2, 15, 0, porteSud, trap3160);
+		Salle salle450 = new Salle(3, 4, 0, porteNord, porteSud, coffre450);
+		Salle salle4140 = new Salle(3, 13, 0, porteSud, porteEst, coffre4140);
+		Salle salle4150 = new Salle(3, 14, 0, porteEst, porteOuest, sorcier4150);
+		Salle salle4160 = new Salle(3, 15, 0, porteNord, porteEst, porteOuest, zombie4160, hpGainPot4160);
+		Salle salle4170 = new Salle(3, 16, 0, porteSud, porteEst, porteOuest);
+		Salle salle4180 = new Salle(3, 17, 0, porteOuest, trap4180);
+		Salle salle550 = new Salle(4, 4, 0, porteNord, porteSud, porteEst);
+		Salle salle560 = new Salle(4, 5, 0, porteEst, porteOuest, sorcier560);
+		Salle salle570 = new Salle(4, 6, 0, porteEst, porteOuest, zombie570, hpGainPot570);
+		Salle salle580 = new Salle(4, 7, 0, porteEst, porteOuest, golem580);
+		Salle salle590 = new Salle(4, 8, 0, porteOuest, coffre590);
+		Salle salle5140 = new Salle(4, 13, 0, porteNord, porteSud, coffre5140);
+		Salle salle5170 = new Salle(4, 16, 0, porteNord, coffre5170);
+		Salle salle650 = new Salle(5, 4, 0, porteNord, porteSud, healPot650);
+		Salle salle6140 = new Salle(5, 13, 0, porteNord, porteSud, coffre6140);
+		Salle salle750 = new Salle(6, 4, 0, porteNord, porteEst, zombie750);
+		Salle salle760 = new Salle(6, 5, 0, lockOuest760, porteEst);
+		Salle salle770 = new Salle(6, 6, 0, porteSud, porteEst, porteOuest);
+		Salle salle780 = new Salle(6, 7, 0, porteEst, porteOuest, zombie780, atkPot780);
+		Salle salle790 = new Salle(6, 8, 0, porteEst, porteOuest, coffre790);
+		Salle salle7100 = new Salle(6, 9, 0, porteEst, porteOuest, golem7100);
+		Salle salle7110 = new Salle(6, 10, 0, porteSud, porteEst, lockOuest7110, zombie7110, healPot7110);
+		Salle salle7120 = new Salle(6, 11, 0, porteEst, porteOuest);
+		Salle salle7130 = new Salle(6, 12, 0, porteEst, porteOuest, atkPot7130);
+		Salle salle7140 = new Salle(6, 13, 0, porteNord, porteSud, porteOuest);
+		Salle salle870 = new Salle(7, 6, 0, porteNord, lockSouthEn870);
+		Salle salle8110 = new Salle(true, 7, 10, 0, lockNorth8110, cle8110);
+		Salle salle8140 = new Salle(7, 13, 0, porteNord, porteSud, sorcier8140);
+		Salle salle970 = new Salle(8, 6, 0, porteNord, porteSud, sorcier970);
+		Salle salle9140 = new Salle(8, 13, 0, porteNord, porteSud, doubleLame9140);
+		Salle salle1070 = new Salle(9, 6, 0, porteNord, porteSud, healPot1070);
+		Salle salle10140 = new Salle(9, 13, 0, porteNord, porteSud, zombie10140);
+		Salle salle1170 = new Salle(10, 6, 0, porteNord, coffre1170, sabre1170);
+		Salle salle11140 = new Salle(10, 13, 0, porteNord, laya11140);
 		//// IMPLEMENTATION DES SALLES DANS LA MATRICE//
-		this.ajouterSalle(salle15);
-		this.ajouterSalle(salle25);
-		this.ajouterSalle(salle31);
-		this.ajouterSalle(salle32);
-		this.ajouterSalle(salle33);
-		this.ajouterSalle(salle34);
-		this.ajouterSalle(salle35);
-		this.ajouterSalle(salle316);
-		this.ajouterSalle(salle45);
-		this.ajouterSalle(salle414);
-		this.ajouterSalle(salle415);
-		this.ajouterSalle(salle416);
-		this.ajouterSalle(salle417);
-		this.ajouterSalle(salle418);
-		this.ajouterSalle(salle55);
-		this.ajouterSalle(salle56);
-		this.ajouterSalle(salle57);
-		this.ajouterSalle(salle58);
-		this.ajouterSalle(salle59);
-		this.ajouterSalle(salle514);
-		this.ajouterSalle(salle517);
-		this.ajouterSalle(salle65);
-		this.ajouterSalle(salle614);
-		this.ajouterSalle(salle75);
-		this.ajouterSalle(salle76);
-		this.ajouterSalle(salle77);
-		this.ajouterSalle(salle78);
-		this.ajouterSalle(salle79);
-		this.ajouterSalle(salle710);
-		this.ajouterSalle(salle711);
-		this.ajouterSalle(salle712);
-		this.ajouterSalle(salle713);
-		this.ajouterSalle(salle714);
-		this.ajouterSalle(salle87);
-		this.ajouterSalle(salle811);
-		this.ajouterSalle(salle814);
-		this.ajouterSalle(salle97);
-		this.ajouterSalle(salle914);
-		this.ajouterSalle(salle107);
-		this.ajouterSalle(salle1014);
-		this.ajouterSalle(salle117);
-		this.ajouterSalle(salle1114);
+		this.ajouterSalle(salle150);
+		this.ajouterSalle(salle250);
+		this.ajouterSalle(salle310);
+		this.ajouterSalle(salle320);
+		this.ajouterSalle(salle330);
+		this.ajouterSalle(salle340);
+		this.ajouterSalle(salle350);
+		this.ajouterSalle(salle3160);
+		this.ajouterSalle(salle450);
+		this.ajouterSalle(salle4140);
+		this.ajouterSalle(salle4150);
+		this.ajouterSalle(salle4160);
+		this.ajouterSalle(salle4170);
+		this.ajouterSalle(salle4180);
+		this.ajouterSalle(salle550);
+		this.ajouterSalle(salle560);
+		this.ajouterSalle(salle570);
+		this.ajouterSalle(salle580);
+		this.ajouterSalle(salle590);
+		this.ajouterSalle(salle5140);
+		this.ajouterSalle(salle5170);
+		this.ajouterSalle(salle650);
+		this.ajouterSalle(salle6140);
+		this.ajouterSalle(salle750);
+		this.ajouterSalle(salle760);
+		this.ajouterSalle(salle770);
+		this.ajouterSalle(salle780);
+		this.ajouterSalle(salle790);
+		this.ajouterSalle(salle7100);
+		this.ajouterSalle(salle7110);
+		this.ajouterSalle(salle7120);
+		this.ajouterSalle(salle7130);
+		this.ajouterSalle(salle7140);
+		this.ajouterSalle(salle870);
+		this.ajouterSalle(salle8110);
+		this.ajouterSalle(salle8140);
+		this.ajouterSalle(salle970);
+		this.ajouterSalle(salle9140);
+		this.ajouterSalle(salle1070);
+		this.ajouterSalle(salle10140);
+		this.ajouterSalle(salle1170);
+		this.ajouterSalle(salle11140);
 
 	}
 
 	public void demarrer() throws InterruptedException {
-		this.entrerSalle(this.salles[this.getCoordX()][this.getCoordY()]);// Récupère les coordonnées de la salle de
-																			// départ
+		this.entrerSalle(this.salles[this.getCoordX()][this.getCoordY()][this.getCoordZ()]);// Récupère les coordonnées
+																							// de la salle de
+		// départ
 	}
 
 	public void ajouterSalle(Salle salle) {
-		this.salles[salle.getX()][salle.getY()] = salle;// Permet d'ajouter les salles sur le terrain selon ses
-														// coordonnées
+		this.salles[salle.getX()][salle.getY()][salle.getZ()] = salle;// Permet d'ajouter les salles sur le terrain
+																		// selon ses
+		// coordonnées
 		if (salle.isDepart()) { // Permet d'initialiser les coordonnées de départ
 			this.setCoordX(salle.getX());
 			this.setCoordY(salle.getY());
+			this.setCoordZ(salle.getZ());
 		}
 	}
 
@@ -253,16 +263,27 @@ public class Donjon {
 			Combat.combattre(joueur, salle.getMonstre());
 			salle.setMonstre(null);// Supprime le monstre de la salle
 		}
-		if (salle.getLaya() != null) {// Permet de vérifier la présence du support dans la salle
+		if (salle.getLaya() != null || salle.getBandit() != null) {// Permet de vérifier la présence du support dans la
+																	// salle
 			actCode = Utilitaire.yesNoQuestions(
 					"Dans la salle se trouve une personne mystérieuse, à l'air inquiétant, qui se propose de vous aider à vous échapper\nAcceptez-vous ?\n1 pour Oui\n2 pour Non");
 			if (actCode == 1) {
 				Utilitaire.lettreParLettre("Vous faites connaissance avec la personne mystérieuse");
-				Utilitaire.lettreParLettre("Vous apprenez qu'elle s'appelle Laya et qu'elle possède des pouvoirs de guérison");
-				Utilitaire.lettreParLettre("Laya vous à rejoint, elle pourra vous soigner lors de vos futurs combats\n\n");
-				joueur.setMateFollow(salle.getLaya());// Ajoute le support en tant que co-équipier du joueur
+				if (salle.getLaya() != null) {
+					Utilitaire.lettreParLettre(
+							"Vous apprenez qu'elle s'appelle Laya et qu'elle possède des pouvoirs de guérison");
+					Utilitaire.lettreParLettre(
+							"Laya vous à rejoint, elle pourra vous soigner lors de vos futurs combats\n\n");
+					joueur.setMateFollow(salle.getLaya());// Ajoute le support en tant que co-équipier du joueur
+				} else {
+					Utilitaire.lettreParLettre(
+							"La personne s'avère être un bandit, elle vous donne un coup de couteau avant de s'enfuir");
+					salle.getBandit().useSkill(joueur);
+					salle.setBandit(null);
+				}
 			} else {
-				Utilitaire.lettreParLettre("Vous refusez l'aide de la personne mystérieuse, contrariée, elle s'en va\n\n");
+				Utilitaire.lettreParLettre(
+						"Vous refusez l'aide de la personne mystérieuse, contrariée, elle s'en va\n\n");
 			}
 			salle.setLaya(null);// Supprime le support de la salle
 		}
@@ -287,6 +308,10 @@ public class Donjon {
 			for (Porte porte : salle.getPortes()) { // Va tester toute les portes de la salle
 				if (porte != null) // Vérifie si la porte existe
 					str.append("\nUne " + porte.toString()); // Va afficher la présence de la porte
+				for (Escalier escalier : salle.getEscaliers()) {
+					if (escalier != null)
+						str.append("\nUn " + escalier.toString());
+				}
 			}
 			str.append("\n\nQue souhaitez-vous faire ?\n");
 			for (Porte porte : salle.getPortes()) {// Va tester toute les portes de la salle
@@ -297,10 +322,15 @@ public class Donjon {
 						str.append("\n" + porte.getDirection() + " pour déverrouiller la " + porte.toString());
 				}
 			}
-			str.append("\n5 pour examiner la pièce");
+			for (Escalier escalier : salle.getEscaliers()) {
+				if (escalier != null)
+					str.append("\n" + escalier.getDirection() + 4 + " pour emprunter l'" + escalier.toString());
+
+			}
+			str.append("\n7 pour examiner la pièce");
 			actCode = Utilitaire.recupererInt(str.toString());
 			System.out.println("\n\n\n\n\n\n\n");
-			while (actCode != 1 && actCode != 2 && actCode != 3 && actCode != 4 && actCode != 5) { // Vérifier que la
+			while (actCode != 1 && actCode != 2 && actCode != 3 && actCode != 4 && actCode != 7) { // Vérifier que la
 																									// commande rentrée
 																									// est possible
 				Utilitaire.lettreParLettre("Saisie invalide, veuillez réessayer.");
@@ -352,16 +382,16 @@ public class Donjon {
 		case 0: // Porte déverrouillée
 			switch (porte.getDirection()) {
 			case 1:
-				this.entrerSalle(this.salles[salle.getX() - 1][salle.getY()]);
+				this.entrerSalle(this.salles[salle.getX() - 1][salle.getY()][salle.getZ()]);
 				break;
 			case 2:
-				this.entrerSalle(this.salles[salle.getX() + 1][salle.getY()]);
+				this.entrerSalle(this.salles[salle.getX() + 1][salle.getY()][salle.getZ()]);
 				break;
 			case 3:
-				this.entrerSalle(this.salles[salle.getX()][salle.getY() + 1]);
+				this.entrerSalle(this.salles[salle.getX()][salle.getY() + 1][salle.getZ()]);
 				break;
 			case 4:
-				this.entrerSalle(this.salles[salle.getX()][salle.getY() - 1]);
+				this.entrerSalle(this.salles[salle.getX()][salle.getY() - 1][salle.getZ()]);
 				break;
 			}
 			break;
@@ -371,6 +401,14 @@ public class Donjon {
 		case 3: // Porte verrouillée par énigme
 			porte.unlock(porte.getEnigme());
 		}
+
+	}
+
+	public void changerEtage(Salle salle, Escalier escalier) throws InterruptedException {
+		if (escalier.getDirection() == 1)
+			this.entrerSalle(this.salles[salle.getX()][salle.getY()][salle.getZ() + 1]);
+		else
+			this.entrerSalle(this.salles[salle.getX()][salle.getY()][salle.getZ() - 1]);
 
 	}
 
@@ -392,6 +430,21 @@ public class Donjon {
 					}
 					return;
 				}
+			}
+		}
+		Utilitaire.lettreParLettre("Saisie invalide, veuillez réessayer.");
+
+	}
+	
+	public void testEscalier(int actCode, Salle salle, boolean isHere) throws InterruptedException {
+		for (Escalier escalier : salle.getEscaliers()) { // Vérifie la présence de l'escalier demandée dans la salle
+			if (escalier != null) { // Evite le crash
+				if (escalier.getDirection() == actCode) { // Si l'escalier demandée existe bien
+					Utilitaire.lettreParLettre("Vous changez de salle");
+					isHere = false;
+					this.changerEtage(salle, escalier);
+					return;
+				}					
 			}
 		}
 		Utilitaire.lettreParLettre("Saisie invalide, veuillez réessayer.");

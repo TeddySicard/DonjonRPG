@@ -9,7 +9,7 @@ public class Utilitaire {
 
 	public static void affiche(String txt) throws InterruptedException { // Affiche le texte après un délai
 		Utilitaire.lettreParLettre(txt);
-		Thread.sleep(1000);
+		Thread.sleep(750);
 	}
 
 	public static int yesNoQuestions(String question) throws InterruptedException { // Génère des questions à 2 réponses
@@ -48,11 +48,11 @@ public class Utilitaire {
 		for (int i = 0; i < longueur; i++) {
 			System.out.print(txt.charAt(i));
 			if (txt.charAt(i) == '\n')
-				Thread.sleep(250 * vitessetxt);
+				Thread.sleep(150 * vitessetxt);
 			else
-				Thread.sleep(20 * vitessetxt);
+				Thread.sleep(10 * vitessetxt);
 		}
-		Thread.sleep(250 * vitessetxt);
+		Thread.sleep(150 * vitessetxt);
 		System.out.println();
 	}
 
