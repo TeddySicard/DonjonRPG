@@ -95,6 +95,18 @@ public class Porte {
 				this.cat = 0; // Déverrouille la porte
 			}
 			break;
+		case 2:
+			answer = "espace";
+			Utilitaire.affiche(
+					"Dans la lune mais pas soleil\nJe suis vide de nature\nOn me voit presque toujours\nMais de la plupart je suis inaccessible");
+			prop = Main.caractere.nextLine();
+			System.out.println("\n\n\n\n\n\n\n");
+			if (!prop.equals(answer)) // Si réponse incorrecte
+				Utilitaire.lettreParLettre("Mauvaise réponse, rien ne se passe");
+			else { // Si réponse correcte
+				Utilitaire.lettreParLettre("Vous avez trouvé la bonne réponse, vous pouvez passer");
+				this.cat = 0; // Déverrouille la porte
+			}
 		}
 
 	}

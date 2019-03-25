@@ -22,8 +22,9 @@ public class Salle {
 	private boolean victoire = false;
 	private boolean depart = false;
 
-	public Salle(int x, int y, int z, Porte porte1, Porte porte2, Porte porte3, Porte porte4, Escalier escalier1, Escalier escalier2, Chest coffre, Monstre monstre,
-			Support laya, Bandit bandit, Piege piege, Object objSol) {
+	public Salle(int x, int y, int z, Porte porte1, Porte porte2, Porte porte3, Porte porte4, Escalier escalier1,
+			Escalier escalier2, Chest coffre, Monstre monstre, Support laya, Bandit bandit, Piege piege,
+			Object objSol) {
 		this.x = x;
 		this.y = y;
 		portes = new ArrayList<>();
@@ -37,11 +38,12 @@ public class Salle {
 		this.coffre = coffre;
 		this.monstre = monstre;
 		this.laya = laya;
+		this.bandit = bandit;
 		this.piege = piege;
 		this.objSol = objSol;
 	}
 
-/////////////////////////////////////Constructeurs (Créés selon besoin des donjons créés)//////////////////////////////
+	/////////////////////////////////////Constructeurs (Créés selon besoin des donjons créés)//////////////////////////////
 	public Salle(int x, int y, int z, Porte porte1, Porte porte2, Chest coffre, Monstre monstre, Object objSol) {
 		this(x, y, z, porte1, porte2, null, null, null, null, coffre, monstre, null, null, null, objSol);
 	}
@@ -59,7 +61,7 @@ public class Salle {
 	}
 
 	public Salle(int x, int y, int z, Porte porte1, Porte porte2, Object objSol) {
-		this(x, y, z, porte1, porte2, null, objSol);
+		this(x, y, z, porte1, porte2, null, null, null, null, null, null, null, null, null, objSol);
 	}
 
 	public Salle(int x, int y, int z, Porte porte1, Porte porte2, Chest coffre) {
@@ -71,7 +73,7 @@ public class Salle {
 	}
 
 	public Salle(int x, int y, int z, Porte porte1, Porte porte2, Porte porte3) {
-		this(x, y, z, porte1, porte2, porte3, null);
+		this(x, y, z, porte1, porte2, porte3, null, null);
 	}
 
 	public Salle(int x, int y, int z, Porte porte1, Chest coffre, Object objSol) {
@@ -87,7 +89,7 @@ public class Salle {
 	}
 
 	public Salle(int x, int y, int z, Porte porte1, Object objSol) {
-		this(x, y, z, porte1, null, null, objSol);
+		this(x, y, z, porte1, null, null, null, null, null, null, null, null, null, null, objSol);
 	}
 
 	public Salle(int x, int y, int z, Porte porte1, Support laya) {
@@ -112,7 +114,34 @@ public class Salle {
 		this.setDepart(depart);
 	}
 
-///////////////////////////////////Getters && Setters////////////////////////////////////////
+	public Salle(int x, int y, int z, Escalier escalier, Bandit bandit, Object objsol) {
+		this(x, y, z, null, null, null, null, escalier, null, null, null, null, bandit, null, objsol);
+	}
+
+	public Salle(int x, int y, int z, Porte porte1, Escalier escalier, Object objsol) {
+		this(x, y, z, porte1, null, null, null, escalier, null, null, null, null, null, null, objsol);
+
+	}
+	
+	public Salle(int x, int y, int z, Porte porte1, Escalier escalier) {
+		this(x, y, z, porte1,escalier, null);
+
+	}
+
+	public Salle(int x, int y, int z, Porte porte1, Porte porte2, Porte porte3, Porte porte4) {
+		this(x, y, z, porte1, porte2, porte3, porte4, null, null, null, null, null, null, null, null);
+	}
+
+	public Salle(int x, int y, int z, Porte porte1, Porte porte2, Porte porte3, Object objsol) {
+		this(x, y, z, porte1, porte2, porte3, null, objsol);
+	}
+
+	public Salle(int x, int y, int z, Porte porte1, Porte porte2, Chest coffre, Monstre monstre) {
+		this(x, y, z, porte1, porte2, coffre, monstre, null);
+	}
+
+	/////////////////////////////////// Getters &&
+	/////////////////////////////////// Setters////////////////////////////////////////
 	public List<Porte> getPortes() {
 		return portes;
 	}
@@ -203,6 +232,12 @@ public class Salle {
 
 	public void setBandit(Bandit bandit) {
 		this.bandit = bandit;
+	}
+	
+
+	@Override
+	public String toString() {
+		return "Salle [x=" + x + ", y=" + y + ", z=" + z + ", portes=" + portes + ", escaliers=" + escaliers + "]";
 	}
 
 }

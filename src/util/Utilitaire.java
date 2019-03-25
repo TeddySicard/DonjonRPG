@@ -48,11 +48,11 @@ public class Utilitaire {
 		for (int i = 0; i < longueur; i++) {
 			System.out.print(txt.charAt(i));
 			if (txt.charAt(i) == '\n')
-				Thread.sleep(150 * vitessetxt);
+				Thread.sleep(70 * vitessetxt);
 			else
-				Thread.sleep(10 * vitessetxt);
+				Thread.sleep(5 * vitessetxt);
 		}
-		Thread.sleep(150 * vitessetxt);
+		Thread.sleep(70 * vitessetxt);
 		System.out.println();
 	}
 
