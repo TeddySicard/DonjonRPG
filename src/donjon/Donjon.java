@@ -27,21 +27,20 @@ public class Donjon {
 	private String nom;
 	private int num;
 	public PersonnagePrincipal joueur;
-	public Salle[][][] salles; // Terrain dans lequel le donjon sera stocké (2 dimensions)
+	public Salle[][][] salles; // Terrain dans lequel le donjon sera stocké (3 dimensions)
 	private int coordX;// Coordonnées de la salle de départ qui sera initialisée lors de la génération
 						// du donjon
 	private int coordY;//
 	private int coordZ;//
 
 	public Donjon(int num) {
+		this.salles = new Salle[20][20][5];
 		this.setNum(num);
 		switch (num) {
 		case 1:
-			this.salles = new Salle[11][18][1];
 			this.setNom("DORLYS");
 			break;
 		case 2:
-			this.salles = new Salle[7][10][2];
 			this.setNom("AROUF");
 		}
 		this.joueur = new PersonnagePrincipal();// Créé le joueur en même temps que le terrain du donjon
@@ -189,7 +188,7 @@ public class Donjon {
 			Salle salle650 = new Salle(5, 4, 0, porteNord, porteSud, healPot650);
 			Salle salle6140 = new Salle(5, 13, 0, porteNord, porteSud, coffre6140);
 			Salle salle750 = new Salle(6, 4, 0, porteNord, porteEst, zombie750);
-			Salle salle760 = new Salle(6, 5, 0, lockOuest760, porteEst);
+			Salle salle760 = new Salle(6, 5, 0, porteEst, lockOuest760);
 			Salle salle770 = new Salle(6, 6, 0, porteSud, porteEst, porteOuest);
 			Salle salle780 = new Salle(6, 7, 0, porteEst, porteOuest, zombie780, atkPot780);
 			Salle salle790 = new Salle(6, 8, 0, porteEst, porteOuest, coffre790);
@@ -347,7 +346,7 @@ public class Donjon {
 			Salle salle681 = new Salle(5, 7, 1, porteNord, porteSud);
 			Salle salle711 = new Salle(6, 0, 1, porteEst, escalierDescendant);
 			Salle salle721 = new Salle(6, 1, 1, porteEst, porteOuest);
-			Salle salle731 = new Salle(6, 2, 1, porteNord, porteOuest, porteEst);
+			Salle salle731 = new Salle(6, 2, 1, porteNord, porteEst, porteOuest);
 			Salle salle741 = new Salle(6, 3, 1, porteEst, porteOuest, coffre741);
 			Salle salle751 = new Salle(6, 4, 1, lockEast751, porteOuest);
 			Salle salle761 = new Salle(6, 5, 1, porteOuest, coffre761);

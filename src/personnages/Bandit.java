@@ -6,7 +6,7 @@ import util.Utilitaire;
 public class Bandit extends Personnage{
 	
 	public Bandit() {
-		super(100, 3, 0);
+		super(100, 23, 0);
 	}
 
 	@Override

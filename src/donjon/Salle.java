@@ -27,6 +27,7 @@ public class Salle {
 			Object objSol) {
 		this.x = x;
 		this.y = y;
+		this.z = z;
 		portes = new ArrayList<>();
 		portes.add(porte1);
 		portes.add(porte2);
@@ -139,6 +140,10 @@ public class Salle {
 	public Salle(int x, int y, int z, Porte porte1, Porte porte2, Chest coffre, Monstre monstre) {
 		this(x, y, z, porte1, porte2, coffre, monstre, null);
 	}
+	
+	public Salle(int x, int y, int z, Porte porte1, Porte porte2, Bandit bandit) {
+		this(x, y, z, porte1, porte2, null, null, null, null, null, null, null, bandit, null, null);
+	}
 
 	/////////////////////////////////// Getters &&
 	/////////////////////////////////// Setters////////////////////////////////////////
@@ -237,7 +242,9 @@ public class Salle {
 
 	@Override
 	public String toString() {
-		return "Salle [x=" + x + ", y=" + y + ", z=" + z + ", portes=" + portes + ", escaliers=" + escaliers + "]";
+		return "Salle [x=" + x + ", y=" + y + ", z=" + z + ", portes=" + portes + ", escaliers=" + escaliers
+				+ ", coffre=" + coffre + ", monstre=" + monstre + ", laya=" + laya + ", bandit=" + bandit + ", piege="
+				+ piege + ", objSol=" + objSol + ", victoire=" + victoire + ", depart=" + depart + "]";
 	}
 
 }
