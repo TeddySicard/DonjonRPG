@@ -304,7 +304,7 @@ public class Donjon {
 			Porte lockNorth440 = new Porte(1, 2);
 			Porte lockNorth540 = new Porte(1, 2);
 			Porte lockNorth640 = new Porte(1, 2);
-			Porte lockEast751 = new Porte(1, enigme751);
+			Porte lockEast751 = new Porte(3, enigme751);
 			////////// GENERATION DES MONSTRES////////////
 			BossFinal bossFinal240 = new BossFinal();
 			Sorcier sorcier340 = new Sorcier();
