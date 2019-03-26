@@ -424,6 +424,7 @@ public class Donjon {
 			Utilitaire.lettreParLettre("La porte contenait un mécanisme vous tirant des flèches dessus");
 			salle.getPiege().triggerTrap(joueur);
 			Utilitaire.lettreParLettre("Vous retournez dans la salle précédente");
+			Thread.sleep(600* Utilitaire.getVitessetxt());
 			this.changerSalle(salle, salle.getPortes().get(0));// Retourne à la salle précédente
 		}
 		if (salle.getMonstre() != null) {// Permet de vérifier la présence de monstre dans la salle
@@ -431,39 +432,35 @@ public class Donjon {
 			Utilitaire.lettreParLettre("Un " + salle.getMonstre().toString() + " se trouve dans la salle");
 			Combat.combattre(joueur, salle.getMonstre());
 			salle.setMonstre(null);// Supprime le monstre de la salle
+			Thread.sleep(600* Utilitaire.getVitessetxt());
 		}
-		if (salle.getLaya() != null) {// Permet de vérifier la présence du support dans la
+		if (salle.getLaya() != null || salle.getBandit() != null) {// Permet de vérifier la présence du support dans la
 																	// salle
 			actCode = Utilitaire.yesNoQuestions(
 					"Dans la salle se trouve une personne mystérieuse, à l'air inquiétant, qui se propose de vous aider à vous échapper\nAcceptez-vous ?\n1 pour Oui\n2 pour Non");
 			if (actCode == 1) {
 				Utilitaire.lettreParLettre("Vous faites connaissance avec la personne mystérieuse");
-				Utilitaire.lettreParLettre(
-							"Vous apprenez qu'elle s'appelle Laya et qu'elle possède des pouvoirs de guérison");
-				Utilitaire.lettreParLettre(
-							"Laya vous à rejoint, elle pourra vous soigner lors de vos futurs combats\n\n");
-				joueur.setMateFollow(salle.getLaya());// Ajoute le support en tant que co-équipier du joueur
+				if (salle.getLaya() != null) {
+					Utilitaire.lettreParLettre(
+								"Vous apprenez qu'elle s'appelle Laya et qu'elle possède des pouvoirs de guérison");
+					Utilitaire.lettreParLettre(
+								"Laya vous à rejoint, elle pourra vous soigner lors de vos futurs combats\n\n");
+					joueur.setMateFollow(salle.getLaya());// Ajoute le support en tant que co-équipier du joueur
+				} else {
+					Utilitaire.lettreParLettre(
+							"La personne s'avère être un bandit, elle vous donne un coup de couteau avant de s'enfuir");
+						salle.getBandit().useSkill(joueur);
+				}
 				
 			} else {
 				Utilitaire.lettreParLettre(
 						"Vous refusez l'aide de la personne mystérieuse, contrariée, elle s'en va\n\n");
 			}
-			salle.setLaya(null);// Supprime le support de la salle
-		}
-		if (salle.getBandit() != null) {
-			actCode = Utilitaire.yesNoQuestions(
-					"Dans la salle se trouve une personne mystérieuse, à l'air inquiétant, qui se propose de vous aider à vous échapper\nAcceptez-vous ?\n1 pour Oui\n2 pour Non");
-			if (actCode == 1) {
-				Utilitaire.lettreParLettre("Vous faites connaissance avec la personne mystérieuse");
-				Utilitaire.lettreParLettre(
-					"La personne s'avère être un bandit, elle vous donne un coup de couteau avant de s'enfuir");
-				salle.getBandit().useSkill(joueur);
-			}else {
-				Utilitaire.lettreParLettre(
-						"Vous refusez l'aide de la personne mystérieuse, contrariée, elle s'en va\n\n");
-			}
-			salle.setBandit(null);
-
+			if (salle.getLaya() != null)
+				salle.setLaya(null);// Supprime le support de la salle
+			else
+				salle.setBandit(null);
+			Thread.sleep(600* Utilitaire.getVitessetxt());
 		}
 		if (salle.getCoffre() != null) {// Permet de vérifier la présence de coffre dans la salle
 			if (salle.getCoffre().isLocked()) // Affiche la question en fonction de l'état du coffre (verrouillé ou non)
@@ -480,6 +477,7 @@ public class Donjon {
 				else
 					Utilitaire.lettreParLettre("Vous laissez le coffre fermé");
 			}
+			Thread.sleep(600* Utilitaire.getVitessetxt());
 		}
 		do { // Affiche ce texte tant que le joueur se trouve dans la salle
 			StringBuilder str = new StringBuilder("\nDans la salle se trouve :");
@@ -522,6 +520,7 @@ public class Donjon {
 				this.testEscalier(actCode, salle, isHere);
 			else
 				this.exam(salle);
+			Thread.sleep(600* Utilitaire.getVitessetxt());
 		} while (isHere);
 	}
 
@@ -604,7 +603,7 @@ public class Donjon {
 					if (portes.getCat() != 0) { // Si la porte est verrouillée
 						this.changerSalle(salle, portes);
 						if (portes.getCat() == 0) // Si la porte s'est correctement deverrouillée
-							System.out.print("Vous pouvez maintenant l'emprunter");
+							System.out.print("Vous pouvez maintenant l'emprunter\n");
 					} else { // Si la porte est déverrouillée
 						Utilitaire.lettreParLettre("Vous changez de salle");
 						isHere = false;
