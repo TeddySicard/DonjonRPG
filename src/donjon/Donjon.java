@@ -161,7 +161,8 @@ public class Donjon {
 			Monstre sorcier8140 = new Sorcier();
 			Monstre sorcier970 = new Sorcier();
 			Monstre zombie10140 = new Zombie();
-			// GENERATION DU SUPPORT//
+			// GENERATION DU SUPPORT && BANDIT//
+			Bandit bandit760 = new Bandit();
 			Support laya11140 = new Support();
 			// GENERATION DES SALLES//
 			Salle salle150 = new Salle(0, 4, 0, porteSud, trap150);
@@ -197,7 +198,7 @@ public class Donjon {
 			Salle salle7120 = new Salle(6, 11, 0, porteEst, porteOuest);
 			Salle salle7130 = new Salle(6, 12, 0, porteEst, porteOuest, atkPot7130);
 			Salle salle7140 = new Salle(6, 13, 0, porteNord, porteSud, porteOuest);
-			Salle salle870 = new Salle(7, 6, 0, porteNord, lockSouthEn870);
+			Salle salle870 = new Salle(7, 6, 0, porteNord, lockSouthEn870, bandit760);
 			Salle salle8110 = new Salle(true, 7, 10, 0, lockNorth8110, cle8110);
 			Salle salle8140 = new Salle(7, 13, 0, porteNord, porteSud, sorcier8140);
 			Salle salle970 = new Salle(8, 6, 0, porteNord, porteSud, sorcier970);
