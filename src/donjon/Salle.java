@@ -148,6 +148,10 @@ public class Salle {
 	public Salle(int x, int y, int z, Porte porte1, Porte porte2, Escalier escalier1) {
 		this(x, y, z, porte1, porte2, null, null, escalier1, null, null, null, null, null, null, null);
 	}
+	
+	public Salle(int x, int y, int z, Porte porte1, Chest coffre, Support laya) {
+		this(x, y, z, porte1, null, null, null, null, null, coffre, null, laya, null, null, null);
+	}
 
 	/////////////////////////////////// Getters &&
 	/////////////////////////////////// Setters////////////////////////////////////////
