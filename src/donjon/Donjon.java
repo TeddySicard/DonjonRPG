@@ -255,7 +255,6 @@ public class Donjon {
 			////// GENERATION DES CLES////
 			Key cle390 = new Key(1);
 			Key cle640 = new Key(2);
-			Key cle381 = new Key(1);
 			Key cle531 = new Key(1);
 			Key cle741 = new Key(2);
 			Key cle761 = new Key(2);
@@ -324,7 +323,7 @@ public class Donjon {
 			Salle salle370 = new Salle(2, 6, 0, porteSud, trap370);
 			Salle salle390 = new Salle(2, 8, 0, escalierMontant, bandit390, cle390);
 			Salle salle440 = new Salle(3, 3, 0, lockNorth440, porteSud, golem440, atkPot440);
-			Salle salle470 = new Salle(3, 6, 0, porteSud, porteEst);
+			Salle salle470 = new Salle(3, 6, 0, porteNord, porteSud, porteEst);
 			Salle salle480 = new Salle(3, 7, 0, porteOuest, escalierMontant, healPot480);
 			Salle salle510 = new Salle(4, 0, 0, porteSud, porteEst, coffre510, zombie510);
 			Salle salle520 = new Salle(4, 1, 0, porteEst, porteOuest, atkPot520);
@@ -337,7 +336,7 @@ public class Donjon {
 			Salle salle640 = new Salle(true, 5, 3, 0, lockNorth640, cle640);
 			Salle salle710 = new Salle(6, 0, 0, porteNord, escalierMontant);
 			Salle salle281 = new Salle(1, 7, 1, porteSud, coffre281);
-			Salle salle381 = new Salle(2, 7, 1, porteNord, porteSud, porteEst, cle381);
+			Salle salle381 = new Salle(2, 7, 1, porteNord, porteSud, porteEst);
 			Salle salle391 = new Salle(2, 8, 1, porteOuest, escalierDescendant);
 			Salle salle431 = new Salle(3, 2, 1, porteSud, trap431);
 			Salle salle481 = new Salle(3, 7, 1, porteNord, porteSud, escalierDescendant);
