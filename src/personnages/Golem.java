@@ -1,9 +1,15 @@
 package personnages;
 
+import donjon.Salle;
+
 public class Golem extends Monstre {
 
-	public Golem() {
-		super(100, 3, 0);
+	public final static int HP = 100;
+	public final static int ATK = 3;
+	public final static int CRIT = 0;
+	
+	public Golem(Salle salle) {
+		super(HP, ATK, CRIT, salle);
 
 	}
 

@@ -2,8 +2,10 @@ package armes;
 
 public class SabreLaser extends Arme {
 
+	public final static int FOR = 40;
+
 	public SabreLaser() {
-		super(40);
+		super(FOR);
 	}
 
 	@Override

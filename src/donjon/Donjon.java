@@ -17,6 +17,7 @@ import personnages.Bandit;
 import personnages.BossFinal;
 import personnages.Golem;
 import personnages.Monstre;
+import personnages.PNJ;
 import personnages.PersonnagePrincipal;
 import personnages.Sorcier;
 import personnages.Support;
@@ -91,6 +92,7 @@ public class Donjon {
 	}
 
 	// GENERER DONJON//
+	@SuppressWarnings("unused")
 	public void generer() {
 		switch (this.getNum()) {
 		case 1:
@@ -116,25 +118,8 @@ public class Donjon {
 			Arme sabreLaser590 = new SabreLaser();
 			Arme doubleLame9140 = new DoubleLame();
 			Arme sabre1170 = new Sabre();
-			// GENERATION DES PIEGES//
-			Piege trap150 = new Piege();
-			Piege trap3160 = new Piege();
-			Piege trap450 = new Piege();
-			Piege trap4180 = new Piege();
-			Piege trap5140 = new Piege();
-			Piege trap790 = new Piege();
 			// GENERATION DE L'ENIGME//
 			Enigme enigme870 = new Enigme(1);
-			// GENERATION DES COFFRES//
-			Chest coffre330 = new Chest(healPot330);
-			Chest coffre450 = new Chest(trap450);
-			Chest coffre4140 = new Chest(dague4140);
-			Chest coffre590 = new Chest(sabreLaser590, 1);
-			Chest coffre5140 = new Chest(trap5140);
-			Chest coffre5170 = new Chest(cle5170, 1);
-			Chest coffre6140 = new Chest(cle6140);
-			Chest coffre790 = new Chest(trap790);
-			Chest coffre1170 = new Chest(cle1170);
 			// GENERATION DES PORTES//
 			Porte porteNord = new Porte(1);
 			Porte porteSud = new Porte(2);
@@ -145,68 +130,85 @@ public class Donjon {
 			Porte lockNorth8110 = new Porte(1, 2);
 			Porte lockOuest7110 = new Porte(4, 2);
 			Porte lockSouthEn870 = new Porte(2, enigme870);
-			// GENERATION DES MONSTRES//
-			Monstre bossFinal320 = new BossFinal();
-			Monstre zombie330 = new Zombie();
-			Monstre golem350 = new Golem();
-			Monstre sorcier4150 = new Sorcier();
-			Monstre zombie4160 = new Zombie();
-			Monstre sorcier560 = new Sorcier();
-			Monstre zombie570 = new Zombie();
-			Monstre golem580 = new Golem();
-			Monstre zombie750 = new Zombie();
-			Monstre zombie780 = new Zombie();
-			Monstre golem7100 = new Golem();
-			Monstre zombie7110 = new Zombie();
-			Monstre sorcier8140 = new Sorcier();
-			Monstre sorcier970 = new Sorcier();
-			Monstre zombie10140 = new Zombie();
-			// GENERATION DU SUPPORT && BANDIT//
-			Bandit bandit760 = new Bandit();
-			Support laya11140 = new Support();
 			// GENERATION DES SALLES//
-			Salle salle150 = new Salle(0, 4, 0, porteSud, trap150);
+			Salle salle150 = new Salle(0, 4, 0, porteSud);
 			Salle salle250 = new Salle(1, 4, 0, porteNord, porteSud, cle250);
 			Salle salle310 = new Salle(2, 0, 0, true);
-			Salle salle320 = new Salle(2, 1, 0, porteEst, porteOuest, bossFinal320);
-			Salle salle330 = new Salle(2, 2, 0, porteEst, lockOuest330, coffre330, zombie330, atkPot330);
+			Salle salle320 = new Salle(2, 1, 0, porteEst, porteOuest);
+			Salle salle330 = new Salle(2, 2, 0, porteEst, lockOuest330, atkPot330);
 			Salle salle340 = new Salle(2, 3, 0, porteEst, porteOuest, cle340);
-			Salle salle350 = new Salle(2, 4, 0, porteNord, porteSud, porteOuest, golem350);
-			Salle salle3160 = new Salle(2, 15, 0, porteSud, trap3160);
-			Salle salle450 = new Salle(3, 4, 0, porteNord, porteSud, coffre450);
-			Salle salle4140 = new Salle(3, 13, 0, porteSud, porteEst, coffre4140);
-			Salle salle4150 = new Salle(3, 14, 0, porteEst, porteOuest, sorcier4150);
-			Salle salle4160 = new Salle(3, 15, 0, porteNord, porteEst, porteOuest, zombie4160, hpGainPot4160);
+			Salle salle350 = new Salle(2, 4, 0, porteNord, porteSud, porteOuest);
+			Salle salle3160 = new Salle(2, 15, 0, porteSud);
+			Salle salle450 = new Salle(3, 4, 0, porteNord, porteSud);
+			Salle salle4140 = new Salle(3, 13, 0, porteSud, porteEst);
+			Salle salle4150 = new Salle(3, 14, 0, porteEst, porteOuest);
+			Salle salle4160 = new Salle(3, 15, 0, porteNord, porteEst, porteOuest, hpGainPot4160);
 			Salle salle4170 = new Salle(3, 16, 0, porteSud, porteEst, porteOuest);
-			Salle salle4180 = new Salle(3, 17, 0, porteOuest, trap4180);
+			Salle salle4180 = new Salle(3, 17, 0, porteOuest);
 			Salle salle550 = new Salle(4, 4, 0, porteNord, porteSud, porteEst);
-			Salle salle560 = new Salle(4, 5, 0, porteEst, porteOuest, sorcier560);
-			Salle salle570 = new Salle(4, 6, 0, porteEst, porteOuest, zombie570, hpGainPot570);
-			Salle salle580 = new Salle(4, 7, 0, porteEst, porteOuest, golem580);
-			Salle salle590 = new Salle(4, 8, 0, porteOuest, coffre590);
-			Salle salle5140 = new Salle(4, 13, 0, porteNord, porteSud, coffre5140);
-			Salle salle5170 = new Salle(4, 16, 0, porteNord, coffre5170);
+			Salle salle560 = new Salle(4, 5, 0, porteEst, porteOuest);
+			Salle salle570 = new Salle(4, 6, 0, porteEst, porteOuest, hpGainPot570);
+			Salle salle580 = new Salle(4, 7, 0, porteEst, porteOuest);
+			Salle salle590 = new Salle(4, 8, 0, porteOuest);
+			Salle salle5140 = new Salle(4, 13, 0, porteNord, porteSud);
+			Salle salle5170 = new Salle(4, 16, 0, porteNord);
 			Salle salle650 = new Salle(5, 4, 0, porteNord, porteSud, healPot650);
-			Salle salle6140 = new Salle(5, 13, 0, porteNord, porteSud, coffre6140);
-			Salle salle750 = new Salle(6, 4, 0, porteNord, porteEst, zombie750);
+			Salle salle6140 = new Salle(5, 13, 0, porteNord, porteSud);
+			Salle salle750 = new Salle(6, 4, 0, porteNord, porteEst);
 			Salle salle760 = new Salle(6, 5, 0, porteEst, lockOuest760);
 			Salle salle770 = new Salle(6, 6, 0, porteSud, porteEst, porteOuest);
-			Salle salle780 = new Salle(6, 7, 0, porteEst, porteOuest, zombie780, atkPot780);
-			Salle salle790 = new Salle(6, 8, 0, porteEst, porteOuest, coffre790);
-			Salle salle7100 = new Salle(6, 9, 0, porteEst, porteOuest, golem7100);
-			Salle salle7110 = new Salle(6, 10, 0, porteSud, porteEst, lockOuest7110, zombie7110, healPot7110);
+			Salle salle780 = new Salle(6, 7, 0, porteEst, porteOuest, atkPot780);
+			Salle salle790 = new Salle(6, 8, 0, porteEst, porteOuest);
+			Salle salle7100 = new Salle(6, 9, 0, porteEst, porteOuest);
+			Salle salle7110 = new Salle(6, 10, 0, porteSud, porteEst, lockOuest7110, healPot7110);
 			Salle salle7120 = new Salle(6, 11, 0, porteEst, porteOuest);
 			Salle salle7130 = new Salle(6, 12, 0, porteEst, porteOuest, atkPot7130);
 			Salle salle7140 = new Salle(6, 13, 0, porteNord, porteSud, porteOuest);
-			Salle salle870 = new Salle(7, 6, 0, porteNord, lockSouthEn870, bandit760);
+			Salle salle870 = new Salle(7, 6, 0, porteNord, lockSouthEn870);
 			Salle salle8110 = new Salle(true, 7, 10, 0, lockNorth8110, cle8110);
-			Salle salle8140 = new Salle(7, 13, 0, porteNord, porteSud, sorcier8140);
-			Salle salle970 = new Salle(8, 6, 0, porteNord, porteSud, sorcier970);
+			Salle salle8140 = new Salle(7, 13, 0, porteNord, porteSud);
+			Salle salle970 = new Salle(8, 6, 0, porteNord, porteSud);
 			Salle salle9140 = new Salle(8, 13, 0, porteNord, porteSud, doubleLame9140);
 			Salle salle1070 = new Salle(9, 6, 0, porteNord, porteSud, healPot1070);
-			Salle salle10140 = new Salle(9, 13, 0, porteNord, porteSud, zombie10140);
-			Salle salle1170 = new Salle(10, 6, 0, porteNord, coffre1170, sabre1170);
-			Salle salle11140 = new Salle(10, 13, 0, porteNord, laya11140);
+			Salle salle10140 = new Salle(9, 13, 0, porteNord, porteSud);
+			Salle salle1170 = new Salle(10, 6, 0, porteNord, sabre1170);
+			Salle salle11140 = new Salle(10, 13, 0, porteNord);
+			// GENERATION DES PIEGES//
+			Piege trap150 = new Piege(salle150);
+			Piege trap3160 = new Piege(salle3160);
+			Piege trap450 = new Piege();
+			Piege trap4180 = new Piege(salle4180);
+			Piege trap5140 = new Piege();
+			Piege trap790 = new Piege();
+			// GENERATION DES COFFRES//
+			Chest coffre330 = new Chest(healPot330, salle330);
+			Chest coffre450 = new Chest(trap450, salle450);
+			Chest coffre4140 = new Chest(dague4140, salle4140);
+			Chest coffre590 = new Chest(sabreLaser590, 1, salle590);
+			Chest coffre5140 = new Chest(trap5140, salle5140);
+			Chest coffre5170 = new Chest(cle5170, 1, salle5170);
+			Chest coffre6140 = new Chest(cle6140, salle6140);
+			Chest coffre790 = new Chest(trap790, salle790);
+			Chest coffre1170 = new Chest(cle1170, salle1170);
+			// GENERATION DES MONSTRES//
+			Monstre bossFinal320 = new BossFinal(salle320);
+			Monstre zombie330 = new Zombie(salle330);
+			Monstre golem350 = new Golem(salle350);
+			Monstre sorcier4150 = new Sorcier(salle4150);
+			Monstre zombie4160 = new Zombie(salle4160);
+			Monstre sorcier560 = new Sorcier(salle560);
+			Monstre zombie570 = new Zombie(salle570);
+			Monstre golem580 = new Golem(salle580);
+			Monstre zombie750 = new Zombie(salle750);
+			Monstre zombie780 = new Zombie(salle780);
+			Monstre golem7100 = new Golem(salle7100);
+			Monstre zombie7110 = new Zombie(salle7110);
+			Monstre sorcier8140 = new Sorcier(salle8140);
+			Monstre sorcier970 = new Sorcier(salle970);
+			Monstre zombie10140 = new Zombie(salle10140);
+			// GENERATION DU SUPPORT && BANDIT//
+			PNJ bandit760 = new Bandit(salle760);
+			PNJ laya11140 = new Support(salle11140);
 			//// IMPLEMENTATION DES SALLES DANS LA MATRICE//
 			this.ajouterSalle(salle150);
 			this.ajouterSalle(salle250);
@@ -273,27 +275,9 @@ public class Donjon {
 			Arme dague570 = new Dague();
 			Arme doubleLame531 = new DoubleLame();
 			Arme sabre781 = new Sabre();
-			////////// GENERATION DES PIEGES/////////////
-			Piege trap370 = new Piege();
-			Piege trap510 = new Piege();
-			Piege trap281 = new Piege();
-			Piege trap431 = new Piege();
+
 			////////// GENERATION DE L'ENIGME////////////
 			Enigme enigme751 = new Enigme(2);
-			////////// GENERATION DES COFFRES////////////
-			Chest coffre340 = new Chest(healPot340);
-			Chest coffre510 = new Chest(trap510);
-			Chest coffre570 = new Chest(dague570);
-			Chest coffre281 = new Chest(trap281);
-			Chest coffre531 = new Chest(cle531);
-			Chest coffre741 = new Chest(cle741, 1);
-			Chest coffre761 = new Chest(cle761, 1);
-			Chest coffre781 = new Chest(sabre781, 1);
-			Chest coffre7101 = new Chest(cle7101);
-			////////// GENERATION SUPPORT && BANDIT/////////
-			Bandit bandit390 = new Bandit();
-			Bandit bandit530 = new Bandit();
-			Support laya7101 = new Support();
 			// GENERATION DES PORTES/ESCALIERS//
 			porteNord = new Porte(1);
 			porteSud = new Porte(2);
@@ -305,54 +289,73 @@ public class Donjon {
 			Porte lockNorth540 = new Porte(1, 2);
 			Porte lockNorth640 = new Porte(1, 2);
 			Porte lockEast751 = new Porte(3, enigme751);
-			////////// GENERATION DES MONSTRES////////////
-			BossFinal bossFinal240 = new BossFinal();
-			Sorcier sorcier340 = new Sorcier();
-			Golem golem440 = new Golem();
-			Zombie zombie510 = new Zombie();
-			sorcier560 = new Sorcier();
-			Zombie zombie531 = new Zombie();
-			Sorcier sorcier581 = new Sorcier();
-			Sorcier sorcier631 = new Sorcier();
-			Zombie zombie781 = new Zombie();
-			Golem golem791 = new Golem();
-			/////////// GENERATION DES SALLES/////////////
-			Salle salle140 = new Salle(0, 3, 0, porteSud, true);
-			Salle salle240 = new Salle(1, 3, 0, porteNord, porteSud, bossFinal240);
-			salle340 = new Salle(2, 3, 0, porteNord, porteSud, coffre340, sorcier340, sabreLaser340);
-			Salle salle370 = new Salle(2, 6, 0, porteSud, trap370);
-			Salle salle390 = new Salle(2, 8, 0, escalierMontant, bandit390, cle390);
-			Salle salle440 = new Salle(3, 3, 0, lockNorth440, porteSud, golem440, atkPot440);
+			////////// GENERATION DES SALLES/////////////
+			Salle salle140 = new Salle(0, 3, 0, true);
+			Salle salle240 = new Salle(1, 3, 0, porteNord, porteSud);
+			salle340 = new Salle(2, 3, 0, porteNord, porteSud, sabreLaser340);
+			Salle salle370 = new Salle(2, 6, 0, porteSud);
+			Salle salle390 = new Salle(2, 8, 0, escalierMontant, cle390);
+			Salle salle440 = new Salle(3, 3, 0, lockNorth440, porteSud, atkPot440);
 			Salle salle470 = new Salle(3, 6, 0, porteNord, porteSud, porteEst);
 			Salle salle480 = new Salle(3, 7, 0, porteOuest, escalierMontant, healPot480);
-			Salle salle510 = new Salle(4, 0, 0, porteSud, porteEst, coffre510, zombie510);
+			Salle salle510 = new Salle(4, 0, 0, porteSud, porteEst);
 			Salle salle520 = new Salle(4, 1, 0, porteEst, porteOuest, atkPot520);
-			Salle salle530 = new Salle(4, 2, 0, porteEst, porteOuest, bandit530);
+			Salle salle530 = new Salle(4, 2, 0, porteEst, porteOuest);
 			Salle salle540 = new Salle(4, 3, 0, lockNorth540, porteSud, porteEst, porteOuest);
 			salle550 = new Salle(4, 4, 0, porteEst, porteOuest, healPot550);
-			salle560 = new Salle(4, 5, 0, porteEst, porteOuest, sorcier560, hpGainPot560);
-			salle570 = new Salle(4, 6, 0, porteNord, porteOuest, coffre570);
+			salle560 = new Salle(4, 5, 0, porteEst, porteOuest, hpGainPot560);
+			salle570 = new Salle(4, 6, 0, porteNord, porteOuest);
 			Salle salle610 = new Salle(5, 0, 0, porteNord, porteSud);
 			Salle salle640 = new Salle(true, 5, 3, 0, lockNorth640, cle640);
 			Salle salle710 = new Salle(6, 0, 0, porteNord, escalierMontant);
-			Salle salle281 = new Salle(1, 7, 1, porteSud, coffre281);
+			Salle salle281 = new Salle(1, 7, 1, porteSud);
 			Salle salle381 = new Salle(2, 7, 1, porteNord, porteSud, porteEst);
 			Salle salle391 = new Salle(2, 8, 1, porteOuest, escalierDescendant);
-			Salle salle431 = new Salle(3, 2, 1, porteSud, trap431);
+			Salle salle431 = new Salle(3, 2, 1, porteSud);
 			Salle salle481 = new Salle(3, 7, 1, porteNord, porteSud, escalierDescendant);
-			Salle salle531 = new Salle(4, 2, 1, porteNord, porteSud, coffre531, zombie531, doubleLame531);
-			Salle salle581 = new Salle(4, 7, 1, porteNord, porteSud, sorcier581);
-			Salle salle631 = new Salle(5, 2, 1, porteNord, porteSud, sorcier631, healPot631); 
+			Salle salle531 = new Salle(4, 2, 1, porteNord, porteSud, doubleLame531);
+			Salle salle581 = new Salle(4, 7, 1, porteNord, porteSud);
+			Salle salle631 = new Salle(5, 2, 1, porteNord, porteSud, healPot631); 
 			Salle salle681 = new Salle(5, 7, 1, porteNord, porteSud);
 			Salle salle711 = new Salle(6, 0, 1, porteEst, escalierDescendant);
 			Salle salle721 = new Salle(6, 1, 1, porteEst, porteOuest);
 			Salle salle731 = new Salle(6, 2, 1, porteNord, porteEst, porteOuest);
-			Salle salle741 = new Salle(6, 3, 1, porteEst, porteOuest, coffre741);
+			Salle salle741 = new Salle(6, 3, 1, porteEst, porteOuest);
 			Salle salle751 = new Salle(6, 4, 1, lockEast751, porteOuest);
-			Salle salle761 = new Salle(6, 5, 1, porteOuest, coffre761);
-			Salle salle781 = new Salle(6, 7, 1, porteNord, porteEst, coffre781, zombie781);
-			Salle salle791 = new Salle(6, 8, 1, porteEst, porteOuest, golem791, hpGainPot791);
-			Salle salle7101 = new Salle(6, 9, 1, porteOuest, coffre7101, laya7101);
+			Salle salle761 = new Salle(6, 5, 1, porteOuest);
+			Salle salle781 = new Salle(6, 7, 1, porteNord, porteEst);
+			Salle salle791 = new Salle(6, 8, 1, porteEst, porteOuest, hpGainPot791);
+			Salle salle7101 = new Salle(6, 9, 1, porteOuest);
+			////////// GENERATION DES PIEGES/////////////
+			Piege trap281 = new Piege();
+			Piege trap370 = new Piege(salle370);
+			Piege trap431 = new Piege(salle431);
+			Piege trap510 = new Piege();
+			////////// GENERATION DES COFFRES////////////
+			Chest coffre340 = new Chest(healPot340, salle340);
+			Chest coffre510 = new Chest(trap510, salle510);
+			Chest coffre570 = new Chest(dague570, salle570);
+			Chest coffre281 = new Chest(trap281, salle281);
+			Chest coffre531 = new Chest(cle531, salle531);
+			Chest coffre741 = new Chest(cle741, 1, salle741);
+			Chest coffre761 = new Chest(cle761, 1, salle761);
+			Chest coffre781 = new Chest(sabre781, 1, salle781);
+			Chest coffre7101 = new Chest(cle7101, salle7101);
+			////////// GENERATION DES MONSTRES////////////
+			BossFinal bossFinal240 = new BossFinal(salle240);
+			Sorcier sorcier340 = new Sorcier(salle340);
+			Golem golem440 = new Golem(salle440);
+			Zombie zombie510 = new Zombie(salle510);
+			sorcier560 = new Sorcier(salle560);
+			Zombie zombie531 = new Zombie(salle531);
+			Sorcier sorcier581 = new Sorcier(salle581);
+			Sorcier sorcier631 = new Sorcier(salle631);
+			Zombie zombie781 = new Zombie(salle781);
+			Golem golem791 = new Golem(salle791);
+			////////// GENERATION SUPPORT && BANDIT/////////
+			PNJ bandit390 = new Bandit(salle390);
+			PNJ bandit530 = new Bandit(salle530);
+			PNJ laya7101 = new Support(salle7101);
 			//// IMPLEMENTATION DES SALLES DANS LA MATRICE//
 			this.ajouterSalle(salle140);
 			this.ajouterSalle(salle240);
@@ -434,32 +437,19 @@ public class Donjon {
 			salle.setMonstre(null);// Supprime le monstre de la salle
 			Thread.sleep(600* Utilitaire.getVitessetxt());
 		}
-		if (salle.getLaya() != null || salle.getBandit() != null) {// Permet de vérifier la présence du support dans la
+		if (salle.getPnj() != null) {// Permet de vérifier la présence du support/bandit dans la
 																	// salle
 			actCode = Utilitaire.yesNoQuestions(
 					"Dans la salle se trouve une personne mystérieuse, à l'air inquiétant, qui se propose de vous aider à vous échapper\nAcceptez-vous ?\n1 pour Oui\n2 pour Non");
 			if (actCode == 1) {
 				Utilitaire.lettreParLettre("Vous faites connaissance avec la personne mystérieuse");
-				if (salle.getLaya() != null) {
-					Utilitaire.lettreParLettre(
-								"Vous apprenez qu'elle s'appelle Laya et qu'elle possède des pouvoirs de guérison");
-					Utilitaire.lettreParLettre(
-								"Laya vous à rejoint, elle pourra vous soigner lors de vos futurs combats\n\n");
-					joueur.setMateFollow(salle.getLaya());// Ajoute le support en tant que co-équipier du joueur
-				} else {
-					Utilitaire.lettreParLettre(
-							"La personne s'avère être un bandit, elle vous donne un coup de couteau avant de s'enfuir");
-						salle.getBandit().useSkill(joueur);
-				}
+				salle.getPnj().rencontrer(salle, joueur);
 				
 			} else {
 				Utilitaire.lettreParLettre(
 						"Vous refusez l'aide de la personne mystérieuse, contrariée, elle s'en va\n\n");
 			}
-			if (salle.getLaya() != null)
-				salle.setLaya(null);// Supprime le support de la salle
-			else
-				salle.setBandit(null);
+			salle.setPnj(null);
 			Thread.sleep(600* Utilitaire.getVitessetxt());
 		}
 		if (salle.getCoffre() != null) {// Permet de vérifier la présence de coffre dans la salle
@@ -528,32 +518,8 @@ public class Donjon {
 																// la salle
 		if (salle.getObjSol() == null) // Aucun objet présent
 			Utilitaire.lettreParLettre("Vous ne trouvez rien d'intéressant dans la salle");
-		else {
-			int actCode;
-			if (salle.getObjSol() instanceof Arme) { // Une arme présente
-				Utilitaire.lettreParLettre("Vous avez trouvé " + salle.getObjSol().toString() + " dans la salle");
-				joueur.equipWeapon((Arme) salle.getObjSol());
-				salle.setObjSol(null); // Supprime l'arme du sol
-			} else if (salle.getObjSol() instanceof Potion) { // Une potion présente
-				actCode = Utilitaire.yesNoQuestions("Vous avez trouvé une " + salle.getObjSol()
-						+ " dans la salle\nSouhaitez-vous la boire ?\n1 pour boire la potion\n2 pour la laisser");
-				if (actCode == 1) {
-					joueur.drink((Potion) salle.getObjSol());
-					salle.setObjSol(null); // Supprime la potion de la salle
-				} else {
-					Utilitaire.lettreParLettre("Vous laissez la potion sur place");
-				}
-			} else if (salle.getObjSol() instanceof Key) { // Une clé présente
-				if (((Key) salle.getObjSol()).getCat() == 1) // Vérifie le type de clé (Clé de porte ou clé de coffre)
-					Utilitaire.lettreParLettre(
-							"Vous trouvez une clé de coffre dans la salle. Vous l'ajoutez à votre trousseau de clé.");
-				else
-					Utilitaire.lettreParLettre(
-							"Vous trouvez une clé de porte dans la salle. Vous l'ajoutez à votre trousseau de clé.");
-				joueur.earnKey((Key) salle.getObjSol());
-				salle.setObjSol(null); // Supprime la clé de la place
-			}
-		}
+		else 
+			salle.getObjSol().trouverObjSol(salle, joueur);
 	}
 
 	public void changerSalle(Salle salle, Porte porte) throws InterruptedException { // Permet de se déplacer d'une

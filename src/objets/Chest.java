@@ -1,17 +1,20 @@
 package objets;
 
+import donjon.Salle;
+
 public class Chest {
 
 	private int cat;
-	private Object contenu;
+	private ObjCoffre contenu;
 
-	public Chest(Object contenu, int cat) { // Constructeur d'un coffre verrouillé
+	public Chest(ObjCoffre contenu, int cat, Salle salle) { // Constructeur d'un coffre verrouillé
+		salle.setCoffre(this);
 		this.cat = cat;
 		this.contenu = contenu;
 	}
 
-	public Chest(Object contenu) { // Constructeur d'un coffre déverrouillé
-		this(contenu, 0);
+	public Chest(ObjCoffre contenu, Salle salle) { // Constructeur d'un coffre déverrouillé
+		this(contenu, 0, salle);
 	}
 
 	public int getCat() {
@@ -22,11 +25,11 @@ public class Chest {
 		this.cat = cat;
 	}
 
-	public Object getContenu() {
+	public ObjCoffre getContenu() {
 		return contenu;
 	}
 
-	public void setContenu(Object contenu) {
+	public void setContenu(ObjCoffre contenu) {
 		this.contenu = contenu;
 	}
 

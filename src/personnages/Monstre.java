@@ -1,12 +1,16 @@
 package personnages;
 
+import donjon.Salle;
 import util.PointDeVie;
 import util.Utilitaire;
 
 public abstract class Monstre extends Personnage {
+	
+	public Salle salle;
 
-	public Monstre(int hp, int strength, int critique) {
+	public Monstre(int hp, int strength, int critique, Salle salle) {
 		super(hp, strength, critique);
+		salle.setMonstre(this);
 	}
 
 	public abstract String toString();

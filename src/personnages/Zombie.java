@@ -1,8 +1,15 @@
 package personnages;
 
+import donjon.Salle;
+
 public class Zombie extends Monstre {
-	public Zombie() {
-		super(16, 5, 2);
+	
+	public final static int HP = 16;
+	public final static int ATK = 5;
+	public final static int CRIT = 2;
+	
+	public Zombie(Salle salle) {
+		super(HP, ATK, CRIT, salle);
 
 	}
 

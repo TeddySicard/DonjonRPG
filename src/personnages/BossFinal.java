@@ -1,9 +1,15 @@
 package personnages;
 
-public class BossFinal extends Monstre {
+import donjon.Salle;
 
-	public BossFinal() {
-		super(300, 15, 1);
+public class BossFinal extends Monstre {
+	
+	public final static int HP = 300;
+	public final static int ATK = 15;
+	public final static int CRIT = 1;
+
+	public BossFinal(Salle salle) {
+		super(HP, ATK, CRIT, salle);
 	}
 
 	@Override

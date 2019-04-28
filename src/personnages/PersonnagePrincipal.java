@@ -6,7 +6,6 @@ import java.util.List;
 import util.PointDeVie;
 import util.Utilitaire;
 import armes.Arme;
-import donjon.Piege;
 import donjon.Porte;
 import objets.Chest;
 import objets.Key;
@@ -16,9 +15,12 @@ public class PersonnagePrincipal extends Personnage {
 	private Arme weaponHeld;
 	private Support mateFollow;
 	public List<Key> bunchOfKeys;
+	public final static int HP = 150;
+	public final static int ATK = 4;
+	public final static int CRIT = 1;
 
 	public PersonnagePrincipal() {
-		super(150, 4, 1);
+		super(HP, ATK, CRIT);
 		this.weaponHeld = null;
 		this.setMateFollow(null);
 		bunchOfKeys = new ArrayList<>();
@@ -123,37 +125,10 @@ public class PersonnagePrincipal extends Personnage {
 		if (coffre.isLocked()) // Si le coffre est verrouillé
 			this.unlock(coffre);
 		else {
-			int actCode;
-			if (coffre.getContenu() == null) { // Si le coffre est vide
+			if (coffre.getContenu() == null)  // Si le coffre est vide
 				Utilitaire.lettreParLettre("Coffre vide");
-			} else if (coffre.getContenu() instanceof Arme) { // Si le coffre contient une arme
-				Utilitaire.lettreParLettre("Le coffre contenait " + coffre.getContenu().toString());
-				this.equipWeapon((Arme) coffre.getContenu());
-				coffre.setContenu(null); // Supprime l'arme du coffre
-			} else if (coffre.getContenu() instanceof Potion) { // Si le coffre contient une potion
-				actCode = Utilitaire.yesNoQuestions("Vous avez trouvé une " + coffre.getContenu()
-						+ ". Souhaitez-vous la boire ?\n1 pour boire la potion\n2 pour la laisser");
-				if (actCode == 1) { // Si le joueur veut l'utiliser
-					this.drink((Potion) coffre.getContenu());
-					coffre.setContenu(null); // Supprime la potion du coffre
-				} else {
-					Utilitaire.lettreParLettre("Vous laissez la potion dans le coffre");
-				}
-
-			} else if (coffre.getContenu() instanceof Piege) { // Si le coffre contient un piège
-				Utilitaire.lettreParLettre("Le coffre contenait un mécanisme piégé.");
-				((Piege) coffre.getContenu()).triggerTrap(this);
-				coffre.setContenu(null); // Supprime le piège du coffre
-			} else if (coffre.getContenu() instanceof Key) { // Si le coffre contient une clé
-				if (((Key) coffre.getContenu()).getCat() == 1) // Si c'est une clé de coffre
-					System.out
-							.println("Le coffre contenait une clé de coffre. Vous l'ajoutez à votre trousseau de clé.");
-				else // Si c'est une clé de porte
-					System.out
-							.println("Le coffre contenait une clé de porte. Vous l'ajoutez à votre trousseau de clé.");
-				this.earnKey((Key) coffre.getContenu());
-				coffre.setContenu(null); // Supprime la clé du coffre
-			}
+			else 
+				coffre.getContenu().trouverObjCoffre(coffre, this);
 
 		}
 	}

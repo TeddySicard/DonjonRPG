@@ -84,7 +84,7 @@ public class Porte {
 		switch (enigme.getNumero()) { // Permet de selectionner l'énigme voulue
 		case 1:
 			String answer = "42";
-			Utilitaire.affiche(
+			Utilitaire.lettreParLettre(
 					"Je suis la réponse à cette énigme\nJe suis la réponse aux questionnements\nJe suis la réponse à la vie\nJe suis les salles de ce donjon");
 			prop = Main.caractere.nextLine();
 			System.out.println("\n\n\n\n\n\n\n");
@@ -97,7 +97,7 @@ public class Porte {
 			break;
 		case 2:
 			answer = "espace";
-			Utilitaire.affiche(
+			Utilitaire.lettreParLettre(
 					"Dans la lune mais pas soleil\nJe suis vide de nature\nOn me voit presque toujours\nMais de la plupart je suis inaccessible");
 			prop = Main.caractere.nextLine();
 			System.out.println("\n\n\n\n\n\n\n");
