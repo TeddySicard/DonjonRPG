@@ -43,6 +43,7 @@ public class Donjon {
 			break;
 		case 2:
 			this.setNom("AROUF");
+			break;
 		}
 		this.joueur = new PersonnagePrincipal();// Créé le joueur en même temps que le terrain du donjon
 	}
@@ -444,7 +445,6 @@ public class Donjon {
 			if (actCode == 1) {
 				Utilitaire.lettreParLettre("Vous faites connaissance avec la personne mystérieuse");
 				salle.getPnj().rencontrer(salle, joueur);
-				
 			} else {
 				Utilitaire.lettreParLettre(
 						"Vous refusez l'aide de la personne mystérieuse, contrariée, elle s'en va\n\n");
