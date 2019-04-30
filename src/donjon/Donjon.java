@@ -420,6 +420,15 @@ public class Donjon {
 		boolean isHere = true; // Permet de vérifier que le joueur est toujours présent dans la salle
 		int actCode;
 		if (salle.isVictoire()) { // Regarde si la salle est la salle de victoire
+			Utilitaire.lettreParLettre("111111	   111111          1       1       1       1111");
+			Utilitaire.lettreParLettre("1     1	   1     1       1   1     1       1     1      1");
+			Utilitaire.lettreParLettre("1      1   1      1     1     1    1       1   1          1");
+			Utilitaire.lettreParLettre("1     1	   1     1     1       1   1       1  1            1");
+			Utilitaire.lettreParLettre("111111     111111      111111111   1       1  1            1");
+			Utilitaire.lettreParLettre("1     1	   1    1      1       1   1       1  1            1");
+			Utilitaire.lettreParLettre("1      1   1     1     1       1    1     1    1          1");
+			Utilitaire.lettreParLettre("1     1    1      1    1       1     1   1       1      1");
+			Utilitaire.lettreParLettre("111111     1       1   1       1       1           1111");
 			Utilitaire.lettreParLettre("Vous êtes sorti du donjon...");
 			Utilitaire.lettreParLettre("Vous avez gagné");
 			System.exit(0);

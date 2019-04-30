@@ -96,9 +96,9 @@ public class Porte {
 			}
 			break;
 		case 2:
-			answer = "espace";
+			answer = "Aujourd'hui";
 			Utilitaire.lettreParLettre(
-					"Dans la lune mais pas soleil\nJe suis vide de nature\nOn me voit presque toujours\nMais de la plupart je suis inaccessible");
+					"Je serai hier, j'étais demain");
 			prop = Main.caractere.nextLine();
 			System.out.println("\n\n\n\n\n\n\n");
 			if (!prop.equalsIgnoreCase(answer)) // Si réponse incorrecte
