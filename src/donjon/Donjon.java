@@ -429,7 +429,8 @@ public class Donjon {
 			Utilitaire.lettreParLettre("1      1   1     1     1       1    1     1    1          1");
 			Utilitaire.lettreParLettre("1     1    1      1    1       1     1   1       1      1");
 			Utilitaire.lettreParLettre("111111     1       1   1       1       1           1111");
-			Utilitaire.lettreParLettre("Vous êtes sorti du donjon...");
+			Thread.sleep(2000);
+			Utilitaire.lettreParLettre("\n\n\n\n\nVous êtes sorti du donjon...");
 			Utilitaire.lettreParLettre("Vous avez gagné");
 			System.exit(0);
 		}
