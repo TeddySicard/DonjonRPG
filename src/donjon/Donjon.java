@@ -27,9 +27,9 @@ import util.Utilitaire;
 public class Donjon {
 	private String nom;
 	private int num;
-	public PersonnagePrincipal joueur;
-	public Salle[][][] salles; // Terrain dans lequel le donjon sera stocké (3 dimensions)
-	private int coordX;// Coordonnées de la salle de départ qui sera initialisée lors de la génération
+	private PersonnagePrincipal joueur;
+	public Salle[][][] salles; // Terrain dans lequel le donjon sera stockÃ© (3 dimensions)
+	private int coordX;// CoordonnÃ©es de la salle de dÃ©part qui sera initialisÃ©e lors de la gÃ©nÃ©ration
 						// du donjon
 	private int coordY;//
 	private int coordZ;//
@@ -45,7 +45,8 @@ public class Donjon {
 			this.setNom("AROUF");
 			break;
 		}
-		this.joueur = new PersonnagePrincipal();// Créé le joueur en même temps que le terrain du donjon
+		this.joueur = new PersonnagePrincipal();// CrÃ©Ã© le joueur en mÃªme temps que le terrain du donjon
+		this.generer();
 	}
 
 ///////////////////////////Getters && Setters//////////////////////////////////
@@ -64,9 +65,6 @@ public class Donjon {
 	public void setCoordY(int coordY) {
 		this.coordY = coordY;
 	}
-
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	// DONJON//
 
 	public int getCoordZ() {
 		return coordZ;
@@ -91,6 +89,9 @@ public class Donjon {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// DONJON//
 
 	// GENERER DONJON//
 	@SuppressWarnings("unused")
@@ -316,7 +317,7 @@ public class Donjon {
 			Salle salle481 = new Salle(3, 7, 1, porteNord, porteSud, escalierDescendant);
 			Salle salle531 = new Salle(4, 2, 1, porteNord, porteSud, doubleLame531);
 			Salle salle581 = new Salle(4, 7, 1, porteNord, porteSud);
-			Salle salle631 = new Salle(5, 2, 1, porteNord, porteSud, healPot631); 
+			Salle salle631 = new Salle(5, 2, 1, porteNord, porteSud, healPot631);
 			Salle salle681 = new Salle(5, 7, 1, porteNord, porteSud);
 			Salle salle711 = new Salle(6, 0, 1, porteEst, escalierDescendant);
 			Salle salle721 = new Salle(6, 1, 1, porteEst, porteOuest);
@@ -399,91 +400,91 @@ public class Donjon {
 	}
 
 	public void demarrer() throws InterruptedException {
-		this.entrerSalle(this.salles[this.getCoordX()][this.getCoordY()][this.getCoordZ()]);// Récupère les coordonnées
+		this.entrerSalle(this.salles[this.getCoordX()][this.getCoordY()][this.getCoordZ()]);// RÃ©cupÃ¨re les coordonnÃ©es
 																							// de la salle de
-		// départ
+		// dÃ©part
 	}
 
 	public void ajouterSalle(Salle salle) {
 		this.salles[salle.getX()][salle.getY()][salle.getZ()] = salle;// Permet d'ajouter les salles sur le terrain
 																		// selon ses
-		// coordonnées
-		if (salle.isDepart()) { // Permet d'initialiser les coordonnées de départ
+		// coordonnÃ©es
+		if (salle.isDepart()) { // Permet d'initialiser les coordonnÃ©es de dÃ©part
 			this.setCoordX(salle.getX());
 			this.setCoordY(salle.getY());
 			this.setCoordZ(salle.getZ());
 		}
 	}
 
-	public void entrerSalle(Salle salle) throws InterruptedException {// Permet d'enchaîner les actions du jeu, du
-																		// départ jusqu'à la victoire/Game over
-		boolean isHere = true; // Permet de vérifier que le joueur est toujours présent dans la salle
+	public void entrerSalle(Salle salle) throws InterruptedException {// Permet d'enchaÃ®ner les actions du jeu, du
+																		// dÃ©part jusqu'Ã  la victoire/Game over
+		boolean isHere = true; // Permet de vÃ©rifier que le joueur est toujours prÃ©sent dans la salle
 		int actCode;
 		if (salle.isVictoire()) { // Regarde si la salle est la salle de victoire
-			Utilitaire.lettreParLettre("111111	   111111          1       1       1       1111");
-			Utilitaire.lettreParLettre("1     1	   1     1       1   1     1       1     1      1");
-			Utilitaire.lettreParLettre("1      1   1      1     1     1    1       1   1          1");
-			Utilitaire.lettreParLettre("1     1	   1     1     1       1   1       1  1            1");
-			Utilitaire.lettreParLettre("111111     111111      111111111   1       1  1            1");
-			Utilitaire.lettreParLettre("1     1	   1    1      1       1   1       1  1            1");
-			Utilitaire.lettreParLettre("1      1   1     1     1       1    1     1    1          1");
-			Utilitaire.lettreParLettre("1     1    1      1    1       1     1   1       1      1");
-			Utilitaire.lettreParLettre("111111     1       1   1       1       1           1111");
+			Utilitaire.lettreParLettre("\n\n\n\n\n111111	   111111          1       1       1       1111\r\n"
+					+ "1     1	   1     1       1   1     1       1     1      1\r\n"
+					+ "1      1   1      1     1     1    1       1   1          1\r\n"
+					+ "1     1	   1     1     1       1   1       1  1            1\r\n"
+					+ "111111     111111      111111111   1       1  1            1\r\n"
+					+ "1     1	   1    1      1       1   1       1  1            1\r\n"
+					+ "1      1   1     1     1       1    1     1    1          1\r\n"
+					+ "1     1    1      1    1       1     1   1       1      1\r\n"
+					+ "111111     1       1   1       1       1           1111");
 			Thread.sleep(1000 * Utilitaire.getVitessetxt());
-			Utilitaire.lettreParLettre("\n\n\n\n\nVous êtes sorti du donjon...");
-			Utilitaire.lettreParLettre("Vous avez gagné");
+			Utilitaire.lettreParLettre("\n\n\n\n\nVous Ãªtes sorti du donjon...");
+			Utilitaire.lettreParLettre("Vous avez gagnÃ©");
 			System.exit(0);
 		}
-		if (salle.getPiege() != null) {// Permet de vérifier la présence de piège dans la salle
-			Utilitaire.lettreParLettre("La porte contenait un mécanisme vous tirant des flèches dessus");
+		if (salle.getPiege() != null) {// Permet de vÃ©rifier la prÃ©sence de piÃ¨ge dans la salle
+			Utilitaire.lettreParLettre("La porte contenait un mÃ©canisme vous tirant des flÃ¨ches dessus");
 			salle.getPiege().triggerTrap(joueur);
-			Utilitaire.lettreParLettre("Vous retournez dans la salle précédente");
-			Thread.sleep(600* Utilitaire.getVitessetxt());
-			this.changerSalle(salle, salle.getPortes().get(0));// Retourne à la salle précédente
+			Utilitaire.lettreParLettre("Vous retournez dans la salle prÃ©cÃ©dente");
+			Thread.sleep(600 * Utilitaire.getVitessetxt());
+			this.changerSalle(salle, salle.getPortes().get(0));// Retourne Ã  la salle prÃ©cÃ©dente
 		}
-		if (salle.getMonstre() != null) {// Permet de vérifier la présence de monstre dans la salle
+		if (salle.getMonstre() != null) {// Permet de vÃ©rifier la prÃ©sence de monstre dans la salle
 			Utilitaire.lettreParLettre(salle.getMonstre().crier());
 			Utilitaire.lettreParLettre("Un " + salle.getMonstre().toString() + " se trouve dans la salle");
 			Combat.combattre(joueur, salle.getMonstre());
 			salle.setMonstre(null);// Supprime le monstre de la salle
-			Thread.sleep(600* Utilitaire.getVitessetxt());
+			Thread.sleep(600 * Utilitaire.getVitessetxt());
 		}
-		if (salle.getPnj() != null) {// Permet de vérifier la présence du support/bandit dans la
-																	// salle
+		if (salle.getPnj() != null) {// Permet de vÃ©rifier la prÃ©sence du support/bandit dans la
+										// salle
 			actCode = Utilitaire.yesNoQuestions(
-					"Dans la salle se trouve une personne mystérieuse, à l'air inquiétant, qui se propose de vous aider à vous échapper\nAcceptez-vous ?\n1 pour Oui\n2 pour Non");
+					"Dans la salle se trouve une personne mystÃ©rieuse, Ã  l'air inquiÃ©tant, qui se propose de vous aider Ã  vous Ã©chapper\nAcceptez-vous ?\n1 pour Oui\n2 pour Non");
 			if (actCode == 1) {
-				Utilitaire.lettreParLettre("Vous faites connaissance avec la personne mystérieuse");
+				Utilitaire.lettreParLettre("Vous faites connaissance avec la personne mystÃ©rieuse");
 				salle.getPnj().rencontrer(salle, joueur);
 			} else {
 				Utilitaire.lettreParLettre(
-						"Vous refusez l'aide de la personne mystérieuse, contrariée, elle s'en va\n\n");
+						"Vous refusez l'aide de la personne mystÃ©rieuse, contrariÃ©e, elle s'en va\n\n");
 			}
 			salle.setPnj(null);
-			Thread.sleep(600* Utilitaire.getVitessetxt());
+			Thread.sleep(600 * Utilitaire.getVitessetxt());
 		}
-		if (salle.getCoffre() != null) {// Permet de vérifier la présence de coffre dans la salle
-			if (salle.getCoffre().isLocked()) // Affiche la question en fonction de l'état du coffre (verrouillé ou non)
+		if (salle.getCoffre() != null) {// Permet de vÃ©rifier la prÃ©sence de coffre dans la salle
+			if (salle.getCoffre().isLocked()) // Affiche la question en fonction de l'Ã©tat du coffre (verrouillÃ© ou non)
 				actCode = Utilitaire.yesNoQuestions(
-						"Dans la salle se trouve un coffre verrouillé\nSouhaitez-vous le deverrouiller ?\n1 pour le déverrouiller\n2 pour le laisser");
+						"Dans la salle se trouve un coffre verrouillÃ©\nSouhaitez-vous le deverrouiller ?\n1 pour le dÃ©verrouiller\n2 pour le laisser");
 			else
 				actCode = Utilitaire.yesNoQuestions(
 						"Dans la salle se trouve un coffre\nSouhaitez-vous l'ouvrir ?\n1 pour l'ouvrir\n2 pour le laisser");
 			if (actCode == 1) {
 				joueur.open(salle.getCoffre());// Ouvre/Essaye d'ouvrir le coffre
 			} else {
-				if (salle.getCoffre().isLocked())// Affiche le texte en fonction de l'état du coffre (verrouillé ou non)
-					Utilitaire.lettreParLettre("Vous laissez le coffre verrouillé");
+				if (salle.getCoffre().isLocked())// Affiche le texte en fonction de l'Ã©tat du coffre (verrouillÃ© ou non)
+					Utilitaire.lettreParLettre("Vous laissez le coffre verrouillÃ©");
 				else
-					Utilitaire.lettreParLettre("Vous laissez le coffre fermé");
+					Utilitaire.lettreParLettre("Vous laissez le coffre fermÃ©");
 			}
-			Thread.sleep(600* Utilitaire.getVitessetxt());
+			Thread.sleep(600 * Utilitaire.getVitessetxt());
 		}
 		do { // Affiche ce texte tant que le joueur se trouve dans la salle
 			StringBuilder str = new StringBuilder("\nDans la salle se trouve :");
 			for (Porte porte : salle.getPortes()) { // Va tester toute les portes de la salle
-				if (porte != null) // Vérifie si la porte existe
-					str.append("\nUne " + porte.toString()); // Va afficher la présence de la porte
+				if (porte != null) // VÃ©rifie si la porte existe
+					str.append("\nUne " + porte.toString()); // Va afficher la prÃ©sence de la porte
 			}
 			for (Escalier escalier : salle.getEscaliers()) {
 				if (escalier != null)
@@ -491,11 +492,11 @@ public class Donjon {
 			}
 			str.append("\n\nQue souhaitez-vous faire ?\n");
 			for (Porte porte : salle.getPortes()) {// Va tester toute les portes de la salle
-				if (porte != null) { // Vérifie si la porte existe
-					if (porte.getCat() == 0)// Vérifie l'état de la porte (Verrouillée ou non)
+				if (porte != null) { // VÃ©rifie si la porte existe
+					if (porte.getCat() == 0)// VÃ©rifie l'Ã©tat de la porte (VerrouillÃ©e ou non)
 						str.append("\n" + porte.getDirection() + " pour emprunter la " + porte.toString());
 					else
-						str.append("\n" + porte.getDirection() + " pour déverrouiller la " + porte.toString());
+						str.append("\n" + porte.getDirection() + " pour dÃ©verrouiller la " + porte.toString());
 				}
 			}
 			for (Escalier escalier : salle.getEscaliers()) {
@@ -503,14 +504,14 @@ public class Donjon {
 					str.append("\n" + (escalier.getDirection() + 4) + " pour emprunter l'" + escalier.toString());
 
 			}
-			str.append("\n7 pour examiner la pièce");
+			str.append("\n7 pour examiner la piÃ¨ce");
 			actCode = Utilitaire.recupererInt(str.toString());
 			System.out.println("\n\n\n\n\n\n\n");
 			while (actCode != 1 && actCode != 2 && actCode != 3 && actCode != 4 && actCode != 5 && actCode != 6
-					&& actCode != 7) { // Vérifier que la
-				// commande rentrée
+					&& actCode != 7) { // VÃ©rifier que la
+				// commande rentrÃ©e
 				// est possible
-				Utilitaire.lettreParLettre("Saisie invalide, veuillez réessayer.");
+				Utilitaire.lettreParLettre("Saisie invalide, veuillez rÃ©essayer.");
 				actCode = Utilitaire.recupererInt(str.toString());
 				System.out.println("\n\n\n\n\n\n\n");
 			}
@@ -520,22 +521,22 @@ public class Donjon {
 				this.testEscalier(actCode, salle, isHere);
 			else
 				this.exam(salle);
-			Thread.sleep(600* Utilitaire.getVitessetxt());
+			Thread.sleep(600 * Utilitaire.getVitessetxt());
 		} while (isHere);
 	}
 
-	public void exam(Salle salle) throws InterruptedException {// Va permettre de vérifier le type d'objet présent dans
+	public void exam(Salle salle) throws InterruptedException {// Va permettre de vÃ©rifier le type d'objet prÃ©sent dans
 																// la salle
-		if (salle.getObjSol() == null) // Aucun objet présent
-			Utilitaire.lettreParLettre("Vous ne trouvez rien d'intéressant dans la salle");
-		else 
+		if (salle.getObjSol() == null) // Aucun objet prÃ©sent
+			Utilitaire.lettreParLettre("Vous ne trouvez rien d'intÃ©ressant dans la salle");
+		else
 			salle.getObjSol().trouverObjSol(salle, joueur);
 	}
 
-	public void changerSalle(Salle salle, Porte porte) throws InterruptedException { // Permet de se déplacer d'une
-																						// salle à l'autre
-		switch (porte.getCat()) { // Vérifie si la porte est verrouillée ou déverrouillée
-		case 0: // Porte déverrouillée
+	public void changerSalle(Salle salle, Porte porte) throws InterruptedException { // Permet de se dÃ©placer d'une
+																						// salle Ã  l'autre
+		switch (porte.getCat()) { // VÃ©rifie si la porte est verrouillÃ©e ou dÃ©verrouillÃ©e
+		case 0: // Porte dÃ©verrouillÃ©e
 			switch (porte.getDirection()) {
 			case 1:
 				this.entrerSalle(this.salles[salle.getX() - 1][salle.getY()][salle.getZ()]);
@@ -551,10 +552,10 @@ public class Donjon {
 				break;
 			}
 			break;
-		case 2: // Porte verrouillée par clé
+		case 2: // Porte verrouillÃ©e par clÃ©
 			joueur.unlock(porte);
 			break;
-		case 3: // Porte verrouillée par énigme
+		case 3: // Porte verrouillÃ©e par Ã©nigme
 			porte.unlock(porte.getEnigme());
 			break;
 		}
@@ -569,18 +570,18 @@ public class Donjon {
 
 	}
 
-	public void testPorte(int actCode, Salle salle, boolean isHere) throws InterruptedException { // Permet de vérifier
+	public void testPorte(int actCode, Salle salle, boolean isHere) throws InterruptedException { // Permet de vÃ©rifier
 																									// si la porte
 																									// existe ou pas
 																									// dans la salle
-		for (Porte portes : salle.getPortes()) { // Vérifie la présence de la porte demandée dans la salle
+		for (Porte portes : salle.getPortes()) { // VÃ©rifie la prÃ©sence de la porte demandÃ©e dans la salle
 			if (portes != null) { // Evite le crash
-				if (portes.getDirection() == actCode) { // Si la porte demandée existe bien
-					if (portes.getCat() != 0) { // Si la porte est verrouillée
+				if (portes.getDirection() == actCode) { // Si la porte demandÃ©e existe bien
+					if (portes.getCat() != 0) { // Si la porte est verrouillÃ©e
 						this.changerSalle(salle, portes);
-						if (portes.getCat() == 0) // Si la porte s'est correctement deverrouillée
+						if (portes.getCat() == 0) // Si la porte s'est correctement deverrouillÃ©e
 							System.out.print("Vous pouvez maintenant l'emprunter\n");
-					} else { // Si la porte est déverrouillée
+					} else { // Si la porte est dÃ©verrouillÃ©e
 						Utilitaire.lettreParLettre("Vous changez de salle");
 						isHere = false;
 						this.changerSalle(salle, portes);
@@ -589,14 +590,14 @@ public class Donjon {
 				}
 			}
 		}
-		Utilitaire.lettreParLettre("Saisie invalide, veuillez réessayer.");
+		Utilitaire.lettreParLettre("Saisie invalide, veuillez rÃ©essayer.");
 
 	}
 
 	public void testEscalier(int actCode, Salle salle, boolean isHere) throws InterruptedException {
-		for (Escalier escalier : salle.getEscaliers()) { // Vérifie la présence de l'escalier demandée dans la salle
+		for (Escalier escalier : salle.getEscaliers()) { // VÃ©rifie la prÃ©sence de l'escalier demandÃ©e dans la salle
 			if (escalier != null) { // Evite le crash
-				if (escalier.getDirection() == actCode - 4) { // Si l'escalier demandée existe bien
+				if (escalier.getDirection() == actCode - 4) { // Si l'escalier demandÃ©e existe bien
 					Utilitaire.lettreParLettre("Vous changez de salle");
 					isHere = false;
 					this.changerEtage(salle, escalier);
@@ -604,7 +605,7 @@ public class Donjon {
 				}
 			}
 		}
-		Utilitaire.lettreParLettre("Saisie invalide, veuillez réessayer.");
+		Utilitaire.lettreParLettre("Saisie invalide, veuillez rÃ©essayer.");
 
 	}
 

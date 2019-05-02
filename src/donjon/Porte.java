@@ -91,19 +91,26 @@ public class Porte {
 			if (!prop.equals(answer)) // Si réponse incorrecte
 				Utilitaire.lettreParLettre("Mauvaise réponse, rien ne se passe");
 			else { // Si réponse correcte
-				Utilitaire.lettreParLettre("Vous avez trouvé la bonne réponse, vous pouvez passer");
+				Utilitaire.lettreParLettre("\n\n\n    444    22222222\r\n" + "   444    222    222\r\n"
+						+ "  444 444       222\r\n" + " 444  444     222\r\n" + "44444444444 222\r\n"
+						+ "      444  222\r\n" + "      444 2222222222");
+				Thread.sleep(1000 * Utilitaire.getVitessetxt());
+				Utilitaire.lettreParLettre("\n\n\nVous avez trouvé la bonne réponse, vous pouvez passer");
 				this.cat = 0; // Déverrouille la porte
 			}
 			break;
 		case 2:
 			answer = "Aujourd'hui";
-			Utilitaire.lettreParLettre(
-					"Je serai hier, j'étais demain");
+			Utilitaire.lettreParLettre("Je serai hier, j'étais demain");
 			prop = Main.caractere.nextLine();
 			System.out.println("\n\n\n\n\n\n\n");
 			if (!prop.equalsIgnoreCase(answer)) // Si réponse incorrecte
 				Utilitaire.lettreParLettre("Mauvaise réponse, rien ne se passe");
 			else { // Si réponse correcte
+				Utilitaire.lettreParLettre(" ____________________\r\n" + "|27|28|29|30|________|\r\n"
+						+ "|____MAY____|_1|_2|_3|\r\n" + "|_4|_5|_6|_7|_8|_9|10|\r\n" + "|11|12|13|14|15|16|17|\r\n"
+						+ "|18|19|20|21|22|23|24|\r\n" + "|25|26|27|28|29|30|31|\r\n" + "|_____2__0__1__9_____|\r\n"
+						+ "");
 				Utilitaire.lettreParLettre("Vous avez trouvé la bonne réponse, vous pouvez passer");
 				this.cat = 0; // Déverrouille la porte
 			}

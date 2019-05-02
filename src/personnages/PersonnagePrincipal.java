@@ -78,7 +78,28 @@ public class PersonnagePrincipal extends Personnage {
 	}
 
 	public void gameOver() throws InterruptedException { // Game over
-		Utilitaire.lettreParLettre("Vous êtes mort\nGame over");
+		System.out.println("\n\n\n\n\n                      :::!~!!!!!:.\r\n" + 
+				"                  .xUHWH!! !!?M88WHX:.\r\n" + 
+				"                .X*#M@$!!  !X!M$$$$$$WWx:.\r\n" + 
+				"               :!!!!!!?H! :!$!$$$$$$$$$$8X:\r\n" + 
+				"              !!~  ~:~!! :~!$!#$$$$$$$$$$8X:\r\n" + 
+				"             :!~::!H!<   ~.U$X!?R$$$$$$$$MM!\r\n" + 
+				"             ~!~!!!!~~ .:XW$$$U!!?$$$$$$RMM!\r\n" + 
+				"               !:~~~ .:!M\"T#$$$$WX??#MRRMMM!\r\n" + 
+				"               ~?WuxiW*`   `\"#$$$$8!!!!??!!!\r\n" + 
+				"             :X- M$$$$       `\"T#$T~!8$WUXU~\r\n" + 
+				"            :%`  ~#$$$m:        ~!~ ?$$$$$$\r\n" + 
+				"          :!`.-   ~T$$$$8xx.  .xWW- ~\"\"##*\"\r\n" + 
+				".....   -~~:<` !    ~?T#$$@@W@*?$$      /`\r\n" + 
+				"W$@@M!!! .!~~ !!     .:XUW$W!~ `\"~:    :\r\n" + 
+				"#\"~~`.:x%`!!  !H:   !WM$$$$Ti.: .!WUn+!`\r\n" + 
+				":::~:!!`:X~ .: ?H.!u \"$$$B$$$!W:U!T$$M~\r\n" + 
+				".~~   :X@!.-~   ?@WTWo(\"*$$$W$TH$! `\r\n" + 
+				"Wi.~!X$?!-~    : ?$$$B$Wu(\"**$RM!\r\n" + 
+				"$R@i.~~ !     :   ~$$$$$B$$en:``\r\n" + 
+				"?MXT@Wx.~    :     ~\"##*$$$$M~");
+		Thread.sleep(1000*Utilitaire.getVitessetxt());
+		Utilitaire.lettreParLettre("\n\n\n\n\nVous êtes mort\nGame over");
 		System.exit(0);
 
 	}

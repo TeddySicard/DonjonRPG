@@ -25,7 +25,6 @@ public class Main {
 		Utilitaire.lettreParLettre("Vous devrez pour cela affronter une horde de monstre et éviter les pièges sans vous perdre");
 		Utilitaire.lettreParLettre(
 				"Nous vous conseillons de vous armer d'une feuille et d'un crayon de bois afin de pouvoir tracer la carte des lieux");
-		donjon.generer();
 		donjon.demarrer();
 		nombre.close();
 		caractere.close();

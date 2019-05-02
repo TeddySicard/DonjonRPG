@@ -26,10 +26,10 @@ public class Combat {
 			}
 			Combat.affPV(joueur, ennemi); // Commande d'affichage des points de vie
 		}
-		Utilitaire.lettreParLettre("\nCombat terminé !!"); // Fin de combat
 		if (joueur.isKO()) { // Vérifie si le joueur est mort == écran game over
 			joueur.gameOver();
 		} else { // Joueur victorieux
+			Utilitaire.lettreParLettre("\nCombat terminé !!"); // Fin de combat
 			Utilitaire.lettreParLettre("Vous avez tué le " + ennemi.toString() + "\n\n\n");
 		}
 	}
