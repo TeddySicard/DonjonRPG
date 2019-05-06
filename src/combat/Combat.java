@@ -5,7 +5,14 @@ import personnages.PersonnagePrincipal;
 import util.Utilitaire;
 
 public class Combat {
-
+	
+	/**
+	 * Starts a fight between 2 characters, the player and a monster
+	 * 
+	 * @param joueur is to get the player inside of the function
+	 * @param ennemi is to get the enemy the player is facing
+	 * @throws InterruptedException to avoid errors (It should never get into this exception)
+	 */
 	public static void combattre(PersonnagePrincipal joueur, Monstre ennemi) throws InterruptedException {
 		int actCode;
 		Utilitaire.lettreParLettre("\nCombat enclenché contre un " + ennemi.toString() + " !!!");
@@ -27,12 +34,18 @@ public class Combat {
 		}
 		if (joueur.isKO()) { // Checks the player's death == Game Over Screen
 			joueur.gameOver();
-		} else { // Joueur victorieux
+		} else { // Player winning the fight
 			Utilitaire.lettreParLettre("\nCombat terminé !!"); // Ending of the fight
 			Utilitaire.lettreParLettre("Vous avez tué le " + ennemi.toString() + "\n\n\n");
 		}
 	}
 
+	/**
+	 * 
+	 * @param joueur
+	 * @param ennemi
+	 * @throws InterruptedException
+	 */
 	public static void esquive(PersonnagePrincipal joueur, Monstre ennemi) throws InterruptedException {
 		int x;
 		x = (int) (Math.random() * 10); // Random generation of a number between 0 and 9
@@ -57,8 +70,9 @@ public class Combat {
 
 	public static void affPV(PersonnagePrincipal joueur, Monstre ennemi) throws InterruptedException {
 		if (joueur.isAlone()) { // Displays the player's and the monster's HP
-			Utilitaire.lettreParLettre("PV Joueur = " + joueur.getHp() + "\nPV " + ennemi.toString() + " = " + ennemi.getHp());
-		} else { //  Displays the player's , the support and the monster's HP
+			Utilitaire.lettreParLettre(
+					"PV Joueur = " + joueur.getHp() + "\nPV " + ennemi.toString() + " = " + ennemi.getHp());
+		} else { // Displays the player's , the support and the monster's HP
 			Utilitaire.lettreParLettre("PV Joueur = " + joueur.getHp() + "\nPV Laya = " + joueur.getMateFollow().getHp()
 					+ "\nPV " + ennemi.toString() + " = " + ennemi.getHp());
 		}

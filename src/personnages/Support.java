@@ -20,7 +20,7 @@ public class Support extends Personnage implements PNJ {
 		int x;
 		x = (int) (Math.random() * 10); // Génère une valeur aléatoire à chaque appel de la méthode
 		if (x <= 4) { // Proba 1/2 de se réaliser
-			joueur.setHp(joueur.getHp() + joueur.getStrength());
+			joueur.setHp(joueur.getHp() + this.getStrength());
 			this.setHp(this.getHp() + this.getStrength());
 			PointDeVie.overhealCheck(joueur);
 			PointDeVie.overhealCheck(this);

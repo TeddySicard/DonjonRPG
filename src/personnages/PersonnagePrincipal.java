@@ -46,7 +46,7 @@ public class PersonnagePrincipal extends Personnage {
 		if (this.hasWeapon()) { // Si le joueur a déjà une arme sur lui
 			if (this.getStrength() >= arme.getStrength()) // Si l'arme du joueur fait plus mal que l'arme trouvée
 				Utilitaire.lettreParLettre("Votre arme actuelle inflige plus de dégats. Vous ne changez donc pas d'arme");
-			else { // Si son arme actuelle est moins puissant
+			else { // Si son arme actuelle est moins puissante
 				Arme weapon;
 				this.setStrength(arme.getStrength());
 				weapon = this.weaponHeld;
@@ -100,7 +100,7 @@ public class PersonnagePrincipal extends Personnage {
 				"?MXT@Wx.~    :     ~\"##*$$$$M~");
 		Thread.sleep(1000*Utilitaire.getVitessetxt());
 		Utilitaire.lettreParLettre("\n\n\n\n\nVous êtes mort\nGame over");
-		System.exit(0);
+		return;
 
 	}
 

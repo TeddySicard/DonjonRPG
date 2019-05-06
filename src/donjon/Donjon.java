@@ -271,15 +271,15 @@ public class Donjon {
 			Potion hpGainPot560 = new HPGainPot();
 			Potion healPot631 = new HealingPot();
 			Potion hpGainPot791 = new HPGainPot();
-			////////// GENERATION DES ARMES///////////
+			////////// GENERATING WEAPONS///////////
 			Arme sabreLaser340 = new SabreLaser();
 			Arme dague570 = new Dague();
 			Arme doubleLame531 = new DoubleLame();
 			Arme sabre781 = new Sabre();
 
-			////////// GENERATION DE L'ENIGME////////////
+			////////// GENERATING ENIGMAS////////////
 			Enigme enigme751 = new Enigme(2);
-			// GENERATION DES PORTES/ESCALIERS//
+			// GENERATING DOORS-STAIRS//
 			porteNord = new Porte(1);
 			porteSud = new Porte(2);
 			porteEst = new Porte(3);
@@ -290,7 +290,7 @@ public class Donjon {
 			Porte lockNorth540 = new Porte(1, 2);
 			Porte lockNorth640 = new Porte(1, 2);
 			Porte lockEast751 = new Porte(3, enigme751);
-			////////// GENERATION DES SALLES/////////////
+			////////// GENERATING ROOMS/////////////
 			Salle salle140 = new Salle(0, 3, 0, true);
 			Salle salle240 = new Salle(1, 3, 0, porteNord, porteSud);
 			salle340 = new Salle(2, 3, 0, porteNord, porteSud, sabreLaser340);
@@ -327,12 +327,12 @@ public class Donjon {
 			Salle salle781 = new Salle(6, 7, 1, porteNord, porteEst);
 			Salle salle791 = new Salle(6, 8, 1, porteEst, porteOuest, hpGainPot791);
 			Salle salle7101 = new Salle(6, 9, 1, porteOuest);
-			////////// GENERATION DES PIEGES/////////////
+			////////// GENERATING TRAPS/////////////
 			Piege trap281 = new Piege();
 			Piege trap370 = new Piege(salle370);
 			Piege trap431 = new Piege(salle431);
 			Piege trap510 = new Piege();
-			////////// GENERATION DES COFFRES////////////
+			////////// GENERATING CHESTS////////////
 			Chest coffre340 = new Chest(healPot340, salle340);
 			Chest coffre510 = new Chest(trap510, salle510);
 			Chest coffre570 = new Chest(dague570, salle570);
@@ -342,7 +342,7 @@ public class Donjon {
 			Chest coffre761 = new Chest(cle761, 1, salle761);
 			Chest coffre781 = new Chest(sabre781, 1, salle781);
 			Chest coffre7101 = new Chest(cle7101, salle7101);
-			////////// GENERATION DES MONSTRES////////////
+			////////// GENERATING MONSTERS////////////
 			BossFinal bossFinal240 = new BossFinal(salle240);
 			Sorcier sorcier340 = new Sorcier(salle340);
 			Golem golem440 = new Golem(salle440);
@@ -353,11 +353,11 @@ public class Donjon {
 			Sorcier sorcier631 = new Sorcier(salle631);
 			Zombie zombie781 = new Zombie(salle781);
 			Golem golem791 = new Golem(salle791);
-			////////// GENERATION SUPPORT && BANDIT/////////
+			////////// GENERATING SUPPORT && BANDITS/////////
 			PNJ bandit390 = new Bandit(salle390);
 			PNJ bandit530 = new Bandit(salle530);
 			PNJ laya7101 = new Support(salle7101);
-			//// IMPLEMENTATION DES SALLES DANS LA MATRICE//
+			//// IMPLEMENTING ROOMS IN THE MATRIX ////
 			this.ajouterSalle(salle140);
 			this.ajouterSalle(salle240);
 			this.ajouterSalle(salle340);
@@ -399,25 +399,27 @@ public class Donjon {
 	}
 
 	public void demarrer() throws InterruptedException {
-		this.entrerSalle(this.salles[this.getCoordX()][this.getCoordY()][this.getCoordZ()]);// Récupère les coordonnées
-																							// de la salle de
-		// départ
+		this.entrerSalle(this.salles[this.getCoordX()][this.getCoordY()][this.getCoordZ()]);// Gets the contact
+																							// informations
+																							// of the starting room
 	}
 
 	public void ajouterSalle(Salle salle) {
-		this.salles[salle.getX()][salle.getY()][salle.getZ()] = salle;// Permet d'ajouter les salles sur le terrain
-																		// selon ses
-		// coordonnées
-		if (salle.isDepart()) { // Permet d'initialiser les coordonnées de départ
+		this.salles[salle.getX()][salle.getY()][salle.getZ()] = salle;// Add the rooms on the matrix following their contact informations
+		if (salle.isDepart()) { // Catches the starting room's contact informations
 			this.setCoordX(salle.getX());
 			this.setCoordY(salle.getY());
 			this.setCoordZ(salle.getZ());
 		}
 	}
 
-	public void entrerSalle(Salle salle) throws InterruptedException {// Permet d'enchaîner les actions du jeu, du
-																		// départ jusqu'à la victoire/Game over
-		boolean isHere = true; // Permet de vérifier que le joueur est toujours présent dans la salle
+	/**
+	 * Allows game's action to chain up, from the beginning to the end
+	 * @param salle
+	 * @throws InterruptedException
+	 */
+	public void entrerSalle(Salle salle) throws InterruptedException {
+		boolean isHere = true; // Checks the player's presence on
 		int actCode;
 		if (salle.isVictoire()) { // Regarde si la salle est la salle de victoire
 			Utilitaire.lettreParLettre("\n\n\n\n\n111111	   111111          1       1       1       1111\r\n"
@@ -432,7 +434,7 @@ public class Donjon {
 			Thread.sleep(1000 * Utilitaire.getVitessetxt());
 			Utilitaire.lettreParLettre("\n\n\n\n\nVous êtes sorti du donjon...");
 			Utilitaire.lettreParLettre("Vous avez gagné");
-			System.exit(0);
+			return;
 		}
 		if (salle.getPiege() != null) {// Permet de vérifier la présence de piège dans la salle
 			Utilitaire.lettreParLettre("La porte contenait un mécanisme vous tirant des flèches dessus");
