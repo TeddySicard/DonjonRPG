@@ -7,7 +7,6 @@ import armes.Sabre;
 import armes.SabreLaser;
 import combat.Combat;
 import objets.AtkPot;
-import objets.Chest;
 import objets.Enigme;
 import objets.HPGainPot;
 import objets.HealingPot;

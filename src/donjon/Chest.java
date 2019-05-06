@@ -1,6 +1,7 @@
-package objets;
+package donjon;
 
-import donjon.Salle;
+import objets.Key;
+import objets.ObjCoffre;
 
 public class Chest {
 

@@ -10,6 +10,8 @@ public class Main {
 	public static Scanner caractere = new Scanner(System.in);
 
 	public static void main(String[] args) throws InterruptedException {
+		boolean jouer = true;
+		do {
 		int actCode = Utilitaire.recupererInt("Avant de commencer, veuillez choisir la vitesse de lecture des dialogues\n1 pour lent\n2 pour moyen (actuellement utilisé)\n3 pour rapide\n4 pour instantané");
 		while (actCode != 1 && actCode != 2 && actCode != 3 && actCode != 4) {
 			Utilitaire.lettreParLettre("Saisie incorrecte, veuillez réessayer");
@@ -26,6 +28,10 @@ public class Main {
 		Utilitaire.lettreParLettre(
 				"Nous vous conseillons de vous armer d'une feuille et d'un crayon de bois afin de pouvoir tracer la carte des lieux");
 		donjon.demarrer();
+		int rejouer = Utilitaire.yesNoQuestions("Voulez-vous recommencer une partie ?\n1 pour oui\n2 pour non");
+		if (rejouer == 2)
+			jouer = false;
+		}while (jouer == true);
 		nombre.close();
 		caractere.close();
 

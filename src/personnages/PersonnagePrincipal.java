@@ -6,8 +6,8 @@ import java.util.List;
 import util.PointDeVie;
 import util.Utilitaire;
 import armes.Arme;
+import donjon.Chest;
 import donjon.Porte;
-import objets.Chest;
 import objets.Key;
 import objets.Potion;
 

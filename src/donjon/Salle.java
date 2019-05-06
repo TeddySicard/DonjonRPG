@@ -1,6 +1,5 @@
 package donjon;
 
-import objets.Chest;
 import objets.ObjSol;
 import personnages.Monstre;
 import personnages.PNJ;

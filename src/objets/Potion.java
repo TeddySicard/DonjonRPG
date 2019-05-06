@@ -1,5 +1,6 @@
 package objets;
 
+import donjon.Chest;
 import donjon.Salle;
 import personnages.Personnage;
 import personnages.PersonnagePrincipal;

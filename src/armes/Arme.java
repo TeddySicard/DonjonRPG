@@ -1,10 +1,10 @@
 package armes;
 
+import donjon.Chest;
 import donjon.Salle;
 import objets.ObjSol;
 import personnages.PersonnagePrincipal;
 import util.Utilitaire;
-import objets.Chest;
 import objets.ObjCoffre;
 
 public abstract class Arme implements ObjSol, ObjCoffre {
@@ -25,14 +25,14 @@ public abstract class Arme implements ObjSol, ObjCoffre {
 	public void trouverObjSol(Salle salle, PersonnagePrincipal joueur) throws InterruptedException {
 		Utilitaire.lettreParLettre("Vous avez trouvé " + salle.getObjSol().toString() + " dans la salle");
 		joueur.equipWeapon((Arme) salle.getObjSol());
-		salle.setObjSol(null); // Supprime l'arme du sol
+		salle.setObjSol(null); // Delete the weapon from the room
 	}
 	
 	@Override
 	public void trouverObjCoffre(Chest coffre, PersonnagePrincipal joueur) throws InterruptedException {
 		Utilitaire.lettreParLettre("Le coffre contenait " + coffre.getContenu().toString());
 		joueur.equipWeapon((Arme) coffre.getContenu());
-		coffre.setContenu(null); // Supprime l'arme du coffre
+		coffre.setContenu(null); // Delete the weapon from the chest
 	}
 
 }
