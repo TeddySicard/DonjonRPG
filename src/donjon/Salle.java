@@ -79,7 +79,7 @@ public class Salle {
 	}
 	
 	public Salle(int x, int y, int z, Porte porte1, Escalier escalier1, ObjSol objsol) {
-		this(x, y, z, porte1, null, null, null, escalier1, null, null);
+		this(x, y, z, porte1, null, null, null, escalier1, null, objsol);
 	}
 	
 	public Salle(int x, int y, int z, Escalier escalier1, ObjSol objsol) {

@@ -5,16 +5,16 @@ import objets.ObjCoffre;
 
 public class Chest {
 
-	private int cat;
+	private int cat;// Tells if the chest is locked or not (0 for unlocked, 1 for locked)
 	private ObjCoffre contenu;
 
-	public Chest(ObjCoffre contenu, int cat, Salle salle) { // Constructeur d'un coffre verrouillé
+	public Chest(ObjCoffre contenu, int cat, Salle salle) { // Locked chest constructor
 		salle.setCoffre(this);
 		this.cat = cat;
 		this.contenu = contenu;
 	}
 
-	public Chest(ObjCoffre contenu, Salle salle) { // Constructeur d'un coffre déverrouillé
+	public Chest(ObjCoffre contenu, Salle salle) { // Unlocked chest constructor
 		this(contenu, 0, salle);
 	}
 
@@ -42,8 +42,8 @@ public class Chest {
 		}
 	}
 
-	public boolean unlock(Key key) { // Déverrouiller un coffre
-		if (key.getCat() == this.cat) { // Si la clé est compatible
+	public boolean unlock(Key key) { // Unlock chest
+		if (key.getCat() == this.cat) { // If the key is compatible
 			this.cat = 0;
 			return true;
 		} else

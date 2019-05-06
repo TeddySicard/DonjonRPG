@@ -27,14 +27,13 @@ public class Donjon {
 	private String nom;
 	private int num;
 	private PersonnagePrincipal joueur;
-	public Salle[][][] salles; // Terrain dans lequel le donjon sera stocké (3 dimensions)
-	private int coordX;// Coordonnées de la salle de départ qui sera initialisée lors de la génération
-						// du donjon
-	private int coordY;//
-	private int coordZ;//
+	public Salle[][][] salles; // Matrix where the dungeon will be stored (3 dimensions)
+	private int coordX;// Contact informations
+	private int coordY;// of the starting room
+	private int coordZ;// initialized on dungeon generation
 
 	public Donjon(int num) {
-		this.salles = new Salle[20][20][5];
+		this.salles = new Salle[20][20][5]; // Memory allocation (No dungeon is that big)
 		this.setNum(num);
 		switch (num) {
 		case 1:
@@ -44,7 +43,7 @@ public class Donjon {
 			this.setNom("AROUF");
 			break;
 		}
-		this.joueur = new PersonnagePrincipal();// Créé le joueur en même temps que le terrain du donjon
+		this.joueur = new PersonnagePrincipal();// Create the player while creating the dungeon
 		this.generer();
 	}
 
@@ -90,21 +89,22 @@ public class Donjon {
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	// DONJON//
+	// DUNGEON//
 
-	// GENERER DONJON//
-	@SuppressWarnings("unused")
+	// GENERATE DUNGEON//
+	@SuppressWarnings("unused") // Some objects are put in a room when they're created, generating a warning
+								// despite of it
 	public void generer() {
 		switch (this.getNum()) {
 		case 1:
-			// GENERATION DES CLES//
+			// GENERATING KEYS//
 			Key cle250 = new Key(1);
 			Key cle340 = new Key(2);
 			Key cle5170 = new Key(2);
 			Key cle6140 = new Key(1);
 			Key cle8110 = new Key(2);
 			Key cle1170 = new Key(2);
-			// GENERATION DES POTIONS//
+			// GENERATING POTIONS//
 			Potion healPot330 = new HealingPot();
 			Potion atkPot330 = new AtkPot();
 			Potion hpGainPot4160 = new HPGainPot();
@@ -114,14 +114,14 @@ public class Donjon {
 			Potion healPot7110 = new HealingPot();
 			Potion atkPot7130 = new AtkPot();
 			Potion healPot1070 = new HealingPot();
-			// GENERATION DES ARMES//
+			// GENERATING WEAPONS//
 			Arme dague4140 = new Dague();
 			Arme sabreLaser590 = new SabreLaser();
 			Arme doubleLame9140 = new DoubleLame();
 			Arme sabre1170 = new Sabre();
-			// GENERATION DE L'ENIGME//
+			// GENERATING ENIGMAS//
 			Enigme enigme870 = new Enigme(1);
-			// GENERATION DES PORTES//
+			// GENERATING DOORS//
 			Porte porteNord = new Porte(1);
 			Porte porteSud = new Porte(2);
 			Porte porteEst = new Porte(3);
@@ -131,7 +131,7 @@ public class Donjon {
 			Porte lockNorth8110 = new Porte(1, 2);
 			Porte lockOuest7110 = new Porte(4, 2);
 			Porte lockSouthEn870 = new Porte(2, enigme870);
-			// GENERATION DES SALLES//
+			// GENERATING ROOMS//
 			Salle salle150 = new Salle(0, 4, 0, porteSud);
 			Salle salle250 = new Salle(1, 4, 0, porteNord, porteSud, cle250);
 			Salle salle310 = new Salle(2, 0, 0, true);
@@ -174,14 +174,14 @@ public class Donjon {
 			Salle salle10140 = new Salle(9, 13, 0, porteNord, porteSud);
 			Salle salle1170 = new Salle(10, 6, 0, porteNord, sabre1170);
 			Salle salle11140 = new Salle(10, 13, 0, porteNord);
-			// GENERATION DES PIEGES//
+			// GENERATING TRAPS//
 			Piege trap150 = new Piege(salle150);
 			Piege trap3160 = new Piege(salle3160);
 			Piege trap450 = new Piege();
 			Piege trap4180 = new Piege(salle4180);
 			Piege trap5140 = new Piege();
 			Piege trap790 = new Piege();
-			// GENERATION DES COFFRES//
+			// GENERATING CHESTS//
 			Chest coffre330 = new Chest(healPot330, salle330);
 			Chest coffre450 = new Chest(trap450, salle450);
 			Chest coffre4140 = new Chest(dague4140, salle4140);
@@ -191,7 +191,7 @@ public class Donjon {
 			Chest coffre6140 = new Chest(cle6140, salle6140);
 			Chest coffre790 = new Chest(trap790, salle790);
 			Chest coffre1170 = new Chest(cle1170, salle1170);
-			// GENERATION DES MONSTRES//
+			// GENERATING MONSTERS//
 			Monstre bossFinal320 = new BossFinal(salle320);
 			Monstre zombie330 = new Zombie(salle330);
 			Monstre golem350 = new Golem(salle350);
@@ -207,10 +207,10 @@ public class Donjon {
 			Monstre sorcier8140 = new Sorcier(salle8140);
 			Monstre sorcier970 = new Sorcier(salle970);
 			Monstre zombie10140 = new Zombie(salle10140);
-			// GENERATION DU SUPPORT && BANDIT//
+			// GENERATING SUPPORT && BANDITS//
 			PNJ bandit760 = new Bandit(salle760);
 			PNJ laya11140 = new Support(salle11140);
-			//// IMPLEMENTATION DES SALLES DANS LA MATRICE//
+			//// IMPLEMENTING ROOMS IN THE MATRIX//
 			this.ajouterSalle(salle150);
 			this.ajouterSalle(salle250);
 			this.ajouterSalle(salle310);
@@ -255,14 +255,14 @@ public class Donjon {
 			this.ajouterSalle(salle11140);
 			break;
 		case 2:
-			////// GENERATION DES CLES////
+			////// GENERATING KEYS////
 			Key cle390 = new Key(1);
 			Key cle640 = new Key(2);
 			Key cle531 = new Key(1);
 			Key cle741 = new Key(2);
 			Key cle761 = new Key(2);
 			Key cle7101 = new Key(1);
-			///// GENERATION DES POTIONS////
+			///// GENERATING POTIONS////
 			Potion healPot340 = new HealingPot();
 			Potion atkPot440 = new AtkPot();
 			Potion healPot480 = new HealingPot();
