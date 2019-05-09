@@ -15,6 +15,7 @@ public class Main {
 	public static Scanner caractere = new Scanner(System.in);
 
 	public static void main(String[] args) throws InterruptedException {
+		Utilitaire.setNbPartie(Utilitaire.getNbPartie()+1);
 		Utilitaire.setVitessetxt(2);
 		int actCode = Utilitaire.recupererInt(
 				"Avant de commencer, veuillez choisir la vitesse de lecture des dialogues\n1 pour lent\n2 pour moyen (actuellement utilisé)\n3 pour rapide\n4 pour instantané");
@@ -27,6 +28,8 @@ public class Main {
 		System.out.println("\n\n\n\n\n\n\n");
 		int num = Utilitaire
 				.yesNoQuestions("Quel donjon souhaitez vous lancer ?\n1 pour le donjon 1\n2 pour le donjon 2");
+		
+		
 		Donjon donjon = new Donjon(num);
 		Utilitaire.lettreParLettre("Bienvenue à vous dans le DONJON " + donjon.getNom() + " !!!");
 		Utilitaire.lettreParLettre("Vous êtes enfermés dans un cachot du donjon, et votre but est de vous en échapper");

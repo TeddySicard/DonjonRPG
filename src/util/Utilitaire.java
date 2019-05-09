@@ -11,6 +11,7 @@ import main.Main;
  */
 public class Utilitaire {
 	private static int vitessetxt;
+	private static int nbPartie = 0;
 
 	public static int getVitessetxt() {
 		return vitessetxt;
@@ -18,6 +19,14 @@ public class Utilitaire {
 
 	public static void setVitessetxt(int vitessetxt) {
 		Utilitaire.vitessetxt = vitessetxt;
+	}
+
+	public static int getNbPartie() {
+		return nbPartie;
+	}
+
+	public static void setNbPartie(int nbPartie) {
+		Utilitaire.nbPartie = nbPartie;
 	}
 
 	public static void affiche(String txt) throws InterruptedException { // Affiche le texte après un délai
@@ -70,7 +79,7 @@ public class Utilitaire {
 	}
 	
 	public static void rejouerDemande() throws InterruptedException {
-		int ans = Utilitaire.yesNoQuestions("Voulez-vous rejouer ?\n1 pour oui\n2 pour non");
+		int ans = Utilitaire.yesNoQuestions("Partie n°" + Utilitaire.getNbPartie() + " finie.\nVoulez-vous rejouer ?\n1 pour oui\n2 pour non");
 			if (ans == 1)
 				Main.main(null);
 			else
