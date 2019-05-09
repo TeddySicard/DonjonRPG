@@ -4,6 +4,11 @@ import donjon.Salle;
 import util.PointDeVie;
 import util.Utilitaire;
 
+/**
+ * 
+ * @author Ted
+ *
+ */
 public abstract class Monstre extends Personnage {
 	
 	public Salle salle;

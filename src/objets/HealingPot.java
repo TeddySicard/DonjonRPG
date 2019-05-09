@@ -4,6 +4,11 @@ import personnages.Personnage;
 import util.PointDeVie;
 import util.Utilitaire;
 
+/**
+ * 
+ * @author Ted
+ *
+ */
 public class HealingPot extends Potion {
 
 	@Override

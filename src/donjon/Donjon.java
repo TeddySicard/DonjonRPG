@@ -23,10 +23,15 @@ import personnages.Support;
 import personnages.Zombie;
 import util.Utilitaire;
 
+/**
+ * 
+ * @author Ted
+ *
+ */
 public class Donjon {
-	private String nom;
-	private int num;
-	private PersonnagePrincipal joueur;
+	private String nom; // The name of the dungeon
+	private int num; // The number of the dungeon
+	private PersonnagePrincipal joueur; // The player inside the dungeon
 	public Salle[][][] salles; // Matrix where the dungeon will be stored (3 dimensions)
 	private int coordX;// Contact informations
 	private int coordY;// of the starting room
@@ -405,7 +410,8 @@ public class Donjon {
 	}
 
 	public void ajouterSalle(Salle salle) {
-		this.salles[salle.getX()][salle.getY()][salle.getZ()] = salle;// Add the rooms on the matrix following their contact informations
+		this.salles[salle.getX()][salle.getY()][salle.getZ()] = salle;// Add the rooms on the matrix following their
+																		// contact informations
 		if (salle.isDepart()) { // Catches the starting room's contact informations
 			this.setCoordX(salle.getX());
 			this.setCoordY(salle.getY());
@@ -415,6 +421,7 @@ public class Donjon {
 
 	/**
 	 * Allows game's action to chain up, from the beginning to the end
+	 * 
 	 * @param salle
 	 * @throws InterruptedException
 	 */
@@ -434,7 +441,7 @@ public class Donjon {
 			Thread.sleep(1000 * Utilitaire.getVitessetxt());
 			Utilitaire.lettreParLettre("\n\n\n\n\nVous êtes sorti du donjon...");
 			Utilitaire.lettreParLettre("Vous avez gagné");
-			return;
+			Utilitaire.rejouerDemande();
 		}
 		if (salle.getPiege() != null) {// Permet de vérifier la présence de piège dans la salle
 			Utilitaire.lettreParLettre("La porte contenait un mécanisme vous tirant des flèches dessus");

@@ -4,6 +4,11 @@ import donjon.Salle;
 import util.PointDeVie;
 import util.Utilitaire;
 
+/**
+ * 
+ * @author Ted
+ *
+ */
 public class Bandit extends Personnage implements PNJ {
 	
 	public final static int HP = 100;

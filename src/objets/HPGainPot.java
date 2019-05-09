@@ -3,6 +3,11 @@ package objets;
 import personnages.Personnage;
 import util.Utilitaire;
 
+/**
+ * 
+ * @author Ted
+ *
+ */
 public class HPGainPot extends Potion {
 
 	@Override

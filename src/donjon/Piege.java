@@ -4,6 +4,11 @@ import objets.ObjCoffre;
 import personnages.PersonnagePrincipal;
 import util.Utilitaire;
 
+/**
+ * 
+ * @author Ted
+ *
+ */
 public class Piege implements ObjCoffre {
 	
 	private int strength;

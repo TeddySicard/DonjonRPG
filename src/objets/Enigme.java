@@ -1,5 +1,10 @@
 package objets;
 
+/**
+ * 
+ * @author Ted
+ *
+ */
 public class Enigme {
 	private int numero;
 

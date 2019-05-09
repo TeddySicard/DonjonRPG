@@ -2,6 +2,11 @@ package personnages;
 
 import util.Utilitaire;
 
+/**
+ * 
+ * @author Ted
+ *
+ */
 public abstract class Personnage {
 
 	private int hp;

@@ -11,6 +11,11 @@ import donjon.Porte;
 import objets.Key;
 import objets.Potion;
 
+/**
+ * 
+ * @author Ted
+ *
+ */
 public class PersonnagePrincipal extends Personnage {
 	private Arme weaponHeld;
 	private Support mateFollow;
@@ -100,8 +105,7 @@ public class PersonnagePrincipal extends Personnage {
 				"?MXT@Wx.~    :     ~\"##*$$$$M~");
 		Thread.sleep(1000*Utilitaire.getVitessetxt());
 		Utilitaire.lettreParLettre("\n\n\n\n\nVous êtes mort\nGame over");
-		return;
-
+		Utilitaire.rejouerDemande();
 	}
 
 	public void earnKey(Key key) { // Ajouter une clé au trousseau de clé

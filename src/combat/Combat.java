@@ -4,14 +4,20 @@ import personnages.Monstre;
 import personnages.PersonnagePrincipal;
 import util.Utilitaire;
 
+/**
+ * 
+ * @author Ted
+ *
+ */
 public class Combat {
-	
+
 	/**
 	 * Starts a fight between 2 characters, the player and a monster
 	 * 
-	 * @param joueur is to get the player inside of the function
+	 * @param joueur is to get the player inside the function
 	 * @param ennemi is to get the enemy the player is facing
-	 * @throws InterruptedException to avoid errors (It should never get into this exception)
+	 * @throws InterruptedException to avoid errors (It should never get into this
+	 *                              exception)
 	 */
 	public static void combattre(PersonnagePrincipal joueur, Monstre ennemi) throws InterruptedException {
 		int actCode;
@@ -41,22 +47,24 @@ public class Combat {
 	}
 
 	/**
+	 * The player dodges the monster's attack
 	 * 
-	 * @param joueur
-	 * @param ennemi
-	 * @throws InterruptedException
+	 * @param joueur is to get the player inside the function
+	 * @param ennemi is to get the enemy the player is facing
+	 * @throws InterruptedException to avoid errors (It should never get into this
+	 *                              exception)
 	 */
 	public static void esquive(PersonnagePrincipal joueur, Monstre ennemi) throws InterruptedException {
 		int x;
 		x = (int) (Math.random() * 10); // Random generation of a number between 0 and 9
-		if (x <= 1) { // 1/5 probability to counter-attack
+		if (x <= 0) { // 1/10 probability to counter-attack
 			int dmg;
 			dmg = ennemi.getHp();
 			Utilitaire.lettreParLettre("Vous arrivez à contre-attaquer en esquivant.");
 			ennemi.setHp(ennemi.getHp() - (joueur.getStrength()));
 			dmg -= ennemi.getHp();
 			Utilitaire.lettreParLettre("Vous avez infligé " + dmg + " points de dégats.");
-		} else if (x <= 3) { // 1/5 probability to fail the dodge
+		} else if (x <= 2) { // 1/5 probability to fail the dodge
 			int dmg;
 			dmg = joueur.getHp();
 			Utilitaire.lettreParLettre("Vous échouez votre esquive.");
@@ -68,6 +76,15 @@ public class Combat {
 		}
 	}
 
+	/**
+	 * Displays health points of the player and the enemy he's facing (and the
+	 * support's if the support follows the mate)
+	 * 
+	 * @param joueur is to get the player inside the function
+	 * @param ennemi is to get the enemy the player is facing
+	 * @throws InterruptedException to avoid errors (It should never get into this
+	 *                              exception)
+	 */
 	public static void affPV(PersonnagePrincipal joueur, Monstre ennemi) throws InterruptedException {
 		if (joueur.isAlone()) { // Displays the player's and the monster's HP
 			Utilitaire.lettreParLettre(

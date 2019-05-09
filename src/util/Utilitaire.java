@@ -4,8 +4,21 @@ import java.util.InputMismatchException;
 
 import main.Main;
 
+/**
+ * 
+ * @author Ted
+ *
+ */
 public class Utilitaire {
-	private static int vitessetxt = 2;
+	private static int vitessetxt;
+
+	public static int getVitessetxt() {
+		return vitessetxt;
+	}
+
+	public static void setVitessetxt(int vitessetxt) {
+		Utilitaire.vitessetxt = vitessetxt;
+	}
 
 	public static void affiche(String txt) throws InterruptedException { // Affiche le texte après un délai
 		Utilitaire.lettreParLettre(txt);
@@ -55,12 +68,13 @@ public class Utilitaire {
 		Thread.sleep(70 * vitessetxt);
 		System.out.println();
 	}
-
-	public static int getVitessetxt() {
-		return vitessetxt;
+	
+	public static void rejouerDemande() throws InterruptedException {
+		int ans = Utilitaire.yesNoQuestions("Voulez-vous rejouer ?\n1 pour oui\n2 pour non");
+			if (ans == 1)
+				Main.main(null);
+			else
+				System.exit(0);
 	}
 
-	public static void setVitessetxt(int vitessetxt) {
-		Utilitaire.vitessetxt = vitessetxt;
-	}
 }

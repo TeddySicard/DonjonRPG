@@ -6,6 +6,11 @@ import personnages.Personnage;
 import personnages.PersonnagePrincipal;
 import util.Utilitaire;
 
+/**
+ * 
+ * @author Ted
+ *
+ */
 public abstract class Potion implements ObjSol, ObjCoffre{
 	private int power;
 

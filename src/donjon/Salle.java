@@ -6,6 +6,11 @@ import personnages.PNJ;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 
+ * @author Ted
+ *
+ */
 public class Salle {
 	private int x;
 	private int y;

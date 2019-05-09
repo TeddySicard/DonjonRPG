@@ -1,5 +1,10 @@
 package donjon;
 
+/**
+ * 
+ * @author Ted
+ *
+ */
 public class Escalier {
 	private int direction;
 	

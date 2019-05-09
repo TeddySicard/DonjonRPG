@@ -5,6 +5,11 @@ import objets.Enigme;
 import objets.Key;
 import util.Utilitaire;
 
+/**
+ * 
+ * @author Ted
+ *
+ */
 public class Porte {
 	private int cat;
 	private int direction;

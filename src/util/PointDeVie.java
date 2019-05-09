@@ -2,6 +2,11 @@ package util;
 
 import personnages.Personnage;
 
+/**
+ * 
+ * @author Ted
+ *
+ */
 public class PointDeVie {
 
 	public static int attaque(Personnage attaquant, Personnage receveur) throws InterruptedException { // Attaque d'un personnage sur un autre

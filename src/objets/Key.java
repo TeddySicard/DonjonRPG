@@ -5,6 +5,11 @@ import donjon.Salle;
 import personnages.PersonnagePrincipal;
 import util.Utilitaire;
 
+/**
+ * 
+ * @author Ted
+ *
+ */
 public class Key implements ObjCoffre, ObjSol{
 	private int cat;
 

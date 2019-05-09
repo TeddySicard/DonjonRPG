@@ -2,6 +2,11 @@ package personnages;
 
 import donjon.Salle;
 
+/**
+ * 
+ * @author Ted
+ *
+ */
 public class Sorcier extends Monstre {
 
 	public final static int HP = 24;
