@@ -92,7 +92,7 @@ public class Porte {
 			Utilitaire.lettreParLettre(
 					"Je suis la réponse à cette énigme\nJe suis la réponse aux questionnements\nJe suis la réponse à la vie\nJe suis les salles de ce donjon");
 			prop = Main.caractere.nextLine();
-			System.out.println("\n\n\n\n\n\n\n");
+			Utilitaire.sautDeLignes();
 			if (!prop.equals(answer)) // Si réponse incorrecte
 				Utilitaire.lettreParLettre("Mauvaise réponse, rien ne se passe");
 			else { // Si réponse correcte
@@ -108,7 +108,7 @@ public class Porte {
 			answer = "Aujourd'hui";
 			Utilitaire.lettreParLettre("Je serai hier, j'étais demain");
 			prop = Main.caractere.nextLine();
-			System.out.println("\n\n\n\n\n\n\n");
+			Utilitaire.sautDeLignes();
 			if (!prop.equalsIgnoreCase(answer)) // Si réponse incorrecte
 				Utilitaire.lettreParLettre("Mauvaise réponse, rien ne se passe");
 			else { // Si réponse correcte

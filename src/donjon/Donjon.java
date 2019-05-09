@@ -37,15 +37,20 @@ public class Donjon {
 	private int coordY;// of the starting room
 	private int coordZ;// initialized on dungeon generation
 
+	/**
+	 * Dungeon constructor
+	 * 
+	 * @param num is to get the dungeon id in order to create the dungeon asked
+	 */
 	public Donjon(int num) {
 		this.salles = new Salle[20][20][5]; // Memory allocation (No dungeon is that big)
 		this.setNum(num);
-		switch (num) {
+		switch (num) { // Depending of the dungeon chosen
 		case 1:
 			this.setNom("DORLYS");
 			break;
 		case 2:
-			this.setNom("AROUF");
+			this.setNom("KONTIN");
 			break;
 		}
 		this.joueur = new PersonnagePrincipal();// Create the player while creating the dungeon
@@ -96,7 +101,9 @@ public class Donjon {
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// DUNGEON//
 
-	// GENERATE DUNGEON//
+	/**
+	 * Generates the dungeon following the dungeon id given in the constructor's parameter
+	 */
 	@SuppressWarnings("unused") // Some objects are put in a room when they're created, generating a warning
 								// despite of it
 	public void generer() {
@@ -409,6 +416,11 @@ public class Donjon {
 																							// of the starting room
 	}
 
+	/**
+	 * Adds a room in the matrix
+	 * 
+	 * @param salle is the room you want to add
+	 */
 	public void ajouterSalle(Salle salle) {
 		this.salles[salle.getX()][salle.getY()][salle.getZ()] = salle;// Add the rooms on the matrix following their
 																		// contact informations
@@ -420,15 +432,16 @@ public class Donjon {
 	}
 
 	/**
-	 * Allows game's action to chain up, from the beginning to the end
+	 * Allows game's action to chain up when you're entering in a room
 	 * 
-	 * @param salle
-	 * @throws InterruptedException
+	 * @param salle is the room you are entering in
+	 * @throws InterruptedException to avoid errors (It should never get into this
+	 *                              exception)
 	 */
 	public void entrerSalle(Salle salle) throws InterruptedException {
-		boolean isHere = true; // Checks the player's presence on
+		boolean isHere = true; // Checks the player's presence in the room
 		int actCode;
-		if (salle.isVictoire()) { // Regarde si la salle est la salle de victoire
+		if (salle.isVictoire()) { // Check if the room is the winning room
 			Utilitaire.lettreParLettre("\n\n\n\n\n111111	   111111          1       1       1       1111\r\n"
 					+ "1     1	   1     1       1   1     1       1     1      1\r\n"
 					+ "1      1   1      1     1     1    1       1   1          1\r\n"
@@ -443,22 +456,21 @@ public class Donjon {
 			Utilitaire.lettreParLettre("Vous avez gagné");
 			Utilitaire.rejouerDemande();
 		}
-		if (salle.getPiege() != null) {// Permet de vérifier la présence de piège dans la salle
+		if (salle.getPiege() != null) {// Checks if a trap is in the room
 			Utilitaire.lettreParLettre("La porte contenait un mécanisme vous tirant des flèches dessus");
 			salle.getPiege().triggerTrap(joueur);
 			Utilitaire.lettreParLettre("Vous retournez dans la salle précédente");
 			Thread.sleep(600 * Utilitaire.getVitessetxt());
-			this.changerSalle(salle, salle.getPortes().get(0));// Retourne à la salle précédente
+			this.changerSalle(salle, salle.getPortes().get(0));// Get back to the last room
 		}
-		if (salle.getMonstre() != null) {// Permet de vérifier la présence de monstre dans la salle
+		if (salle.getMonstre() != null) {// Checks if a monster is in the room
 			Utilitaire.lettreParLettre(salle.getMonstre().crier());
 			Utilitaire.lettreParLettre("Un " + salle.getMonstre().toString() + " se trouve dans la salle");
 			Combat.combattre(joueur, salle.getMonstre());
-			salle.setMonstre(null);// Supprime le monstre de la salle
+			salle.setMonstre(null);// Delete the monster from the room
 			Thread.sleep(600 * Utilitaire.getVitessetxt());
 		}
-		if (salle.getPnj() != null) {// Permet de vérifier la présence du support/bandit dans la
-										// salle
+		if (salle.getPnj() != null) {// Check if a support or a bandit is in the room
 			actCode = Utilitaire.yesNoQuestions(
 					"Dans la salle se trouve une personne mystérieuse, à l'air inquiétant, qui se propose de vous aider à vous échapper\nAcceptez-vous ?\n1 pour Oui\n2 pour Non");
 			if (actCode == 1) {
@@ -468,60 +480,60 @@ public class Donjon {
 				Utilitaire.lettreParLettre(
 						"Vous refusez l'aide de la personne mystérieuse, contrariée, elle s'en va\n\n");
 			}
-			salle.setPnj(null);
+			salle.setPnj(null); // Remove the PNJ from the room
 			Thread.sleep(600 * Utilitaire.getVitessetxt());
 		}
-		if (salle.getCoffre() != null) {// Permet de vérifier la présence de coffre dans la salle
-			if (salle.getCoffre().isLocked()) // Affiche la question en fonction de l'état du coffre (verrouillé ou non)
+		if (salle.getCoffre() != null) {// Checks if a chest is in the room
+			if (salle.getCoffre().isLocked()) // Displays the question depending of the chest's state (unlocked or locked)
 				actCode = Utilitaire.yesNoQuestions(
 						"Dans la salle se trouve un coffre verrouillé\nSouhaitez-vous le deverrouiller ?\n1 pour le déverrouiller\n2 pour le laisser");
 			else
 				actCode = Utilitaire.yesNoQuestions(
 						"Dans la salle se trouve un coffre\nSouhaitez-vous l'ouvrir ?\n1 pour l'ouvrir\n2 pour le laisser");
 			if (actCode == 1) {
-				joueur.open(salle.getCoffre());// Ouvre/Essaye d'ouvrir le coffre
+				joueur.open(salle.getCoffre());// Open/Try to open the chest
 			} else {
-				if (salle.getCoffre().isLocked())// Affiche le texte en fonction de l'état du coffre (verrouillé ou non)
+				if (salle.getCoffre().isLocked()) // Displays the text depending of the chest's state (unlocked or locked)
 					Utilitaire.lettreParLettre("Vous laissez le coffre verrouillé");
 				else
 					Utilitaire.lettreParLettre("Vous laissez le coffre fermé");
 			}
 			Thread.sleep(600 * Utilitaire.getVitessetxt());
 		}
-		do { // Affiche ce texte tant que le joueur se trouve dans la salle
+		do { // Displays this text while the player is in the room
 			StringBuilder str = new StringBuilder("\nDans la salle se trouve :");
-			for (Porte porte : salle.getPortes()) { // Va tester toute les portes de la salle
-				if (porte != null) // Vérifie si la porte existe
-					str.append("\nUne " + porte.toString()); // Va afficher la présence de la porte
+			for (Porte porte : salle.getPortes()) { // This will test all the doors
+				if (porte != null) // Checks if the door exists
+					str.append("\nUne " + porte.toString()); // Displays the presence of the room
 			}
-			for (Escalier escalier : salle.getEscaliers()) {
-				if (escalier != null)
-					str.append("\nUn " + escalier.toString());
+			for (Escalier escalier : salle.getEscaliers()) { // This will test all the stairs
+				if (escalier != null)// Checks if the stairs exists
+					str.append("\nUn " + escalier.toString());//Displays the presence of the stairs
 			}
 			str.append("\n\nQue souhaitez-vous faire ?\n");
-			for (Porte porte : salle.getPortes()) {// Va tester toute les portes de la salle
-				if (porte != null) { // Vérifie si la porte existe
-					if (porte.getCat() == 0)// Vérifie l'état de la porte (Verrouillée ou non)
+			for (Porte porte : salle.getPortes()) { // This will test all the doors
+				if (porte != null) {  // Checks if the door exists
+					if (porte.getCat() == 0)// Displays the text depending of the room's state (unlocked or locked)
 						str.append("\n" + porte.getDirection() + " pour emprunter la " + porte.toString());
 					else
 						str.append("\n" + porte.getDirection() + " pour déverrouiller la " + porte.toString());
 				}
 			}
-			for (Escalier escalier : salle.getEscaliers()) {
-				if (escalier != null)
+			for (Escalier escalier : salle.getEscaliers()) { // This will test all the stairs
+				if (escalier != null) // Checks if the stairs exists
 					str.append("\n" + (escalier.getDirection() + 4) + " pour emprunter l'" + escalier.toString());
 
 			}
 			str.append("\n7 pour examiner la pièce");
 			actCode = Utilitaire.recupererInt(str.toString());
-			System.out.println("\n\n\n\n\n\n\n");
+			Utilitaire.sautDeLignes();
 			while (actCode != 1 && actCode != 2 && actCode != 3 && actCode != 4 && actCode != 5 && actCode != 6
 					&& actCode != 7) { // Vérifier que la
 				// commande rentrée
 				// est possible
 				Utilitaire.lettreParLettre("Saisie invalide, veuillez réessayer.");
 				actCode = Utilitaire.recupererInt(str.toString());
-				System.out.println("\n\n\n\n\n\n\n");
+				Utilitaire.sautDeLignes();
 			}
 			if (actCode == 1 || actCode == 2 || actCode == 3 || actCode == 4)
 				this.testPorte(actCode, salle, isHere);

@@ -83,7 +83,8 @@ public class PersonnagePrincipal extends Personnage {
 	}
 
 	public void gameOver() throws InterruptedException { // Game over
-		System.out.println("\n\n\n\n\n                      :::!~!!!!!:.\r\n" + 
+		Utilitaire.sautDeLignes();
+		System.out.println("                      :::!~!!!!!:.\r\n" + 
 				"                  .xUHWH!! !!?M88WHX:.\r\n" + 
 				"                .X*#M@$!!  !X!M$$$$$$WWx:.\r\n" + 
 				"               :!!!!!!?H! :!$!$$$$$$$$$$8X:\r\n" + 

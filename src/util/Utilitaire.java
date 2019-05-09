@@ -38,11 +38,11 @@ public class Utilitaire {
 																					// possible et retourne la réponse
 		int actCode;
 		actCode = Utilitaire.recupererInt(question);
-		System.out.println("\n\n\n\n\n\n\n");
+		Utilitaire.sautDeLignes();
 		while (actCode != 1 && actCode != 2) { // Tant que la réponse ne correspond pas aux possibilités
 			Utilitaire.lettreParLettre("Saisie invalide, veuillez réessayer.");
 			actCode = Utilitaire.recupererInt(question);
-			System.out.println("\n\n\n\n\n\n\n");
+			Utilitaire.sautDeLignes();
 		}
 		return actCode;
 	}
@@ -56,7 +56,7 @@ public class Utilitaire {
 				actCode = Main.nombre.nextInt();
 				erreur = false;
 			} catch (InputMismatchException e) { // Si un entier n'a pas été rentré
-				System.out.println("\n\n\n\n\n\n\n");
+				Utilitaire.sautDeLignes();
 				Utilitaire.lettreParLettre("Saisie invalide, veuillez réessayer.");
 				erreur = true;
 				Main.nombre.next();
@@ -84,6 +84,11 @@ public class Utilitaire {
 				Main.main(null);
 			else
 				System.exit(0);
+	}
+	
+	public static void sautDeLignes() {
+		System.out.println("\n\n\n\n\n\n\n");
+
 	}
 
 }

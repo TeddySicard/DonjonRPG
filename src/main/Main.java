@@ -25,7 +25,7 @@ public class Main {
 					"Avant de commencer, veuillez choisir la vitesse de lecture des dialogues\n1 pour lent\n2 pour moyen (actuellement utilisé)\n3 pour rapide\n 4 pour instantané");
 		}
 		Utilitaire.setVitessetxt(4 - actCode);
-		System.out.println("\n\n\n\n\n\n\n");
+		Utilitaire.sautDeLignes();
 		int num = Utilitaire
 				.yesNoQuestions("Quel donjon souhaitez vous lancer ?\n1 pour le donjon 1\n2 pour le donjon 2");
 		

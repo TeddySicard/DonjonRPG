@@ -51,7 +51,11 @@ public class Chest {
 	public void setContenu(ObjCoffre contenu) {
 		this.contenu = contenu;
 	}
-
+	/**
+	 * Checks if the chest is locked or not
+	 * 
+	 * @return true if locked and false if unlocked
+	 */
 	public boolean isLocked() {
 		if (this.cat == 0) {
 			return false;
