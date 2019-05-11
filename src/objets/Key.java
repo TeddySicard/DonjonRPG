@@ -13,6 +13,11 @@ import util.Utilitaire;
 public class Key implements ObjCoffre, ObjSol{
 	private int cat;
 
+	/**
+	 * create a key
+	 *  
+	 * @param cat represent the key category (1 is for a chest key 2 is for a door key)
+	 */
 	public Key(int cat) {
 		super();
 		this.cat = cat;
@@ -22,6 +27,9 @@ public class Key implements ObjCoffre, ObjSol{
 		return cat;
 	}
 
+	/**
+	 * Create a string showing the key's specs
+	 */
 	public String toString() {
 		if (this.getCat() == 1)
 			return "clé de coffre";
@@ -29,7 +37,9 @@ public class Key implements ObjCoffre, ObjSol{
 			return "clé de porte";
 
 	}
-
+	/**
+	 * Finds the key in a chest
+	 */
 	@Override
 	public void trouverObjCoffre(Chest coffre, PersonnagePrincipal joueur) throws InterruptedException {
 		if (((Key) coffre.getContenu()).getCat() == 1) // Si c'est une clé de coffre
@@ -40,6 +50,9 @@ public class Key implements ObjCoffre, ObjSol{
 		coffre.setContenu(null); // Supprime la clé du coffre
 	}
 
+	/**
+	 * Finds the key in a room
+	 */
 	@Override
 	public void trouverObjSol(Salle salle, PersonnagePrincipal joueur) throws InterruptedException {
 		Utilitaire.lettreParLettre(

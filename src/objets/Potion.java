@@ -14,6 +14,11 @@ import util.Utilitaire;
 public abstract class Potion implements ObjSol, ObjCoffre{
 	private int power;
 
+	/**
+	 * Create a pot with a magic power
+	 * 
+	 * @param power is the value representing the power of the potion, which impacts the potion's effect
+	 */
 	public Potion(int power) {
 		super();
 		this.power = power;
@@ -28,6 +33,9 @@ public abstract class Potion implements ObjSol, ObjCoffre{
 
 	public abstract void utiliser(Personnage joueur) throws InterruptedException;
 	
+	/**
+	 * Finds a potion in a room
+	 */
 	@Override
 	public void trouverObjSol(Salle salle, PersonnagePrincipal joueur) throws InterruptedException {
 		int actCode = Utilitaire.yesNoQuestions("Vous avez trouvé une " + salle.getObjSol()
@@ -40,6 +48,9 @@ public abstract class Potion implements ObjSol, ObjCoffre{
 		}
 	}
 	
+	/**
+	 * Finds a potion in a chest
+	 */
 	@Override
 	public void trouverObjCoffre(Chest coffre, PersonnagePrincipal joueur) throws InterruptedException {
 		int actCode = Utilitaire.yesNoQuestions("Vous avez trouvé une " + coffre.getContenu()

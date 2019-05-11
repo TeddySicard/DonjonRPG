@@ -10,15 +10,18 @@ import util.Utilitaire;
  */
 public class HPGainPot extends Potion {
 
+	public HPGainPot() {
+		super((int) (Math.random() * 15 + 15)); // Génère une valeur aléatoire à l'instanciation (entre 15 et 29)
+	}
+
 	@Override
 	public String toString() {
 		return "potion de gain de PV max";
 	}
 
-	public HPGainPot() {
-		super((int) (Math.random() * 15 + 15)); // Génère une valeur aléatoire à l'instanciation (entre 15 et 29)
-	}
-
+	/**
+	 * Uses the HPGainPot
+	 */
 	@Override
 	public void utiliser(Personnage joueur) throws InterruptedException {
 		joueur.setMaxHp(joueur.getMaxHp() + this.getpower());
@@ -27,5 +30,6 @@ public class HPGainPot extends Potion {
 				+ " points de vie et " + joueur.getMaxHp() + " PV maximum.");
 
 	}
+	
 
 }

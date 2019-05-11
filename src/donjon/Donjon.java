@@ -32,7 +32,7 @@ public class Donjon {
 	private String nom; // The name of the dungeon
 	private int num; // The number of the dungeon
 	private PersonnagePrincipal joueur; // The player inside the dungeon
-	public Salle[][][] salles; // Matrix where the dungeon will be stored (3 dimensions)
+	private Salle[][][] salles; // Matrix where the dungeon will be stored (3 dimensions)
 	private int coordX;// Contact informations
 	private int coordY;// of the starting room
 	private int coordZ;// initialized on dungeon generation
@@ -102,7 +102,8 @@ public class Donjon {
 	// DUNGEON//
 
 	/**
-	 * Generates the dungeon following the dungeon id given in the constructor's parameter
+	 * Generates the dungeon following the dungeon id given in the constructor's
+	 * parameter
 	 */
 	@SuppressWarnings("unused") // Some objects are put in a room when they're created, generating a warning
 								// despite of it
@@ -484,7 +485,8 @@ public class Donjon {
 			Thread.sleep(600 * Utilitaire.getVitessetxt());
 		}
 		if (salle.getCoffre() != null) {// Checks if a chest is in the room
-			if (salle.getCoffre().isLocked()) // Displays the question depending of the chest's state (unlocked or locked)
+			if (salle.getCoffre().isLocked()) // Displays the question depending of the chest's state (unlocked or
+												// locked)
 				actCode = Utilitaire.yesNoQuestions(
 						"Dans la salle se trouve un coffre verrouillé\nSouhaitez-vous le deverrouiller ?\n1 pour le déverrouiller\n2 pour le laisser");
 			else
@@ -493,7 +495,8 @@ public class Donjon {
 			if (actCode == 1) {
 				joueur.open(salle.getCoffre());// Open/Try to open the chest
 			} else {
-				if (salle.getCoffre().isLocked()) // Displays the text depending of the chest's state (unlocked or locked)
+				if (salle.getCoffre().isLocked()) // Displays the text depending of the chest's state (unlocked or
+													// locked)
 					Utilitaire.lettreParLettre("Vous laissez le coffre verrouillé");
 				else
 					Utilitaire.lettreParLettre("Vous laissez le coffre fermé");
@@ -508,11 +511,11 @@ public class Donjon {
 			}
 			for (Escalier escalier : salle.getEscaliers()) { // This will test all the stairs
 				if (escalier != null)// Checks if the stairs exists
-					str.append("\nUn " + escalier.toString());//Displays the presence of the stairs
+					str.append("\nUn " + escalier.toString());// Displays the presence of the stairs
 			}
 			str.append("\n\nQue souhaitez-vous faire ?\n");
 			for (Porte porte : salle.getPortes()) { // This will test all the doors
-				if (porte != null) {  // Checks if the door exists
+				if (porte != null) { // Checks if the door exists
 					if (porte.getCat() == 0)// Displays the text depending of the room's state (unlocked or locked)
 						str.append("\n" + porte.getDirection() + " pour emprunter la " + porte.toString());
 					else
@@ -528,9 +531,7 @@ public class Donjon {
 			actCode = Utilitaire.recupererInt(str.toString());
 			Utilitaire.sautDeLignes();
 			while (actCode != 1 && actCode != 2 && actCode != 3 && actCode != 4 && actCode != 5 && actCode != 6
-					&& actCode != 7) { // Vérifier que la
-				// commande rentrée
-				// est possible
+					&& actCode != 7) { // Checks the entered input is possible
 				Utilitaire.lettreParLettre("Saisie invalide, veuillez réessayer.");
 				actCode = Utilitaire.recupererInt(str.toString());
 				Utilitaire.sautDeLignes();
@@ -541,22 +542,36 @@ public class Donjon {
 				this.testEscalier(actCode, salle, isHere);
 			else
 				this.exam(salle);
-			Thread.sleep(600 * Utilitaire.getVitessetxt());
+			Thread.sleep(600 * Utilitaire.getVitessetxt()); // Makes a small pause between the moment the text from the
+															// input is displayed and the text of the do/while loop is
 		} while (isHere);
 	}
 
-	public void exam(Salle salle) throws InterruptedException {// Va permettre de vérifier le type d'objet présent dans
-																// la salle
-		if (salle.getObjSol() == null) // Aucun objet présent
+	/**
+	 * Allows to check what type of object if inside of the room
+	 * 
+	 * @param salle is the room you are checking
+	 * @throws InterruptedException to avoid errors (It should never get into this
+	 *                              exception)
+	 */
+	public void exam(Salle salle) throws InterruptedException {
+		if (salle.getObjSol() == null) // No object in the room
 			Utilitaire.lettreParLettre("Vous ne trouvez rien d'intéressant dans la salle");
 		else
 			salle.getObjSol().trouverObjSol(salle, joueur);
 	}
 
-	public void changerSalle(Salle salle, Porte porte) throws InterruptedException { // Permet de se déplacer d'une
-																						// salle à l'autre
-		switch (porte.getCat()) { // Vérifie si la porte est verrouillée ou déverrouillée
-		case 0: // Porte déverrouillée
+	/**
+	 * Allows the player to move from a room to another using a door
+	 * 
+	 * @param salle is the room where you are
+	 * @param porte is the door you want to use
+	 * @throws InterruptedException to avoid errors (It should never get into this
+	 *                              exception)
+	 */
+	public void changerSalle(Salle salle, Porte porte) throws InterruptedException {
+		switch (porte.getCat()) { // Checks the door's state (locked or unlocked)
+		case 0: // Unlocked door
 			switch (porte.getDirection()) {
 			case 1:
 				this.entrerSalle(this.salles[salle.getX() - 1][salle.getY()][salle.getZ()]);
@@ -572,16 +587,24 @@ public class Donjon {
 				break;
 			}
 			break;
-		case 2: // Porte verrouillée par clé
+		case 2: // Door locked by a key
 			joueur.unlock(porte);
 			break;
-		case 3: // Porte verrouillée par énigme
+		case 3: // Door locked by an enigma
 			porte.unlock(porte.getEnigme());
 			break;
 		}
 
 	}
 
+	/**
+	 * Allows the player to move from a room to another using stairs
+	 * 
+	 * @param salle is the room where you are
+	 * @param escalier is the stairs you want to use
+	 * @throws InterruptedException to avoid errors (It should never get into this
+	 *                              exception)
+	 */
 	public void changerEtage(Salle salle, Escalier escalier) throws InterruptedException {
 		if (escalier.getDirection() == 1)
 			this.entrerSalle(this.salles[salle.getX()][salle.getY()][salle.getZ() + 1]);
@@ -590,18 +613,25 @@ public class Donjon {
 
 	}
 
-	public void testPorte(int actCode, Salle salle, boolean isHere) throws InterruptedException { // Permet de vérifier
-																									// si la porte
-																									// existe ou pas
-																									// dans la salle
-		for (Porte portes : salle.getPortes()) { // Vérifie la présence de la porte demandée dans la salle
-			if (portes != null) { // Evite le crash
-				if (portes.getDirection() == actCode) { // Si la porte demandée existe bien
-					if (portes.getCat() != 0) { // Si la porte est verrouillée
+	/**
+	 * Checks if a door exists in the room or not and try to use it
+	 * 
+	 * @param actCode is the door id you want to test
+	 * @param salle is the room where you want to test the door
+	 * @param isHere is to avoids errors by being on 2 rooms simultaneously
+	 * @throws InterruptedException to avoid errors (It should never get into this
+	 *                              exception)
+	 */
+	public void testPorte(int actCode, Salle salle, boolean isHere) throws InterruptedException {
+		
+		for (Porte portes : salle.getPortes()) { // Checks the door's presence
+			if (portes != null) { // Avoid crash
+				if (portes.getDirection() == actCode) { // If the door exists
+					if (portes.getCat() != 0) { // If the door is locked
 						this.changerSalle(salle, portes);
-						if (portes.getCat() == 0) // Si la porte s'est correctement deverrouillée
+						if (portes.getCat() == 0) // If the door is correctly unlocked
 							System.out.print("Vous pouvez maintenant l'emprunter\n");
-					} else { // Si la porte est déverrouillée
+					} else { // if the door is unlocked
 						Utilitaire.lettreParLettre("Vous changez de salle");
 						isHere = false;
 						this.changerSalle(salle, portes);
@@ -610,14 +640,23 @@ public class Donjon {
 				}
 			}
 		}
-		Utilitaire.lettreParLettre("Saisie invalide, veuillez réessayer.");
+		Utilitaire.lettreParLettre("Saisie invalide, veuillez réessayer."); // Displays if the door doesn't exist
 
 	}
 
+	/**
+	 * Checks if stairs exists in the room or not and try to use it
+	 * 
+	 * @param actCode is the stairs id you want to test
+	 * @param salle is the room where you want to test the stairs
+	 * @param isHere is to avoids errors by being on 2 rooms simultaneously
+	 * @throws InterruptedException to avoid errors (It should never get into this
+	 *                              exception)
+	 */
 	public void testEscalier(int actCode, Salle salle, boolean isHere) throws InterruptedException {
-		for (Escalier escalier : salle.getEscaliers()) { // Vérifie la présence de l'escalier demandée dans la salle
-			if (escalier != null) { // Evite le crash
-				if (escalier.getDirection() == actCode - 4) { // Si l'escalier demandée existe bien
+		for (Escalier escalier : salle.getEscaliers()) { // Check the stairs's presence
+			if (escalier != null) { // Avoid crash
+				if (escalier.getDirection() == actCode - 4) { // If the stairs exists
 					Utilitaire.lettreParLettre("Vous changez de salle");
 					isHere = false;
 					this.changerEtage(salle, escalier);
@@ -625,7 +664,7 @@ public class Donjon {
 				}
 			}
 		}
-		Utilitaire.lettreParLettre("Saisie invalide, veuillez réessayer.");
+		Utilitaire.lettreParLettre("Saisie invalide, veuillez réessayer."); // Displays if the stairs doesn't exist
 
 	}
 
