@@ -17,8 +17,8 @@ public class Chest {
 	 * Create a chest
 	 * 
 	 * @param contenu is the object inside the chest
-	 * @param cat tells if the chest is locked or not
-	 * @param salle is the room where the chest will be located
+	 * @param cat     tells if the chest is locked or not
+	 * @param salle   is the room where the chest will be located
 	 */
 	public Chest(ObjCoffre contenu, int cat, Salle salle) {
 		salle.setCoffre(this);
@@ -30,7 +30,7 @@ public class Chest {
 	 * Create an unlocked chest
 	 * 
 	 * @param contenu is the object inside the chest
-	 * @param salle is the room where the chest will be located
+	 * @param salle   is the room where the chest will be located
 	 */
 	public Chest(ObjCoffre contenu, Salle salle) {
 		this(contenu, 0, salle);
@@ -51,6 +51,7 @@ public class Chest {
 	public void setContenu(ObjCoffre contenu) {
 		this.contenu = contenu;
 	}
+
 	/**
 	 * Checks if the chest is locked or not
 	 * 

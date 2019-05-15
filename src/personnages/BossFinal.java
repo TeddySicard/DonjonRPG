@@ -3,12 +3,13 @@ package personnages;
 import donjon.Salle;
 
 /**
+ * BossFinal is a class instantiating a specific monster, with final values
  * 
  * @author Ted
  *
  */
 public class BossFinal extends Monstre {
-	
+
 	public final static int HP = 300;
 	public final static int ATK = 15;
 	public final static int CRIT = 1;

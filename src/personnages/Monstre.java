@@ -15,10 +15,10 @@ public abstract class Monstre extends Personnage {
 	/**
 	 * Creates a monster and puts it in a room
 	 * 
-	 * @param hp is the monster's Health Points
+	 * @param hp       is the monster's Health Points
 	 * @param strength is the monster's strength
 	 * @param critique is the monster's critical strike chance
-	 * @param salle is the room where the monster is implemented
+	 * @param salle    is the room where the monster is implemented
 	 */
 	public Monstre(int hp, int strength, int critique, Salle salle) {
 		super(hp, strength, critique);

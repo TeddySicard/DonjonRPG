@@ -47,9 +47,9 @@ public class Porte {
 	 * @param direction is an int representing the door's direction, 1 is for going
 	 *                  north 2 is for going south 3 is for going east and 4 is for
 	 *                  going east
-	 * @param enigme is the enigma attached to the door
+	 * @param enigme    is the enigma attached to the door
 	 */
-	public Porte(int direction, Enigme enigme) { 
+	public Porte(int direction, Enigme enigme) {
 		this(direction, 3);
 		this.setEnigme(enigme);
 	}
@@ -126,8 +126,8 @@ public class Porte {
 	 */
 	public void unlock(Enigme enigme) throws InterruptedException {
 		String prop;
-		switch (enigme.getNumero()) { // Select the right enigma
-		case 1:
+		switch (enigme) { // Select the right enigma
+		case fourtytwo:
 			String answer = "42";
 			Utilitaire.lettreParLettre(
 					"Je suis la réponse à cette énigme\nJe suis la réponse aux questionnements\nJe suis la réponse à la vie\nJe suis les salles de ce donjon");
@@ -144,7 +144,7 @@ public class Porte {
 				this.cat = 0; // Unlocks the door
 			}
 			break;
-		case 2:
+		case today:
 			answer = "Aujourd'hui";
 			Utilitaire.lettreParLettre("Je serai hier, j'étais demain");
 			prop = Main.caractere.nextLine();

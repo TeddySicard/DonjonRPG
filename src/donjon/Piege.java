@@ -47,7 +47,7 @@ public class Piege implements ObjCoffre {
 		joueur.setHp(joueur.getHp() - this.getStrength());
 		dmg -= joueur.getHp();
 		System.out.println("Le piège vous a infligé " + dmg + " points de dégats");
-		if (joueur.isKO()) { // Si le joueur meurt
+		if (joueur.isKO()) { // If the player dies
 			joueur.gameOver();
 		}
 	}

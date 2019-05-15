@@ -4,6 +4,7 @@ import personnages.Personnage;
 import util.Utilitaire;
 
 /**
+ * AtkPot is a class instantiating a specific potion, with final values
  * 
  * @author Ted
  *

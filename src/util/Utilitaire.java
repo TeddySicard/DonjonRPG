@@ -5,6 +5,7 @@ import java.util.InputMismatchException;
 import main.Main;
 
 /**
+ * This class helps to manage several reccurent functions
  * 
  * @author Ted
  *
@@ -29,17 +30,31 @@ public class Utilitaire {
 		Utilitaire.nbPartie = nbPartie;
 	}
 
-	public static void affiche(String txt) throws InterruptedException { // Affiche le texte après un délai
+	/**
+	 * This avoid the following text to be displayed right after the one entered in
+	 * parameter if the player is spamming
+	 * 
+	 * @param txt is the text you want to display
+	 * @throws InterruptedException
+	 */
+	public static void affiche(String txt) throws InterruptedException {
 		Utilitaire.lettreParLettre(txt);
 		Thread.sleep(750);
 	}
 
-	public static int yesNoQuestions(String question) throws InterruptedException { // Génère des questions à 2 réponses
-																					// possible et retourne la réponse
+	/**
+	 * Generates questions with 2 answers possible and treats the player's respond
+	 * 
+	 * @param question is the question asked
+	 * @return the player's answer
+	 * @throws InterruptedException to avoid errors (It should never get into this
+	 *                              exception
+	 */
+	public static int yesNoQuestions(String question) throws InterruptedException {
 		int actCode;
 		actCode = Utilitaire.recupererInt(question);
 		Utilitaire.sautDeLignes();
-		while (actCode != 1 && actCode != 2) { // Tant que la réponse ne correspond pas aux possibilités
+		while (actCode != 1 && actCode != 2) { // While the answer doesn't correspond to the possible answers
 			Utilitaire.lettreParLettre("Saisie invalide, veuillez réessayer.");
 			actCode = Utilitaire.recupererInt(question);
 			Utilitaire.sautDeLignes();
@@ -47,45 +62,70 @@ public class Utilitaire {
 		return actCode;
 	}
 
-	public static int recupererInt(String txt) throws InterruptedException { // Récupère un entier
+	/**
+	 * Gets an int after a question (Avoid errors)
+	 * 
+	 * @param txt is the question the player will answer
+	 * @return the int entered
+	 * @throws InterruptedException to avoid errors (It should never get into this
+	 *                              exception
+	 */
+	public static int recupererInt(String txt) throws InterruptedException {
 		boolean erreur = false;
 		int actCode = 0;
-		do { // Répète la boucle tant qu'un entier n'est pas entré
-			try { // S'assure qu'un entier est entré
+		do {
+			try { // Treats errors
 				Utilitaire.affiche(txt);
 				actCode = Main.nombre.nextInt();
 				erreur = false;
-			} catch (InputMismatchException e) { // Si un entier n'a pas été rentré
+			} catch (InputMismatchException e) { // If an int isn't entered
 				Utilitaire.sautDeLignes();
 				Utilitaire.lettreParLettre("Saisie invalide, veuillez réessayer.");
 				erreur = true;
 				Main.nombre.next();
 			}
-		} while (erreur);
+		} while (erreur); // While an int isn't entered
 		return actCode;
 	}
 
+	/**
+	 * Displays the string character by character
+	 * 
+	 * @param txt is the string you want to display character by character
+	 * @throws InterruptedException to avoid errors (It should never get into this
+	 *                              exception
+	 */
 	public static void lettreParLettre(String txt) throws InterruptedException {
 		int longueur = txt.length();
 		for (int i = 0; i < longueur; i++) {
 			System.out.print(txt.charAt(i));
-			if (txt.charAt(i) == '\n')
+			if (txt.charAt(i) == '\n') // Checks line breaks to display slower
 				Thread.sleep(70 * vitessetxt);
 			else
 				Thread.sleep(5 * vitessetxt);
 		}
-		Thread.sleep(70 * vitessetxt);
+		Thread.sleep(70 * vitessetxt); // Line break
 		System.out.println();
 	}
-	
+
+	/**
+	 * Asks the player if he wants to replay
+	 * 
+	 * @throws InterruptedException to avoid errors (It should never get into this
+	 *                              exception
+	 */
 	public static void rejouerDemande() throws InterruptedException {
-		int ans = Utilitaire.yesNoQuestions("Partie n°" + Utilitaire.getNbPartie() + " finie.\nVoulez-vous rejouer ?\n1 pour oui\n2 pour non");
-			if (ans == 1)
-				Main.main(null);
-			else
-				System.exit(0);
+		int ans = Utilitaire.yesNoQuestions(
+				"Partie n°" + Utilitaire.getNbPartie() + " finie.\nVoulez-vous rejouer ?\n1 pour oui\n2 pour non");
+		if (ans == 1)
+			Main.main(null);
+		else
+			System.exit(0);
 	}
-	
+
+	/**
+	 * Makes a defined amount of line breaks
+	 */
 	public static void sautDeLignes() {
 		System.out.println("\n\n\n\n\n\n\n");
 

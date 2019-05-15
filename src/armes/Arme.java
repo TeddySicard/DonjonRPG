@@ -8,7 +8,7 @@ import util.Utilitaire;
 import objets.ObjCoffre;
 
 /**
- * 	
+ * 
  * @author Ted
  *
  */
@@ -25,9 +25,10 @@ public abstract class Arme implements ObjSol, ObjCoffre {
 	}
 
 	public abstract String toString();
-	
+
 	/**
-	 * Make the player get the weapon found on the ground when he exams the room where he's located
+	 * Make the player get the weapon found on the ground when he exams the room
+	 * where he's located
 	 */
 	@Override
 	public void trouverObjSol(Salle salle, PersonnagePrincipal joueur) throws InterruptedException {
@@ -35,9 +36,10 @@ public abstract class Arme implements ObjSol, ObjCoffre {
 		joueur.equipWeapon((Arme) salle.getObjSol());
 		salle.setObjSol(null); // Delete the weapon from the room
 	}
-	
+
 	/**
-	 * Make the player get the weapon found on the ground when he opens the chest he is looking at
+	 * Make the player get the weapon found on the ground when he opens the chest he
+	 * is looking at
 	 */
 	@Override
 	public void trouverObjCoffre(Chest coffre, PersonnagePrincipal joueur) throws InterruptedException {

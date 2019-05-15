@@ -3,6 +3,7 @@ package personnages;
 import util.Utilitaire;
 
 /**
+ * This class creates a character
  * 
  * @author Ted
  *
@@ -14,6 +15,13 @@ public abstract class Personnage {
 	private int maxHp;
 	private int critique;
 
+	/**
+	 * Creates a character by adding the needed values
+	 * 
+	 * @param hp       is for the character's max/base hp
+	 * @param strength is for the character's strength
+	 * @param critique is the critical strike chance
+	 */
 	public Personnage(int hp, int strength, int critique) {
 		super();
 		this.hp = hp;
@@ -48,13 +56,21 @@ public abstract class Personnage {
 	}
 
 	public void setHp(int hp) {
-		if (hp <= 0) // Permet de réguler les PV pour qu'ils ne descendent pas en dessous de 0
+		if (hp <= 0) // Look at the HP to be sure they don't go under 0
 			this.hp = 0;
 		else
 			this.hp = hp;
 	}
 
-	public void coupCritique(Personnage ennemi, double valeur) throws InterruptedException { // Permet de faire un coup critique
+	/**
+	 * Allows a critical strike
+	 * 
+	 * @param ennemi is the character hitten by the critical strike
+	 * @param valeur is the critical strike chance of the attacking character
+	 * @throws InterruptedException to avoid errors (It should never get into this
+	 *                              exception)
+	 */
+	public void coupCritique(Personnage ennemi, double valeur) throws InterruptedException { // Allows a critical strike
 		int x;
 		x = (int) (Math.random() * 10);
 		if (x <= valeur) { // Proba valeur+1/10
@@ -66,8 +82,13 @@ public abstract class Personnage {
 
 	public abstract void useSkill(Personnage personnage) throws InterruptedException;
 
-	public boolean isKO() { // Vérifie si le joueur est KO
-		if (this.hp <= 0) { // Si ses PV sont nuls
+	/**
+	 * Gets the character's state (Alive or dead)
+	 * 
+	 * @return true if dead false if alive
+	 */
+	public boolean isKO() {
+		if (this.hp <= 0) {
 			return true;
 		} else {
 			return false;

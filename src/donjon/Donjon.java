@@ -132,8 +132,6 @@ public class Donjon {
 			Arme sabreLaser590 = new SabreLaser();
 			Arme doubleLame9140 = new DoubleLame();
 			Arme sabre1170 = new Sabre();
-			// GENERATING ENIGMAS//
-			Enigme enigme870 = new Enigme(1);
 			// GENERATING DOORS//
 			Porte porteNord = new Porte(1);
 			Porte porteSud = new Porte(2);
@@ -143,7 +141,7 @@ public class Donjon {
 			Porte lockOuest760 = new Porte(4, 2);
 			Porte lockNorth8110 = new Porte(1, 2);
 			Porte lockOuest7110 = new Porte(4, 2);
-			Porte lockSouthEn870 = new Porte(2, enigme870);
+			Porte lockSouthEn870 = new Porte(2, Enigme.fourtytwo);
 			// GENERATING ROOMS//
 			Salle salle150 = new Salle(0, 4, 0, porteSud);
 			Salle salle250 = new Salle(1, 4, 0, porteNord, porteSud, cle250);
@@ -290,8 +288,6 @@ public class Donjon {
 			Arme doubleLame531 = new DoubleLame();
 			Arme sabre781 = new Sabre();
 
-			////////// GENERATING ENIGMAS////////////
-			Enigme enigme751 = new Enigme(2);
 			// GENERATING DOORS-STAIRS//
 			porteNord = new Porte(1);
 			porteSud = new Porte(2);
@@ -302,7 +298,7 @@ public class Donjon {
 			Porte lockNorth440 = new Porte(1, 2);
 			Porte lockNorth540 = new Porte(1, 2);
 			Porte lockNorth640 = new Porte(1, 2);
-			Porte lockEast751 = new Porte(3, enigme751);
+			Porte lockEast751 = new Porte(3, Enigme.today);
 			////////// GENERATING ROOMS/////////////
 			Salle salle140 = new Salle(0, 3, 0, true);
 			Salle salle240 = new Salle(1, 3, 0, porteNord, porteSud);
@@ -485,21 +481,36 @@ public class Donjon {
 			Thread.sleep(600 * Utilitaire.getVitessetxt());
 		}
 		if (salle.getCoffre() != null) {// Checks if a chest is in the room
-			if (salle.getCoffre().isLocked()) // Displays the question depending of the chest's state (unlocked or
-												// locked)
-				actCode = Utilitaire.yesNoQuestions(
-						"Dans la salle se trouve un coffre verrouillé\nSouhaitez-vous le deverrouiller ?\n1 pour le déverrouiller\n2 pour le laisser");
-			else
-				actCode = Utilitaire.yesNoQuestions(
-						"Dans la salle se trouve un coffre\nSouhaitez-vous l'ouvrir ?\n1 pour l'ouvrir\n2 pour le laisser");
+			actCode = Utilitaire.yesNoQuestions("Dans la salle se trouve un coffre "
+					+ (salle.getCoffre().isLocked() ? "Verrouillé" : "") + "\nSouhaitez-vous "
+					+ (salle.getCoffre().isLocked() ? "le déverrouiller" : "l'ouvrir") + " ?\n1 pour "
+					+ (salle.getCoffre().isLocked() ? "le déverrouiller" : "l'ouvrir") + "\n2 pour le laisser"); // Displays
+																													// the
+																													// question
+																													// depending
+																													// of
+																													// the
+																													// chest's
+																													// state
+																													// (unlocked
+																													// or
+																													// locked)
+
 			if (actCode == 1) {
 				joueur.open(salle.getCoffre());// Open/Try to open the chest
 			} else {
-				if (salle.getCoffre().isLocked()) // Displays the text depending of the chest's state (unlocked or
-													// locked)
-					Utilitaire.lettreParLettre("Vous laissez le coffre verrouillé");
-				else
-					Utilitaire.lettreParLettre("Vous laissez le coffre fermé");
+				Utilitaire.lettreParLettre(
+						"Vous laissez le coffre " + (salle.getCoffre().isLocked() ? "verrouillé" : "fermé")); // Displays
+																												// the
+																												// text
+																												// depending
+																												// of
+																												// the
+																												// chest's
+																												// state
+																												// (unlocked
+																												// or
+																												// locked)
 			}
 			Thread.sleep(600 * Utilitaire.getVitessetxt());
 		}
@@ -600,7 +611,7 @@ public class Donjon {
 	/**
 	 * Allows the player to move from a room to another using stairs
 	 * 
-	 * @param salle is the room where you are
+	 * @param salle    is the room where you are
 	 * @param escalier is the stairs you want to use
 	 * @throws InterruptedException to avoid errors (It should never get into this
 	 *                              exception)
@@ -617,13 +628,13 @@ public class Donjon {
 	 * Checks if a door exists in the room or not and try to use it
 	 * 
 	 * @param actCode is the door id you want to test
-	 * @param salle is the room where you want to test the door
-	 * @param isHere is to avoids errors by being on 2 rooms simultaneously
+	 * @param salle   is the room where you want to test the door
+	 * @param isHere  is to avoids errors by being on 2 rooms simultaneously
 	 * @throws InterruptedException to avoid errors (It should never get into this
 	 *                              exception)
 	 */
 	public void testPorte(int actCode, Salle salle, boolean isHere) throws InterruptedException {
-		
+
 		for (Porte portes : salle.getPortes()) { // Checks the door's presence
 			if (portes != null) { // Avoid crash
 				if (portes.getDirection() == actCode) { // If the door exists
@@ -648,8 +659,8 @@ public class Donjon {
 	 * Checks if stairs exists in the room or not and try to use it
 	 * 
 	 * @param actCode is the stairs id you want to test
-	 * @param salle is the room where you want to test the stairs
-	 * @param isHere is to avoids errors by being on 2 rooms simultaneously
+	 * @param salle   is the room where you want to test the stairs
+	 * @param isHere  is to avoids errors by being on 2 rooms simultaneously
 	 * @throws InterruptedException to avoid errors (It should never get into this
 	 *                              exception)
 	 */

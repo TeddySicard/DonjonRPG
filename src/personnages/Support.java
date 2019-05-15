@@ -21,10 +21,10 @@ public class Support extends Personnage implements PNJ {
 	}
 
 	@Override
-	public void useSkill(Personnage joueur) throws InterruptedException { // Soigne le joueur
+	public void useSkill(Personnage joueur) throws InterruptedException { // Heals the player
 		int x;
-		x = (int) (Math.random() * 10); // Génère une valeur aléatoire à chaque appel de la méthode
-		if (x <= 4) { // Proba 1/2 de se réaliser
+		x = (int) (Math.random() * 10); // Generating a random value
+		if (x <= 4) { // 1/2 prob to happen
 			joueur.setHp(joueur.getHp() + this.getStrength());
 			this.setHp(this.getHp() + this.getStrength());
 			PointDeVie.overhealCheck(joueur);
@@ -39,7 +39,7 @@ public class Support extends Personnage implements PNJ {
 
 		Utilitaire.lettreParLettre("Vous apprenez qu'elle s'appelle Laya et qu'elle possède des pouvoirs de guérison");
 		Utilitaire.lettreParLettre("Laya vous à rejoint, elle pourra vous soigner lors de vos futurs combats\n\n");
-		joueur.setMateFollow((Support) salle.getPnj());// Ajoute le support en tant que co-équipier du joueur
+		joueur.setMateFollow((Support) salle.getPnj());// Adds the support as the player's mate
 
 	}
 

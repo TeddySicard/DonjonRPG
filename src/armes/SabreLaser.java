@@ -1,6 +1,7 @@
 package armes;
 
 /**
+ * SabreLaser is a class instantiating a specific weapon, with final values
  * 
  * @author Ted
  *
