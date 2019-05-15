@@ -527,10 +527,18 @@ public class Donjon {
 			str.append("\n\nQue souhaitez-vous faire ?\n");
 			for (Porte porte : salle.getPortes()) { // This will test all the doors
 				if (porte != null) { // Checks if the door exists
-					if (porte.getCat() == 0)// Displays the text depending of the room's state (unlocked or locked)
-						str.append("\n" + porte.getDirection() + " pour emprunter la " + porte.toString());
-					else
-						str.append("\n" + porte.getDirection() + " pour déverrouiller la " + porte.toString());
+					str.append("\n" + porte.getDirection() + " pour "
+							+ (porte.getCat() == 0 ? "emprunter la " : "déverrouiller la ") + porte.toString()); // Displays
+																													// the
+																													// text
+																													// depending
+																													// of
+																													// the
+																													// room's
+																													// state
+																													// (unlocked
+																													// or
+																													// locked)
 				}
 			}
 			for (Escalier escalier : salle.getEscaliers()) { // This will test all the stairs
