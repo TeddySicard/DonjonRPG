@@ -64,7 +64,6 @@ public class Main {
 	/**
 	 * Allows game's action to chain up when you're entering in a room
 	 * 
-	 * @param donjon is the dungeon you are playing in
 	 * @param salle is the room you are entering in
 	 * @throws InterruptedException to avoid errors (It should never get into this
 	 *                              exception)

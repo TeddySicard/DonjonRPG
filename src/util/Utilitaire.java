@@ -35,7 +35,8 @@ public class Utilitaire {
 	 * parameter if the player is spamming
 	 * 
 	 * @param txt is the text you want to display
-	 * @throws InterruptedException
+	 * @throws InterruptedException to avoid errors (It should never get into this
+	 *                              exception)
 	 */
 	public static void affiche(String txt) throws InterruptedException {
 		Utilitaire.lettreParLettre(txt);

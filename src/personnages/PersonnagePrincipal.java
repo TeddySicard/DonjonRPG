@@ -46,7 +46,7 @@ public class PersonnagePrincipal extends Personnage {
 	/**
 	 * Player's attack
 	 * 
-	 * @param ennemiis the character's opponent
+	 * @param ennemi is the character's opponent
 	 */
 	public void useSkill(Personnage ennemi) throws InterruptedException { 
 		Utilitaire.lettreParLettre("Vous avez infligé " + PointDeVie.attaque(this, ennemi) + " points de dégats.");
@@ -54,9 +54,10 @@ public class PersonnagePrincipal extends Personnage {
 	}
 
 	/**
-	 * Equip a weapon
+	 * 	 * Equip a weapon
 	 * 
 	 * @param arme is the weapon to equip
+	 * @return The string resulting of the action done by the player (getting the weapon or not)
 	 * @throws InterruptedException to avoid errors (It should never get into this
 	 *                              exception)
 	 */
