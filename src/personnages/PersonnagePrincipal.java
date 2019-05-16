@@ -60,22 +60,22 @@ public class PersonnagePrincipal extends Personnage {
 	 * @throws InterruptedException to avoid errors (It should never get into this
 	 *                              exception)
 	 */
-	public void equipWeapon(Arme arme) throws InterruptedException { 
+	public String equipWeapon(Arme arme) throws InterruptedException { 
 		if (this.hasWeapon()) { // If the player already has a weapon on him
 			if (this.getStrength() >= arme.getStrength()) // If the player's weapon is stronger than the weapon found
-				Utilitaire.lettreParLettre("Votre arme actuelle inflige plus de dégats. Vous ne changez donc pas d'arme");
+				return "Votre arme actuelle inflige plus de dégats. Vous ne changez donc pas d'arme";
 			else { // If his actual weapon is weaker
 				Arme weapon;
 				this.setStrength(arme.getStrength());
 				weapon = this.weaponHeld;
 				this.weaponHeld = arme;
-				Utilitaire.lettreParLettre("Vous avez jeté " + weapon + " au profit d'" + arme + ".");
+				return "Vous avez jeté " + weapon + " au profit d'" + arme + ".";
 			}
-		} else { // If he has no weapon
-			this.setStrength(arme.getStrength());
-			this.weaponHeld = arme;
-			Utilitaire.lettreParLettre("Vous n'aviez pas d'arme, vous récupérez donc " + arme);
-		}
+		} // If he has no weapon
+		this.setStrength(arme.getStrength());
+		this.weaponHeld = arme;
+		return "Vous n'aviez pas d'arme, vous récupérez donc " + arme;
+		
 	}
 
 	/**
@@ -104,38 +104,7 @@ public class PersonnagePrincipal extends Personnage {
 			return true;
 	}
 
-	/**
-	 * Game over screen
-	 * 
-	 * @throws InterruptedException to avoid errors (It should never get into this
-	 *                              exception)
-	 */
-	public void gameOver() throws InterruptedException {
-		Utilitaire.sautDeLignes();
-		System.out.println("                      :::!~!!!!!:.\r\n" + 
-				"                  .xUHWH!! !!?M88WHX:.\r\n" + 
-				"                .X*#M@$!!  !X!M$$$$$$WWx:.\r\n" + 
-				"               :!!!!!!?H! :!$!$$$$$$$$$$8X:\r\n" + 
-				"              !!~  ~:~!! :~!$!#$$$$$$$$$$8X:\r\n" + 
-				"             :!~::!H!<   ~.U$X!?R$$$$$$$$MM!\r\n" + 
-				"             ~!~!!!!~~ .:XW$$$U!!?$$$$$$RMM!\r\n" + 
-				"               !:~~~ .:!M\"T#$$$$WX??#MRRMMM!\r\n" + 
-				"               ~?WuxiW*`   `\"#$$$$8!!!!??!!!\r\n" + 
-				"             :X- M$$$$       `\"T#$T~!8$WUXU~\r\n" + 
-				"            :%`  ~#$$$m:        ~!~ ?$$$$$$\r\n" + 
-				"          :!`.-   ~T$$$$8xx.  .xWW- ~\"\"##*\"\r\n" + 
-				".....   -~~:<` !    ~?T#$$@@W@*?$$      /`\r\n" + 
-				"W$@@M!!! .!~~ !!     .:XUW$W!~ `\"~:    :\r\n" + 
-				"#\"~~`.:x%`!!  !H:   !WM$$$$Ti.: .!WUn+!`\r\n" + 
-				":::~:!!`:X~ .: ?H.!u \"$$$B$$$!W:U!T$$M~\r\n" + 
-				".~~   :X@!.-~   ?@WTWo(\"*$$$W$TH$! `\r\n" + 
-				"Wi.~!X$?!-~    : ?$$$B$Wu(\"**$RM!\r\n" + 
-				"$R@i.~~ !     :   ~$$$$$B$$en:``\r\n" + 
-				"?MXT@Wx.~    :     ~\"##*$$$$M~");
-		Thread.sleep(1000*Utilitaire.getVitessetxt());
-		Utilitaire.lettreParLettre("\n\n\n\n\nVous êtes mort\nGame over");
-		Utilitaire.rejouerDemande();
-	}
+
 
 	/**
 	 * Adds a key in the bunch of keys

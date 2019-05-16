@@ -11,7 +11,7 @@ import main.Main;
  *
  */
 public class Utilitaire {
-	private static int vitessetxt;
+	private static int vitessetxt = 2;
 	private static int nbPartie = 0;
 
 	public static int getVitessetxt() {
@@ -110,17 +110,18 @@ public class Utilitaire {
 
 	/**
 	 * Asks the player if he wants to replay
+	 * @return true if he does false if he doesn't
 	 * 
 	 * @throws InterruptedException to avoid errors (It should never get into this
 	 *                              exception
 	 */
-	public static void rejouerDemande() throws InterruptedException {
+	public static boolean rejouerDemande() throws InterruptedException {
 		int ans = Utilitaire.yesNoQuestions(
 				"Partie n°" + Utilitaire.getNbPartie() + " finie.\nVoulez-vous rejouer ?\n1 pour oui\n2 pour non");
 		if (ans == 1)
-			Main.main(null);
+			return true;
 		else
-			System.exit(0);
+			return false;
 	}
 
 	/**

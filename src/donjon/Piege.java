@@ -1,5 +1,6 @@
 package donjon;
 
+import main.Main;
 import objets.ObjCoffre;
 import personnages.PersonnagePrincipal;
 import util.Utilitaire;
@@ -48,7 +49,7 @@ public class Piege implements ObjCoffre {
 		dmg -= joueur.getHp();
 		System.out.println("Le piège vous a infligé " + dmg + " points de dégats");
 		if (joueur.isKO()) { // If the player dies
-			joueur.gameOver();
+			Main.gameOver();
 		}
 	}
 

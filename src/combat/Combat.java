@@ -1,5 +1,6 @@
 package combat;
 
+import main.Main;
 import personnages.Monstre;
 import personnages.PersonnagePrincipal;
 import util.Utilitaire;
@@ -39,7 +40,7 @@ public class Combat {
 			Combat.affPV(joueur, ennemi); // Displays Health Points
 		}
 		if (joueur.isKO()) { // Checks the player's death == Game Over Screen
-			joueur.gameOver();
+			Main.gameOver();
 		} else { // Player winning the fight
 			Utilitaire.lettreParLettre("\nCombat terminé !!"); // Ending of the fight
 			Utilitaire.lettreParLettre("Vous avez tué le " + ennemi.toString() + "\n\n\n");

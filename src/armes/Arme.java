@@ -33,7 +33,7 @@ public abstract class Arme implements ObjSol, ObjCoffre {
 	@Override
 	public void trouverObjSol(Salle salle, PersonnagePrincipal joueur) throws InterruptedException {
 		Utilitaire.lettreParLettre("Vous avez trouvé " + salle.getObjSol().toString() + " dans la salle");
-		joueur.equipWeapon((Arme) salle.getObjSol());
+		Utilitaire.lettreParLettre(joueur.equipWeapon((Arme) salle.getObjSol()));
 		salle.setObjSol(null); // Delete the weapon from the room
 	}
 
@@ -44,7 +44,7 @@ public abstract class Arme implements ObjSol, ObjCoffre {
 	@Override
 	public void trouverObjCoffre(Chest coffre, PersonnagePrincipal joueur) throws InterruptedException {
 		Utilitaire.lettreParLettre("Le coffre contenait " + coffre.getContenu().toString());
-		joueur.equipWeapon((Arme) coffre.getContenu());
+		Utilitaire.lettreParLettre(joueur.equipWeapon((Arme) coffre.getContenu()));
 		coffre.setContenu(null); // Delete the weapon from the chest
 	}
 
