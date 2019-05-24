@@ -116,13 +116,13 @@ public class Utilitaire {
 	 * @throws InterruptedException to avoid errors (It should never get into this
 	 *                              exception
 	 */
-	public static boolean rejouerDemande() throws InterruptedException {
+	public static void rejouerDemande() throws InterruptedException {
 		int ans = Utilitaire.yesNoQuestions(
 				"Partie n°" + Utilitaire.getNbPartie() + " finie.\nVoulez-vous rejouer ?\n1 pour oui\n2 pour non");
 		if (ans == 1)
-			return true;
+			Main.main(null);
 		else
-			return false;
+			System.exit(0);
 	}
 
 	/**
